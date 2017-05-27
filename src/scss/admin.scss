@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+
+#tsoh-meta {
+	th{
+		font-weight:bold;
+		text-align: center;
+	}
+	.right{
+		text-align: right;
+		span {
+			color: #888;
+		}
+	}
+	.tsoh-time{
+		width: 6em;
+	}
+	tbody th input{
+		width: 8em;
+	}
+}

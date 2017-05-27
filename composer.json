@@ -1,0 +1,21 @@
+{
+    "name": "tarosky/taro-open-hour",
+    "description": "A WordPress plugin for open hour.",
+    "type": "library",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "tarosky",
+            "email": "info@tarosky.co.jp"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "Tarosky\\OpenHour\\": "app/"
+        }
+    }
+}

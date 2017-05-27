@@ -1,0 +1,72 @@
+<?php
+
+namespace Tarosky\OpenHour;
+
+
+use Tarosky\OpenHour\Pattern\Singleton;
+
+/**
+ * Admin interface
+ * @package tsoh
+ */
+class Admin extends Singleton {
+
+	/**
+	 * Bootstrap
+	 *
+	 * @param array $settings
+	 */
+	protected function init( array $settings = [] ) {
+		add_action( 'admin_menu', function() {
+			add_options_page( $this->get_title(), __( 'Open Hour', 'tsoh' ), 'manage_options', 'tsoh', [ $this, 'admin_screen' ] );
+		} );
+		add_action( 'admin_init', [ $this, 'save_option' ] );
+		// If no post type is selected, show link.
+		if ( current_user_can( 'manage_options' ) && ! get_option( 'tsoh_post_types', [] ) ) {
+			add_action( 'admin_notices', function() {
+				$message = sprintf( __( '[Taro Open Hour] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), admin_url( 'options-general.php?page=tsoh' ) );
+				echo "<div class=\"error\"><p>{$message}</p></div>";
+			} );
+		}
+	}
+
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
+	public function get_title() {
+		return __( 'Taro Open Hour Setting', 'tsoh' );
+	}
+
+	/**
+	 * Save post types
+	 */
+	public function save_option() {
+		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'tsoh' == $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
+			// Save post type
+			$post_types = isset( $_POST['post_type'] ) ? (array) $_POST['post_type'] : [];
+			update_option( 'tsoh_post_types', array_filter( $post_types, function( $post_type ) {
+				return post_type_exists( $post_type );
+			} ) );
+			// Save time
+			update_option( 'tsoh_default_time', $_POST['default-time'] );
+			// days
+			$days = isset( $_POST['default_days'] ) ? $_POST['default_days'] : [];
+			update_option( 'tsoh_default_days', $days );
+			wp_redirect( admin_url( 'options-general.php?page=tsoh' ) );
+			exit;
+		}
+	}
+
+	/**
+	 * Register submenu
+	 */
+	public function admin_screen() {
+		$path = tsoh_template( 'setting.php' );
+		if ( $path ) {
+			include $path;
+		}
+	}
+
+}
