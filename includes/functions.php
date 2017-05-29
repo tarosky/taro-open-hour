@@ -219,7 +219,11 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
  * @param null|int|WP_Post $post
  */
 function tsoh_the_timetable(  $timestamp = false, array $additional_class = [], $post = null  ) {
-	echo tsoh_get_timetable( $timestamp, $additional_class, $post );
+	$table = tsoh_get_timetable( $timestamp, $additional_class, $post );
+	if ( $table ) {
+		tsoh_load_style();
+		echo $table;
+	}
 }
 
 /**
@@ -232,7 +236,7 @@ function tsoh_the_timetable(  $timestamp = false, array $additional_class = [], 
 function tsoh_holiday_note( $post = null ) {
 	$post = get_post( $post );
 
-	return get_post_meta( $post->ID, '_tsoh_holidy_note', true );
+	return get_post_meta( $post->ID, '_tsoh_holiday_note', true );
 }
 
 /**
@@ -244,4 +248,57 @@ function tsoh_holiday_note( $post = null ) {
 function tsoh_the_holiday_note( $placeholder = '', $post = null ) {
 	$note = tsoh_holiday_note( $post );
 	echo $note ?: $placeholder;
+}
+
+/**
+ * Get stylesheet information.
+ *
+ * @param string $context
+ *
+ * @return array|bool
+ */
+function tsoh_style_url( $context = '' ) {
+	static $style = [];
+	if ( $style || false === $style ) {
+		return $style;
+	}
+	$style = [
+		'url'     => tsoh_asset( '/css/tsoh-style.css' ),
+	    'version' => tsoh_version(),
+	];
+	if ( file_exists( get_template_directory() . '/tsoh-style.css' ) ) {
+		$style = [
+			'url'     => get_template_directory_uri() . '/tsoh-style.css',
+		    'version' => filemtime( get_template_directory() . '/tsoh-style.css' ),
+		];
+	}
+	if ( get_template_directory() != get_stylesheet_directory() && file_exists( get_stylesheet_directory() . '/tsoh-style.css' ) ) {
+		$style = [
+			'url'     => get_stylesheet_directory_uri() . '/tsoh-style.css',
+			'version' => filemtime( get_stylesheet_directory() . '/tsoh-style.css' ),
+		];
+	}
+	/**
+	 * tsoh_stylesheet
+	 *
+	 * @package tsoh
+	 * @since 1.0.0
+	 * @param array  $style   Array with 'url' and 'version'.
+	 * @param string $context Context string. Default empty.
+	 * @return array|false If return is false, no style will be enqueued.
+	 */
+	$style = apply_filters( 'tsoh_stylesheet', $style );
+	return $style;
+}
+
+/**
+ * Enqueue style
+ */
+function tsoh_load_style() {
+	$style = tsoh_style_url();
+	if ( false === $style ) {
+		// Do nothing.
+		return;
+	}
+	wp_enqueue_style( 'tsoh-style', $style['url'], [], $style['version'] );
 }

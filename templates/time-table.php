@@ -37,12 +37,20 @@
 	<?php endif; ?>
 	<tbody>
 	<?php foreach ( $time_table as $time ) : ?>
-		<tr class="tsoh-row">
-			<th scope="row" class="tsoh-row-header<?php if ( $time['now'] ) { echo ' now'; } ?>">
+		<tr class="tsoh-row<?php if ( $time['now'] ) { echo ' now'; } ?>"
+			data-start="<?= esc_attr( $time['open'] ) ?>" data-end="<?= esc_attr( $time['close'] ) ?>">
+			<th scope="row" class="tsoh-row-header">
 				<?= esc_html( $time['open'] . "~" . $time['close'] ) ?>
 			</th>
-			<?php for ( $i = 0; $i < 7; $i++ ) : ?>
-				<td class="tsoh-cell <?php if ( $day == $i ) { echo 'today'; } ?>">
+			<?php for ( $i = 0; $i < 7; $i++ ) :
+				$classes = [ 'tsoh-cell' ];
+				if ( $i == $day ) {
+					$classes[] = 'today';
+				}
+				$classes[] = isset( $time[ $i ] ) ? 'open' : 'close';
+				?>
+				<td data-open="<?= isset( $time[$i] ) ? 'true' : 'false' ?>"
+					class="<?= esc_attr( implode( ' ', $classes ) ) ?>">
 					<?= isset( $time[ $i ] ) ? '&#x2713;' : '-' ?>
 				</td>
 			<?php endfor; ?>

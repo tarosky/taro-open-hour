@@ -55,7 +55,7 @@ class MetaBox extends Singleton {
 				"startError" => _x('Start time is invalid format.', 'metabox-js', 'tsoh'),
 				"endError" => _x('End time is invalid format.', 'metabox-js', 'tsoh'),
 				"pastStartError" => _x("Start time must be earlier than end time.", 'metabox-js', 'tsoh'),
-				'notEmpty' => _x( 'Tims shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
+				'notEmpty' => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
 				"deleteBtn" => _x("Delete", 'metabox-js', 'tsoh'),
 				"deleteConfirm" => _x("Are you sure to delete this time shift?", 'metabox-js', 'tsoh'),
 			    'defaultTime' => $default_time,
@@ -82,7 +82,7 @@ class MetaBox extends Singleton {
 			return;
 		}
 		// Save note
-		update_post_meta( $post_id, "_tsoh_holidy_note",  $_POST['tsoh_note'] );
+		update_post_meta( $post_id, "_tsoh_holiday_note",  $_POST['tsoh_note'] );
 		// Clear all time shift.
 		$this->model->clear( $post_id );
 		// Save new time shift

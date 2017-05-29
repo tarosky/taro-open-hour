@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hametuha Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-02 22:50+0900\n"
-"PO-Revision-Date: 2014-04-03 01:31+0900\n"
-"Last-Translator: Takahashi Fumiki <info@takahashifumiki.com>\n"
+"POT-Creation-Date: 2017-05-29 16:33+0900\n"
+"PO-Revision-Date: 2017-05-29 16:34+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Hametuha inc. <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
@@ -13,153 +13,244 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 2.0\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../Hametuha_Open_Hour.php:297
-msgid "Select Open Hour"
-msgstr "開業時間を選んでください"
+#: app/Tarosky/OpenHour/Admin.php:21 app/Tarosky/OpenHour/MetaBox.php:26
+#: templates/time-table.php:19
+msgid "Open Hour"
+msgstr "開業時間"
 
-#: ../Hametuha_Open_Hour.php:298
-msgid "Selected Time"
-msgstr "選択された時間"
+#: app/Tarosky/OpenHour/Admin.php:27
+#, php-format
+msgid ""
+"[Taro Open Hour] No post type is specified. Please go to <a href=\"%s"
+"\">setting screen</a>."
+msgstr ""
+"[Taro Open Hour] 投稿タイプが指定されていません。<a href=\"%s\">設定画面</a>"
+"へ移動してください。"
 
-#: ../Hametuha_Open_Hour.php:299
-msgid "Hour"
-msgstr "時"
+#: app/Tarosky/OpenHour/Admin.php:39
+msgid "Taro Open Hour Setting"
+msgstr "Taro Open Hour 設定"
 
-#: ../Hametuha_Open_Hour.php:300
-msgid "Minute"
-msgstr "分"
-
-#: ../Hametuha_Open_Hour.php:301
-msgid "Second"
-msgstr "秒"
-
-#: ../Hametuha_Open_Hour.php:302 ../functions/output.php:42
-msgid "Now"
-msgstr "いま"
-
-#: ../Hametuha_Open_Hour.php:303
-msgid "Close"
-msgstr "閉じる"
-
-#: ../Hametuha_Open_Hour.php:304
+#: app/Tarosky/OpenHour/MetaBox.php:55
+msgctxt "metabox-js"
 msgid "Start time is invalid format."
 msgstr "開業時間の形式が不正です。"
 
-#: ../Hametuha_Open_Hour.php:305
+#: app/Tarosky/OpenHour/MetaBox.php:56
+msgctxt "metabox-js"
 msgid "End time is invalid format."
 msgstr "終業時間の形式が不正です。"
 
-#: ../Hametuha_Open_Hour.php:306
+#: app/Tarosky/OpenHour/MetaBox.php:57
+msgctxt "metabox-js"
 msgid "Start time must be earlier than end time."
 msgstr "開業時間は終業時間より早くなければいけません。"
 
-#: ../Hametuha_Open_Hour.php:307 ../templates/metabox.php:73
+#: app/Tarosky/OpenHour/MetaBox.php:58
+msgctxt "metabox-js"
+msgid "Tims shift is not empty. Clear them all before insert defaults."
+msgstr ""
+"タイムシフトが埋まっています。デフォルト値を入れる前にすべて削除してくださ"
+"い。"
+
+#: app/Tarosky/OpenHour/MetaBox.php:59
+msgctxt "metabox-js"
 msgid "Delete"
 msgstr "削除"
 
-#: ../Hametuha_Open_Hour.php:308
+#: app/Tarosky/OpenHour/MetaBox.php:60
+msgctxt "metabox-js"
 msgid "Are you sure to delete this time shift?"
 msgstr "この時間帯を削除してよろしいですか？"
 
-#: ../functions/output.php:42
-msgid "Undefined"
-msgstr "未設定"
-
-#: ../lib/Hametuha_Library.php:232
-msgid ""
-"Uploaded file size exceeds the &quot;upload_max_filesize&quot; value defined "
-"in php.ini"
-msgstr ""
-"アップロードされたファイルサイズはphp.iniで定義されたupload_max_filesizeを超"
-"えています。"
-
-#: ../lib/Hametuha_Library.php:236
-msgid "Uploaded file size exceeds"
-msgstr "アップロードされたファイルサイズが大きすぎます。"
-
-#: ../lib/Hametuha_Library.php:240
-msgid "File has been uploaded incompletely. Check your internet connection."
-msgstr ""
-"ファイルが完全にアップロードされませんでした。インターネット接続を確認してく"
-"ださい。"
-
-#: ../lib/Hametuha_Library.php:244
-msgid "No file was uploaded."
-msgstr "ファイルがアップロードされませんでした。"
-
-#: ../lib/Hametuha_Library.php:248
-msgid "No tmp directory exists. Contact to your server administrator."
-msgstr "tmpディレクトリが存在しません。サーバー管理者に問い合わせてください。"
-
-#: ../lib/Hametuha_Library.php:252
-msgid "Failed to save the uploaded file. Contact to your server administrator."
-msgstr ""
-"アップロードされたファイルの保存に失敗しました。サーバー管理者に問い合わせて"
-"ください。"
-
-#: ../lib/Hametuha_Library.php:256
-msgid "PHP stops uploading."
-msgstr "PHPがアップロードを停止しました。"
-
-#: ../lib/Hametuha_Library.php:264
-msgid "File isn't uploaded."
-msgstr "ファイルがアップロードされませんでした。"
-
-#: ../lib/Hametuha_Library.php:474
-#, php-format
-msgid "Admin Template file dosen't exist. [FILE NAME: %s]"
-msgstr "管理画面テンプレートファイルが見つかりません。 [ファイル名: %s]"
-
-#: ../templates/metabox.php:17
-msgid "Time Shift"
-msgstr "タイムシフト"
-
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:21 templates/setting.php:60
+#: templates/time-table.php:20
 msgid "Mon"
 msgstr "月"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:22 templates/setting.php:60
+#: templates/time-table.php:21
 msgid "Tue"
 msgstr "火"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:23 templates/setting.php:60
+#: templates/time-table.php:22
 msgid "Wed"
 msgstr "水"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:24 templates/setting.php:60
+#: templates/time-table.php:23
 msgid "Thu"
 msgstr "木"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:25 templates/setting.php:60
+#: templates/time-table.php:24
 msgid "Fri"
 msgstr "金"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:26 templates/setting.php:60
+#: templates/time-table.php:25
 msgid "Sat"
 msgstr "土"
 
-#: ../templates/metabox.php:18
+#: includes/functions.php:87 templates/metabox.php:27 templates/setting.php:60
+#: templates/time-table.php:26
 msgid "Sun"
 msgstr "日"
 
-#: ../templates/metabox.php:26
-msgid "Add Time Shift"
-msgstr "タイムシフトを追加する"
+#: includes/functions.php:94
+msgid "Now"
+msgstr "いま"
 
-#: ../templates/metabox.php:31
+#: includes/functions.php:94
+msgid "Undefined"
+msgstr "未設定"
+
+#: taro-open-hour.php:47
+msgid "Auto loader file is missing. You should run composer install."
+msgstr ""
+"オートローダーファイルがありません。composer installを実行してください。"
+
+#: taro-open-hour.php:60
+#, php-format
+msgid ""
+"[ERROR] Taro Open Hour doesn't work because your PHP version %1$s is too "
+"low. PHP %2$s and over is required."
+msgstr ""
+"[ERROR] Taro Open Hour は動作しません。あなたのPHPバージョン %1$s は低すぎま"
+"す。PHP %2$s 以上が必須となっています。"
+
+#: templates/metabox.php:12
+msgid "Labels"
+msgstr "ラベル"
+
+#: templates/metabox.php:13
+msgctxt "time-table"
+msgid "Open"
+msgstr "開業"
+
+#: templates/metabox.php:14
+msgctxt "time-table"
+msgid "Close"
+msgstr "休業"
+
+#: templates/metabox.php:18
+msgid "Time Shift"
+msgstr "タイムシフト"
+
+#: templates/metabox.php:42
 msgid "Add"
 msgstr "追加"
 
-#: ../templates/metabox.php:80
-msgid "Changes are not saved untill you push update button."
+#: templates/metabox.php:47
+msgid "Fill default time shift"
+msgstr "タイムシフトにデフォルト値を入れる"
+
+#: templates/metabox.php:53
+msgid "Holiday Notes"
+msgstr "休業日の注記"
+
+#: templates/metabox.php:57
+msgid "ex. Closing every Monday & National Holidays."
+msgstr "例: 毎週月曜日と祝祭日はお休みです"
+
+#: templates/metabox.php:82
+msgid "Delete"
+msgstr "削除"
+
+#: templates/metabox.php:89
+msgid "Changes are not saved until you push update button."
 msgstr "変更は更新ボタンを押さない限り保存されません。"
 
-#~ msgid "Open Hour"
-#~ msgstr "開業時間"
+#: templates/setting.php:18
+msgid "Post Type"
+msgstr "投稿タイプ"
+
+#: templates/setting.php:33
+msgid "Select post types which have open hour."
+msgstr "開業時間を表示する投稿タイプを選んでください"
+
+#: templates/setting.php:40
+msgid "Default Time Shift"
+msgstr "デフォルトのタイムシフト"
+
+#: templates/setting.php:44
+msgid "09:00, 18:00"
+msgstr "09:00, 18:00"
+
+#: templates/setting.php:47
+msgid ""
+"Enter time shift in CSV format on each line. 1st is start time, 2nd is end "
+"time."
+msgstr ""
+"開業時間をCSV形式で入力してください。1つめが始業時間、2つめが終業時間です。"
+
+#: templates/setting.php:54
+msgid "Default Open day"
+msgstr "デフォルトの開業日"
+
+#: templates/setting.php:82
+msgid "Update Option"
+msgstr "設定を更新"
+
+#~ msgid "Select Open Hour"
+#~ msgstr "開業時間を選んでください"
+
+#~ msgid "Selected Time"
+#~ msgstr "選択された時間"
+
+#~ msgid "Hour"
+#~ msgstr "時"
+
+#~ msgid "Minute"
+#~ msgstr "分"
+
+#~ msgid "Second"
+#~ msgstr "秒"
+
+#~ msgid ""
+#~ "Uploaded file size exceeds the &quot;upload_max_filesize&quot; value "
+#~ "defined in php.ini"
+#~ msgstr ""
+#~ "アップロードされたファイルサイズはphp.iniで定義されたupload_max_filesizeを"
+#~ "超えています。"
+
+#~ msgid "Uploaded file size exceeds"
+#~ msgstr "アップロードされたファイルサイズが大きすぎます。"
+
+#~ msgid "File has been uploaded incompletely. Check your internet connection."
+#~ msgstr ""
+#~ "ファイルが完全にアップロードされませんでした。インターネット接続を確認して"
+#~ "ください。"
+
+#~ msgid "No file was uploaded."
+#~ msgstr "ファイルがアップロードされませんでした。"
+
+#~ msgid "No tmp directory exists. Contact to your server administrator."
+#~ msgstr ""
+#~ "tmpディレクトリが存在しません。サーバー管理者に問い合わせてください。"
+
+#~ msgid ""
+#~ "Failed to save the uploaded file. Contact to your server administrator."
+#~ msgstr ""
+#~ "アップロードされたファイルの保存に失敗しました。サーバー管理者に問い合わせ"
+#~ "てください。"
+
+#~ msgid "PHP stops uploading."
+#~ msgstr "PHPがアップロードを停止しました。"
+
+#~ msgid "File isn't uploaded."
+#~ msgstr "ファイルがアップロードされませんでした。"
+
+#~ msgid "Admin Template file dosen't exist. [FILE NAME: %s]"
+#~ msgstr "管理画面テンプレートファイルが見つかりません。 [ファイル名: %s]"
+
+#~ msgid "Add Time Shift"
+#~ msgstr "タイムシフトを追加する"
 
 #~ msgid "Note"
 #~ msgstr "注意"
