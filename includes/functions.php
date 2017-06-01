@@ -70,7 +70,7 @@ function tsoh_has_timetable( $post = null ) {
 }
 
 /**
- * 現在の時刻設定を出力する
+ * Get current time condition
  *
  * @param bool $undefined_as_now Treat undefined as now.
  * @param bool $echo Default true. If false, output nothing.
@@ -78,7 +78,7 @@ function tsoh_has_timetable( $post = null ) {
  *
  * @return array
  */
-function the_current_time_condition( $undefined_as_now = false, $echo = true, WP_Query $query = null ) {
+function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, WP_Query $query = null ) {
 	global $haoh;
 	if ( is_null( $query ) ) {
 		global $wp_query;

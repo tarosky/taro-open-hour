@@ -13,7 +13,7 @@ Author URI: https://tarosky.co.jp
 defined( 'ABSPATH' ) or die();
 
 // Register bootstrap.
-add_action( 'plugins_loaded', '_tsoh_plugins_loaded' );
+add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
 
 /**
  * Plugin entry point
@@ -21,12 +21,12 @@ add_action( 'plugins_loaded', '_tsoh_plugins_loaded' );
  * @internal
  * @package tsoh
  */
-function _tsoh_plugins_loaded() {
+function tsoh_plugins_loaded() {
 	// Register i18n
 	load_plugin_textdomain( 'tsoh', false, basename( dirname(__FILE__) ) . '/language' );
 	// Check PHP version
 	if ( version_compare( phpversion(), '5.4.0', '<' ) ) {
-		add_action( 'admin_notices', '_tsoh_php_low' );
+		add_action( 'admin_notices', 'tsoh_php_low' );
 	} else {
 		// Version check O.K.
 		// Load function file
@@ -55,7 +55,7 @@ function _tsoh_plugins_loaded() {
  * @internal
  * @package tsoh
  */
-function _tsoh_php_low() {
+function tsoh_php_low() {
 	$message = sprintf(
 		__( '[ERROR] Taro Open Hour doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'tsoh' ),
 		phpversion(),
