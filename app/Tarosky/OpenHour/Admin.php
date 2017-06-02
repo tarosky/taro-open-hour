@@ -50,9 +50,9 @@ class Admin extends Singleton {
 				return post_type_exists( $post_type );
 			} ) );
 			// Save time
-			update_option( 'tsoh_default_time', $_POST['default-time'] );
+			update_option( 'tsoh_default_time', sanitize_textarea_field( (string) $_POST['default-time'] ) );
 			// days
-			$days = isset( $_POST['default_days'] ) ? $_POST['default_days'] : [];
+			$days = isset( $_POST['default_days'] ) ? array_map( 'intval', (array) $_POST['default_days'] ) : [];
 			update_option( 'tsoh_default_days', $days );
 			wp_redirect( admin_url( 'options-general.php?page=tsoh' ) );
 			exit;

@@ -60,7 +60,7 @@ Copy it to `your-theme/template-part/tsoh/time-table.php ` and change markups.
 
 ## Frequently Asked Questions
 
-### How to make reqeust?
+### How to make request?
 
 Please make issue at [github](https://github.com/tarosky/taro-open-hour/issues).
 
