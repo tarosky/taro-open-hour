@@ -72,7 +72,7 @@ class MetaBox extends Singleton {
 	 * @return void
 	 */
 	public function edit_post( $post_id, $post ) {
-		if( wp_is_post_autosave($post_id) || wp_is_post_revision($post_id) ){
+		if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
 			return;
 		}
 		if ( ! tsoh_supported( $post->post_type ) ) {
@@ -82,7 +82,7 @@ class MetaBox extends Singleton {
 			return;
 		}
 		// Save note
-		update_post_meta( $post_id, "_tsoh_holiday_note",  $_POST['tsoh_note'] );
+		update_post_meta( $post_id, "_tsoh_holiday_note", sanitize_text_field( $_POST['tsoh_note'] ) );
 		// Clear all time shift.
 		$this->model->clear( $post_id );
 		// Save new time shift
