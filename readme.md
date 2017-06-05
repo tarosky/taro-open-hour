@@ -18,7 +18,7 @@ This plugin displays open hour table on single page.
 ### How to display
 
 You can use shortcode `[open-hour]` for it. If you are a theme developer,
-just use `tsoh_load_style` function.
+just use `tsoh_the_timetable()` function.
 
 This plugin is hosted on [Github](https://github.com/tarosky/taro-open-hour/), any Pull Requests are welcomed!
 
@@ -44,7 +44,7 @@ We also have filter hook `tsoh_stylesheet`. Below is the example to change css u
 // Change css path.
 add_filter('tsoh_stylesheet', function($style){
     $style = [
-        'url'     => get_stylesheed_directory_uri() . '/assets/css/table.css',
+        'url'     => get_stylesheet_directory_uri() . '/assets/css/table.css',
         'version' => wp_get_theme()->get('Version'),
     ];
     return $style;
@@ -57,6 +57,18 @@ If you returns `false` on filter hook, no style will be loaded.
 
 Table's template is located at `taro-open-hour/templates/time-table.php`.
 Copy it to `your-theme/template-part/tsoh/time-table.php ` and change markups.
+
+Of course, you can change template path with filter hook.
+
+```
+// e.g. If post type is event, change template from default.
+add_filter( 'tsoh_timetable_template_path', function( $path, $post ) {
+    if ( 'event' == $post->post_type ) {
+        $path = get_template_directory() . '/templates/yours/event.php';
+    }
+    return $path;
+}, 10, 2 );
+```
 
 ## Frequently Asked Questions
 
