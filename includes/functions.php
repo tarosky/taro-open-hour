@@ -66,7 +66,7 @@ function tsoh_default( $raw = false ) {
 function tsoh_has_timetable( $post = null ) {
 	$post = get_post( $post );
 
-	return \Tarosky\OpenHour\Model::instance()->has_time_table( $post->ID );
+	return $post ? \Tarosky\OpenHour\Model::instance()->has_time_table( $post->ID ) : false;
 }
 
 /**
@@ -84,23 +84,20 @@ function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, W
 		global $wp_query;
 		$query = $wp_query;
 	}
-	$day_string   = array( __( 'Mon' ), __( "Tue" ), __( "Wed" ), __( "Thu" ), __( "Fri" ), __( "Sat" ), __( "Sun" ) );
+	$day_string   = [ __( 'Mon' ), __( 'Tue' ), __( 'Wed' ), __( 'Thu' ), __( 'Fri' ), __( 'Sat' ), __( 'Sun' ) ];
 	$time_setting = $haoh->retrieve_specified_time( $query );
-	extract( $time_setting );
-	/** @var string $time */
-	/** @var array $days */
 	if ( $echo ) {
-		if ( ! $time && ! $days ) {
-			echo $undefined_as_now ? $haoh->_( 'Now' ) : $haoh->_( 'Undefined' );
+		if ( ! $time_setting['time'] && ! $time_setting['days'] ) {
+			echo $undefined_as_now ? __( 'Now', 'tsoh' ) : __( 'Undefined', 'tsoh' );
 		} else {
-			$str = array();
-			if ( $time ) {
-				$str[] = $haoh->my2time( $time );
+			$str = [];
+			if ( $time_setting['time'] ) {
+				$str[] = \Tarosky\OpenHour\Formatter::instance()->my2time( $time_setting['time'] );
 			}
-			if ( $days ) {
+			if ( $time_setting['days'] ) {
 				$str[] = implode( ', ', array_map( function ( $d ) use ( $day_string ) {
 					return isset( $day_string[ $d ] ) ? $day_string[ $d ] : '';
-				}, $days ) );
+				}, $time_setting['days'] ) );
 			}
 			echo implode( ' ', $str );
 		}
@@ -167,23 +164,23 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
 	}
 	$day        = date_i18n( 'N', $timestamp ) - 1;
 	$hour       = date_i18n( 'H:i', $timestamp );
-	$time_table = array_filter( \Tarosky\OpenHour\Model::instance()->get_timetable( $post->ID ), function( $row ) {
+	$time_table = array_filter( \Tarosky\OpenHour\Model::instance()->get_timetable( $post->ID ), function ( $row ) {
 		return count( $row ) > 2;
 	} );
 
 	foreach ( $time_table as $index => $row ) {
 		if ( \Tarosky\OpenHour\Model::instance()->between( $hour, $row['open'], $row['close'] ) ) {
-			$time_table[$index]['now'] = true;
+			$time_table[ $index ]['now'] = true;
 		} else {
-			$time_table[$index]['now'] = false;
+			$time_table[ $index ]['now'] = false;
 		}
 	}
 
 	if ( empty( $time_table ) ) {
 		return '';
 	}
-	$classes = implode( ' ', array_merge( ['tsoh-time-table'], $additional_class ) );
-	$path = tsoh_template( 'time-table.php' );
+	$classes = implode( ' ', array_merge( [ 'tsoh-time-table' ], $additional_class ) );
+	$path    = tsoh_template( 'time-table.php' );
 	foreach ( [ get_template_directory(), get_stylesheet_directory() ] as $dir ) {
 		$style = "{$dir}/templat-part/tsoh/time-table.php";
 		if ( file_exists( $style ) ) {
@@ -195,8 +192,10 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
 	 *
 	 * @package tsoh
 	 * @since 1.0.0
-	 * @param string  $path File path.
+	 *
+	 * @param string $path File path.
 	 * @param WP_Post $post Post object.
+	 *
 	 * @return string
 	 */
 	$path = apply_filters( 'tsoh_timetable_template_path', $path, $post );
@@ -205,6 +204,7 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
 		include $path;
 		$table = ob_get_contents();
 		ob_end_clean();
+
 		return $table;
 	}
 }
@@ -214,11 +214,12 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
  * Display time table
  *
  * @see tsoh_get_timetable()
- * @param bool             $timestamp
- * @param array            $additional_class
+ *
+ * @param bool $timestamp
+ * @param array $additional_class
  * @param null|int|WP_Post $post
  */
-function tsoh_the_timetable(  $timestamp = false, array $additional_class = [], $post = null  ) {
+function tsoh_the_timetable( $timestamp = false, array $additional_class = [], $post = null ) {
 	$table = tsoh_get_timetable( $timestamp, $additional_class, $post );
 	if ( $table ) {
 		tsoh_load_style();
@@ -236,7 +237,7 @@ function tsoh_the_timetable(  $timestamp = false, array $additional_class = [], 
 function tsoh_holiday_note( $post = null ) {
 	$post = get_post( $post );
 
-	return get_post_meta( $post->ID, '_tsoh_holiday_note', true );
+	return $post ? get_post_meta( $post->ID, '_tsoh_holiday_note', true ) : '';
 }
 
 /**
@@ -264,12 +265,12 @@ function tsoh_style_url( $context = '' ) {
 	}
 	$style = [
 		'url'     => tsoh_asset( '/css/tsoh-style.css' ),
-	    'version' => tsoh_version(),
+		'version' => tsoh_version(),
 	];
 	if ( file_exists( get_template_directory() . '/tsoh-style.css' ) ) {
 		$style = [
 			'url'     => get_template_directory_uri() . '/tsoh-style.css',
-		    'version' => filemtime( get_template_directory() . '/tsoh-style.css' ),
+			'version' => filemtime( get_template_directory() . '/tsoh-style.css' ),
 		];
 	}
 	if ( get_template_directory() != get_stylesheet_directory() && file_exists( get_stylesheet_directory() . '/tsoh-style.css' ) ) {
@@ -283,11 +284,14 @@ function tsoh_style_url( $context = '' ) {
 	 *
 	 * @package tsoh
 	 * @since 1.0.0
-	 * @param array  $style   Array with 'url' and 'version'.
+	 *
+	 * @param array $style Array with 'url' and 'version'.
 	 * @param string $context Context string. Default empty.
+	 *
 	 * @return array|false If return is false, no style will be enqueued.
 	 */
 	$style = apply_filters( 'tsoh_stylesheet', $style );
+
 	return $style;
 }
 

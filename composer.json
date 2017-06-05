@@ -13,6 +13,11 @@
     "require": {
         "php": ">=5.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "squizlabs/php_codesniffer": "~2.8",
+        "wp-coding-standards/wpcs": "~0.11"
+    },
     "autoload": {
         "psr-0": {
             "Tarosky\\OpenHour\\": "app/"

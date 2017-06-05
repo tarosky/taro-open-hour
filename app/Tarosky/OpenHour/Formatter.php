@@ -10,28 +10,29 @@ use Tarosky\OpenHour\Pattern\Singleton;
  *
  * @package tsoh
  */
-class Formatter extends  Singleton {
-
+class Formatter extends Singleton {
 
 
 	/**
 	 * Add second string for MySQL usage.
 	 *
 	 * @param string $time
+	 *
 	 * @return string
 	 */
-	public function time2my($time){
-		return $time.":00";
+	public function time2my( $time ) {
+		return $time . ':00';
 	}
 
 	/**
 	 * Convert MySQL time format to non-second.
 	 *
 	 * @param string $mysql_time
+	 *
 	 * @return string
 	 */
-	public function my2time($mysql_time){
-		return preg_replace("/:00$/", "", $mysql_time);
+	public function my2time( $mysql_time ) {
+		return preg_replace( '/:00$/', '', $mysql_time );
 	}
 
 	/**
@@ -51,14 +52,15 @@ class Formatter extends  Singleton {
 	 * Normalize day format
 	 *
 	 * @param string $string
+	 *
 	 * @return bool|int
 	 */
-	public function normalize_day($string = ''){
-		$string = (string)$string;
-		if( '' == $string ){
+	public function normalize_day( $string = '' ) {
+		$string = (string) $string;
+		if ( '' == $string ) {
 			return false;
 		}
-		switch(strtolower($string)){
+		switch ( strtolower( $string ) ) {
 			case 'monday':
 			case 'mon':
 			case '0':

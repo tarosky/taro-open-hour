@@ -1,0 +1,34 @@
+language: php
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+branches:
+  only:
+  - master
+  - "/^v?[0-9\\.]+$/"
+php:
+- 5.6
+- 7.0
+env:
+  matrix:
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=4.6 WP_MULTISITE=0
+  global:
+  - SVN_REPO: https://plugins.svn.wordpress.org/taro-open-hour/
+  - secure: "t7RXfVLwShUuFfiPIeJZHWNShlJ8QqMRm/LrP+FJ2GJ0dxQm59Hg4l1zK1DBW+sBh0M4YdxVTYsUKmxwbci0/A12cw8Y7ncYROqFmJ/goAkm+1wBGj4kh26aND6CC3pVTiaKs9VvnBoqC5nBWyXnOENAvbzOZsYEL9ksh6lrJeqfJFg5xeb79+m7WrL1ENbmoYJSp7D/5uH9oE2q5alNpyMr1rtmQZn+t2c7/MYAQpCw6zagiEb9C81Tm0ixtc60fxSy1QYgSCv0S53wL0DjsljJapRPBzzApYhaZD0OFHHBKF+HPyuIJ6eJFAsRq1gAKkh3Jf4zKxCrRF3OUPSGKVGxFYZMl4WiM5KyTld2RNvvhPZy56lrJ0XBeSom7hvHbyKUjRUU+oEWCSKRHhuJJWtZvwWwk9en7xgixVJlkjq2uzECnhj0y9dv+n2W8X/mcTzZUUQ7ADax4R75dc7Wqo/mR6yQ3qrpbr79l0qAAzxKZL4X7poDasXEy7Gsqj6lwtnMioKHwx9Go2NXay2kmxKCfCk/vk7gC65ras4IT6kTUW4+VHCRQPLnWXpQJ9IXE3D01ho/PFDXQXHXdfgPYT5raUwoEmnD+GpGI/aA8euO+nMKXrBiqLVHsA8i1UQPZYItMNNGwIWW0M1j1f0ly7fc+ET2WruJBgeZ1pQ2Ucc="
+matrix:
+  include:
+  - php: 5.6
+    env: WP_VERSION=4.6 WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
+before_script:
+- composer install
+- curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh
+- source $HOME/.nvm/nvm.sh
+- nvm install v6.9.1
+- node --version
+- npm install && npm run package
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+script:
+- phpunit
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash

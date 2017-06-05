@@ -123,13 +123,13 @@ EOS;
 	 */
 	public function get_open_date( $post_id, $start = null, $end = null ) {
 		$wheres = [
-			$this->db->prepare( "( object_id = %d )", $post_id )
+			$this->db->prepare( '( object_id = %d )', $post_id )
 		];
 		if ( ! is_null( $start ) ) {
-			$wheres[] = $this->db->prepare( " (open <= %s) ", $start );
+			$wheres[] = $this->db->prepare( ' (open <= %s) ', $start );
 		}
 		if ( ! is_null( $end ) ) {
-			$wheres[] = $this->db->prepare( " (close >= %s) ", $end );
+			$wheres[] = $this->db->prepare( ' (close >= %s) ', $end );
 		}
 		$where_clause = implode( ' AND ', $wheres );
 		$sql          = <<<EOS
@@ -172,7 +172,7 @@ EOS;
 	 * Check if time range is included
 	 *
 	 * @param array $segments Array of 'start' and'end'
-	 * @param array $range    Array of 'start' and'end'
+	 * @param array $range Array of 'start' and'end'
 	 *
 	 * @return bool
 	 */
@@ -201,16 +201,16 @@ EOS;
 	public function is_open( $post = null, $days = [], $time = '' ) {
 		$post  = get_post( $post );
 		$where = [
-			$this->db->prepare( "( object_id = %d )", $post->ID ),
+			$this->db->prepare( '( object_id = %d )', $post->ID ),
 		];
 		// If time is specified.
 		if ( $time ) {
-			$where[] = $this->db->prepare( "( open <= %s )", $time );
-			$where[] = $this->db->prepare( "( close >= %s )", $time );
+			$where[] = $this->db->prepare( '( open <= %s )', $time );
+			$where[] = $this->db->prepare( '( close >= %s )', $time );
 		}
 		// 曜日指定されていたら
 		if ( $days ) {
-			$where[] = sprintf( "( day IN (%s) )", implode( ', ', array_map( 'intval', $days ) ) );
+			$where[] = sprintf( '( day IN (%s) )', implode( ', ', array_map( 'intval', $days ) ) );
 		}
 		$where_clause = implode( ' AND ', $where );
 		$query        = <<<EOS
@@ -218,32 +218,34 @@ EOS;
         WHERE {$where_clause}
         LIMIT 1
 EOS;
+
 		return (bool) $this->db->get_var( $query );
 	}
 
 	/**
 	 * Add new data
 	 *
-	 * @param int      $post_id
-	 * @param int      $day
-	 * @param string   $open
-	 * @param string   $close
+	 * @param int $post_id
+	 * @param int $day
+	 * @param string $open
+	 * @param string $close
 	 * @param int|bool $crowdedness
 	 *
 	 * @return false|int
 	 */
 	public function add( $post_id, $day, $open, $close, $crowdedness = false ) {
 		$data  = [
-			'object_id'   => $post_id,
-			"day"         => $day,
-			"open"        => $open,
-			"close"       => $close,
+			'object_id' => $post_id,
+			'day'       => $day,
+			'open'      => $open,
+			'close'     => $close,
 		];
 		$where = [ '%d', '%d', '%s', '%s' ];
 		if ( false !== $crowdedness ) {
-			$data[ 'crowdedness' ] = $crowdedness;
-			$where[] = '%d';
+			$data['crowdedness'] = $crowdedness;
+			$where[]             = '%d';
 		}
+
 		return $this->db->insert( $this->table, $data, $where );
 	}
 
@@ -257,7 +259,7 @@ EOS;
 	public function clear( $post_id ) {
 		return $this->db->delete( $this->table, [
 			'object_id' => $post_id,
-		], ['%d'] );
+		], [ '%d' ] );
 	}
 
 	/**
@@ -278,14 +280,16 @@ EOS;
 	 */
 	public function needs_update() {
 		$current_version = get_option( 'tsoh_db_version', '0.0.0' );
+
 		return version_compare( $current_version, $this->db_version, '<' );
 	}
+
 	/**
 	 * Register db
 	 */
 	public function activate() {
-		$char = defined( "DB_CHARSET" ) ? DB_CHARSET : "utf8";
-		$sql = <<<EOS
+		$char = defined( 'DB_CHARSET' ) ? DB_CHARSET : 'utf8';
+		$sql  = <<<EOS
 			CREATE TABLE {$this->table} (
 				`time_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
 				`object_id` BIGINT(11) NOT NULL,
@@ -299,7 +303,7 @@ EOS;
 				INDEX by_time( `open`, `close` )
 			) ENGINE = InnoDB DEFAULT CHARSET = {$char} ;
 EOS;
-		require_once ABSPATH . "wp-admin/includes/upgrade.php";
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 		update_option( 'tsoh_db_version', $this->db_version );
 	}
@@ -315,6 +319,7 @@ EOS;
 		switch ( $name ) {
 			case 'db':
 				global $wpdb;
+
 				return $wpdb;
 				break;
 			case 'table':
