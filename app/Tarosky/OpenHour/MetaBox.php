@@ -56,8 +56,8 @@ class MetaBox extends Singleton {
 			$default_days = array_map( 'intval', apply_filters( 'tsoh_default_days', (array) get_option( 'tsoh_default_days', range( 0, 4 ) ) ) );
 
 			wp_localize_script( 'tsoh-edit-helper', 'TsOpenHour', [
-				'startError'     => _x( 'Start time is invalid format.', 'metabox-js', 'tsoh' ),
-				'endError'       => _x( 'End time is invalid format.', 'metabox-js', 'tsoh' ),
+				'startError'     => _x( 'Start time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
+				'endError'       => _x( 'End time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
 				'pastStartError' => _x( 'Start time must be earlier than end time.', 'metabox-js', 'tsoh' ),
 				'notEmpty'       => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
 				'deleteBtn'      => _x( 'Delete', 'metabox-js', 'tsoh' ),
