@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Hametuha Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 16:33+0900\n"
-"PO-Revision-Date: 2017-05-29 16:34+0900\n"
+"PO-Revision-Date: 2017-09-06 00:24+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Hametuha inc. <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja_JP\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: app/Tarosky/OpenHour/Admin.php:21 app/Tarosky/OpenHour/MetaBox.php:26
 #: templates/time-table.php:19
 msgid "Open Hour"
-msgstr "開業時間"
+msgstr "営業時間"
 
 #: app/Tarosky/OpenHour/Admin.php:27
 #, php-format
@@ -172,7 +172,7 @@ msgstr "投稿タイプ"
 
 #: templates/setting.php:33
 msgid "Select post types which have open hour."
-msgstr "開業時間を表示する投稿タイプを選んでください"
+msgstr "営業時間を表示する投稿タイプを選んでください"
 
 #: templates/setting.php:40
 msgid "Default Time Shift"
@@ -191,7 +191,7 @@ msgstr ""
 
 #: templates/setting.php:54
 msgid "Default Open day"
-msgstr "デフォルトの開業日"
+msgstr "デフォルトの営業日"
 
 #: templates/setting.php:82
 msgid "Update Option"
