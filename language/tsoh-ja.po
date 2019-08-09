@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Hametuha Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-29 16:33+0900\n"
-"PO-Revision-Date: 2017-05-29 16:34+0900\n"
+"PO-Revision-Date: 2017-09-06 00:33+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Hametuha inc. <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja_JP\n"
@@ -13,14 +13,14 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0\n"
+"X-Generator: Poedit 1.7.5\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
 #: app/Tarosky/OpenHour/Admin.php:21 app/Tarosky/OpenHour/MetaBox.php:26
 #: templates/time-table.php:19
 msgid "Open Hour"
-msgstr "開業時間"
+msgstr "営業時間"
 
 #: app/Tarosky/OpenHour/Admin.php:27
 #, php-format
@@ -38,7 +38,7 @@ msgstr "Taro Open Hour 設定"
 #: app/Tarosky/OpenHour/MetaBox.php:55
 msgctxt "metabox-js"
 msgid "Start time is invalid format."
-msgstr "開業時間の形式が不正です。"
+msgstr "始業時間の形式が不正です。"
 
 #: app/Tarosky/OpenHour/MetaBox.php:56
 msgctxt "metabox-js"
@@ -48,7 +48,7 @@ msgstr "終業時間の形式が不正です。"
 #: app/Tarosky/OpenHour/MetaBox.php:57
 msgctxt "metabox-js"
 msgid "Start time must be earlier than end time."
-msgstr "開業時間は終業時間より早くなければいけません。"
+msgstr "始業時間は終業時間より早くなければいけません。"
 
 #: app/Tarosky/OpenHour/MetaBox.php:58
 msgctxt "metabox-js"
@@ -65,7 +65,7 @@ msgstr "削除"
 #: app/Tarosky/OpenHour/MetaBox.php:60
 msgctxt "metabox-js"
 msgid "Are you sure to delete this time shift?"
-msgstr "この時間帯を削除してよろしいですか？"
+msgstr "この時間帯を削除してよろしいですか ?"
 
 #: includes/functions.php:87 templates/metabox.php:21 templates/setting.php:60
 #: templates/time-table.php:20
@@ -113,7 +113,7 @@ msgstr "未設定"
 #: taro-open-hour.php:47
 msgid "Auto loader file is missing. You should run composer install."
 msgstr ""
-"オートローダーファイルがありません。composer installを実行してください。"
+"オートローダーファイルがありません。composer install を実行してください。"
 
 #: taro-open-hour.php:60
 #, php-format
@@ -121,8 +121,8 @@ msgid ""
 "[ERROR] Taro Open Hour doesn't work because your PHP version %1$s is too "
 "low. PHP %2$s and over is required."
 msgstr ""
-"[ERROR] Taro Open Hour は動作しません。あなたのPHPバージョン %1$s は低すぎま"
-"す。PHP %2$s 以上が必須となっています。"
+"[エラー] 現在の PHP バージョン %1$s は低すぎるため Taro Open Hour は動作しま"
+"せん。PHP %2$s 以上が必須です。"
 
 #: templates/metabox.php:12
 msgid "Labels"
@@ -131,7 +131,7 @@ msgstr "ラベル"
 #: templates/metabox.php:13
 msgctxt "time-table"
 msgid "Open"
-msgstr "開業"
+msgstr "営業"
 
 #: templates/metabox.php:14
 msgctxt "time-table"
@@ -172,7 +172,7 @@ msgstr "投稿タイプ"
 
 #: templates/setting.php:33
 msgid "Select post types which have open hour."
-msgstr "開業時間を表示する投稿タイプを選んでください"
+msgstr "営業時間を表示する投稿タイプを選んでください"
 
 #: templates/setting.php:40
 msgid "Default Time Shift"
@@ -187,11 +187,11 @@ msgid ""
 "Enter time shift in CSV format on each line. 1st is start time, 2nd is end "
 "time."
 msgstr ""
-"開業時間をCSV形式で入力してください。1つめが始業時間、2つめが終業時間です。"
+"営業時間を CSV 形式で入力してください。1つめが始業時間、2つめが終業時間です。"
 
 #: templates/setting.php:54
 msgid "Default Open day"
-msgstr "デフォルトの開業日"
+msgstr "デフォルトの営業日"
 
 #: templates/setting.php:82
 msgid "Update Option"

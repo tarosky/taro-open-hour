@@ -44,7 +44,7 @@
 							  placeholder="<?php esc_attr_e( '09:00, 18:00', 'tsoh' ) ?>"
 							  ><?= esc_textarea( tsoh_default( true ) ) ?></textarea>
 					<p class="description">
-						<?php esc_html_e( 'Enter time shift in CSV format on each line. 1st is start time, 2nd is end time.' ) ?>
+						<?php esc_html_e( 'Enter time shift in CSV format on each line. 1st is start time, 2nd is end time.', 'tsoh' ) ?>
 					</p>
 				</td>
 			</tr>

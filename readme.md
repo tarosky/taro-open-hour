@@ -74,7 +74,7 @@ add_filter( 'tsoh_timetable_template_path', function( $path, $post ) {
 
 ### How to make request?
 
-Please make issue at [github](https://github.com/tarosky/taro-open-hour/issues).
+Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 
 
 ## Screenshots
