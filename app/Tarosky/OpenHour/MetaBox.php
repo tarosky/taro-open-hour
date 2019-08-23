@@ -41,8 +41,6 @@ class MetaBox extends Singleton {
 	public function enqueue_scripts() {
 		$screen = get_current_screen();
 		if ( ( 'post' === $screen->base ) && tsoh_supported( $screen->id ) ) {
-			// Load style
-			wp_enqueue_style( 'tsoh-admin', tsoh_asset( 'css/admin.css' ), [], tsoh_version() );
 			// Load script
 			wp_enqueue_script( 'tsoh-edit-helper', tsoh_asset( '/js/edit-helper.js' ), [ 'jquery-effects-highlight' ], tsoh_version(), true );
 			$default_time = tsoh_default();

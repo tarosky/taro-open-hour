@@ -2,20 +2,34 @@
 
 
 #tsoh-meta {
-	th{
-		font-weight:bold;
-		text-align: center;
-	}
-	.right{
-		text-align: right;
-		span {
-			color: #888;
-		}
-	}
-	.tsoh-time{
-		width: 6em;
-	}
-	tbody th input{
-		width: 8em;
-	}
+  th {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+
+    span {
+      color: #888;
+    }
+  }
+
+  .tsoh-time {
+    width: 6em;
+  }
+
+  tbody th input {
+    width: 8em;
+  }
+}
+
+
+.tsoh-label {
+  display: inline-block;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
 }

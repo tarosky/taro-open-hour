@@ -8,7 +8,7 @@ use Tarosky\OpenHour\Pattern\Singleton;
 /**
  * Model class
  *
- * @package Tarosky\OpenHour
+ * @package tsoh
  * @property \wpdb $db
  * @property string $table
  * @property Formatter $formatter

@@ -55,7 +55,7 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 		<td colspan="8">
 			<textarea name="tsoh_note" id="tsoh_note" cols="40" rows="3"
 					  placeholder="<?php esc_attr_e( 'ex. Closing every Monday & National Holidays.', 'tsoh' ) ?>"
-					  style="width:90%;"><?= esc_textarea( get_post_meta( $post->ID, "_tsoh_holiday_note", true ) ); ?></textarea>
+					  style="width:90%;"><?php echo esc_textarea( get_post_meta( $post->ID, "_tsoh_holiday_note", true ) ); ?></textarea>
 		</td>
 	</tr>
 	</tfoot>

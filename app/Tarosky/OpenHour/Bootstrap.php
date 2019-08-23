@@ -26,5 +26,7 @@ class Bootstrap extends Singleton {
 		Admin::instance();
 		// Register meta box
 		MetaBox::instance();
+		// Places instance.
+		Places::instance();
 	}
 }

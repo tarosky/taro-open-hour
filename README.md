@@ -4,6 +4,7 @@ Business Places
 Contributors: tarosky,Takahashi_Fumiki
 Tags: custom field  
 Requires at least: 4.7.0  
+Requres PHP: 5.6  
 Tested up to: 4.7.5  
 Stable tag: 1.0.0  
 License: GPLv3 or later  

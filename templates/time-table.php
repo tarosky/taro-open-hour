@@ -13,7 +13,7 @@
 /** @var string $classes    Class name */
 ?>
 
-<table class="<?= esc_attr( $classes ) ?>">
+<table class="<?php echo esc_attr( $classes ) ?>">
 	<thead>
 	<tr>
 		<th scope="col" class="time-belt"><?php _e( 'Open Hour', 'tsoh' ) ?></th>
@@ -38,9 +38,9 @@
 	<tbody>
 	<?php foreach ( $time_table as $time ) : ?>
 		<tr class="tsoh-row<?php if ( $time['now'] ) { echo ' now'; } ?>"
-			data-start="<?= esc_attr( $time['open'] ) ?>" data-end="<?= esc_attr( $time['close'] ) ?>">
+			data-start="<?php echo esc_attr( $time['open'] ) ?>" data-end="<?php echo esc_attr( $time['close'] ) ?>">
 			<th scope="row" class="tsoh-row-header">
-				<?= esc_html( $time['open'] . "~" . $time['close'] ) ?>
+				<?php echo esc_html( $time['open'] . "~" . $time['close'] ) ?>
 			</th>
 			<?php for ( $i = 0; $i < 7; $i++ ) :
 				$classes = [ 'tsoh-cell' ];
@@ -49,9 +49,9 @@
 				}
 				$classes[] = isset( $time[ $i ] ) ? 'open' : 'close';
 				?>
-				<td data-open="<?= isset( $time[$i] ) ? 'true' : 'false' ?>"
-					class="<?= esc_attr( implode( ' ', $classes ) ) ?>">
-					<?= isset( $time[ $i ] ) ? '&#x2713;' : '-' ?>
+				<td data-open="<?php echo isset( $time[$i] ) ? 'true' : 'false' ?>"
+					class="<?php echo esc_attr( implode( ' ', $classes ) ) ?>">
+					<?php echo isset( $time[ $i ] ) ? '&#x2713;' : '-' ?>
 				</td>
 			<?php endfor; ?>
 		</tr>

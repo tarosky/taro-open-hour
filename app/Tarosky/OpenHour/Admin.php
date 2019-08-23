@@ -17,8 +17,11 @@ class Admin extends Singleton {
 	 * @param array $settings
 	 */
 	protected function init( array $settings = [] ) {
+		add_action( 'admin_enqueue_scripts', function() {
+			wp_enqueue_style( 'tsoh-admin', tsoh_asset( 'css/admin.css' ), [], tsoh_version() );
+		} );
 		add_action( 'admin_menu', function() {
-			add_options_page( $this->get_title(), __( 'Open Hour', 'tsoh' ), 'manage_options', 'tsoh', [ $this, 'admin_screen' ] );
+			add_options_page( $this->get_title(), __( 'Business Places', 'tsoh' ), 'manage_options', 'tsoh', [ $this, 'admin_screen' ] );
 		} );
 		add_action( 'admin_init', [ $this, 'save_option' ] );
 		// If no post type is selected, show link.
@@ -37,7 +40,7 @@ class Admin extends Singleton {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Taro Open Hour Setting', 'tsoh' );
+		return __( 'Business Places Setting', 'tsoh' );
 	}
 
 	/**
@@ -45,6 +48,10 @@ class Admin extends Singleton {
 	 */
 	public function save_option() {
 		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'tsoh' == $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
+			// Save location.
+			update_option( 'tsoh_place_post_type', filter_input( INPUT_POST, 'tsoh_place_post_type' ) );
+			update_option( 'tsoh_place_post_type_public', filter_input( INPUT_POST, 'tsoh_place_post_type_public' ) );
+			update_option( 'tsoh_place_post_types', filter_input( INPUT_POST, 'tsoh_place_post_types', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
 			// Save post type
 			$post_types = isset( $_POST['post_type'] ) ? (array) $_POST['post_type'] : [];
 			update_option( 'tsoh_post_types', array_filter( $post_types, function( $post_type ) {
