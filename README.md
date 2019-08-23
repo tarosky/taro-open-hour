@@ -1,4 +1,4 @@
-Taro Open Hour
+Business Places
 ==================================
 
 Contributors: tarosky,Takahashi_Fumiki

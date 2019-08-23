@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Taro Open Hour
+Plugin Name: Business Places
 Plugin URI: https://wordpress.org/plugin/taro-open-hour
-Description: Add open hour to any post type.
+Description: Add place and open hour to any post type.
 Author: tarosky
 Version: 1.0.0
 PHP Version: 5.4.0
