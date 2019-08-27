@@ -1,0 +1,33 @@
+.tsoh-location {
+
+  &-map{
+    margin: 0 0 .25em;
+    &-iframe{
+      width: 100%;
+      border: none;
+      height: 300px;
+    }
+  }
+
+  &-address {
+    margin: 0 0 0.5em;
+    font-style: normal;
+    &-text{
+      margin: 0.25em;
+    }
+    &-access{
+      margin: 0.25em;
+    }
+  }
+
+  &-contacts{
+
+  }
+
+  &-contact{
+    margin: 0.25em 0;
+    .dashicons{
+      opacity: .6;
+    }
+  }
+}

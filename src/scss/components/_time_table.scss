@@ -1,0 +1,51 @@
+.tsoh{
+  &-time-table{
+    width: auto;
+    max-width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+    th, td {
+      padding: 1em;
+      border: 1px solid #ddd;
+      @media only screen and (max-width: 786px) {
+        padding: 0.5em;
+      }
+    }
+  }
+  thead{
+    text-align: center;
+    .time-belt{
+
+    }
+    .date{
+
+    }
+  }
+  &-cell{
+    text-align: center;
+    .now &.today{
+      background-color: #fffbdc;
+    }
+    &.close{
+      color: #ddd;
+    }
+    &.open{
+      color: #69b073;
+    }
+  }
+  &-row-header{
+    text-align: center;
+    font-weight: normal;
+    color: #444;
+  }
+
+  &-holiday-note{
+    td{
+      font-size: 0.85em;
+      padding: 1em;
+      border-color: transparent;
+      color: #888;
+    }
+  }
+}

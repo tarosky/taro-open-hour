@@ -224,7 +224,6 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = [], $
 function tsoh_the_timetable( $timestamp = false, array $additional_class = [], $post = null ) {
 	$table = tsoh_get_timetable( $timestamp, $additional_class, $post );
 	if ( $table ) {
-		tsoh_load_style();
 		echo $table;
 	}
 }

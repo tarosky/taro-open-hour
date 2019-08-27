@@ -32,6 +32,8 @@ class Bootstrap extends Singleton {
 		Places::instance();
 		// Register widgets.
 		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
+		// Load style
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
 	}
 	
 	/**
@@ -64,5 +66,12 @@ class Bootstrap extends Singleton {
 				continue;
 			}
 		}
+	}
+	
+	/**
+	 * Load styles.
+	 */
+	public function enqueue_scripts() {
+		tsoh_load_style();
 	}
 }
