@@ -2,19 +2,14 @@
 
 namespace Tarosky\OpenHour\Pattern;
 
-use Tarosky\OpenHour\Formatter;
-use Tarosky\OpenHour\Model;
-use Tarosky\OpenHour\Places;
-
 /**
  * Meta box class.
  *
  * @package tsoh
- * @property Model     $model
- * @property Formatter $formatter
- * @property Places $places
  */
 abstract class AbstractMetaBox extends Singleton {
+
+	use ControllerAccessor;
 	
 	protected static $is_duplicated = false;
 	
@@ -85,27 +80,4 @@ abstract class AbstractMetaBox extends Singleton {
 	 * @return void
 	 */
 	abstract public function render_meta_box( $post );
-	
-	/**
-	 * Getter
-	 *
-	 * @param string $name
-	 *
-	 * @return mixed
-	 */
-	public function __get( $name ) {
-		switch ( $name ) {
-			case 'places':
-				return Places::instance();
-			case 'model':
-				return Model::instance();
-				break;
-			case 'formatter':
-				return Formatter::instance();
-				break;
-			default:
-				return null;
-				break;
-		}
-	}
 }

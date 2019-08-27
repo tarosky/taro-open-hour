@@ -96,6 +96,28 @@ class Places extends Singleton {
 	}
 	
 	/**
+	 * Get site location
+	 *
+	 * @return \WP_Post|null
+	 */
+	public function get_site_location() {
+		foreach ( get_posts( [
+			'post_type'      => $this->post_types,
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'meta_query'     => [
+				[
+					'key'   => '_tsoh_site_location',
+					'value' => '1',
+				],
+			],
+		] ) as $post ) {
+			return $post;
+		}
+		return null;
+	}
+	
+	/**
 	 * Check if post type is supported as places.
 	 *
 	 * @param string $post_type
@@ -128,6 +150,139 @@ class Places extends Singleton {
 			}
 		}
 		return $filtered;
+	}
+	
+	/**
+	 * Render location block
+	 *
+	 * @param null|int|\WP_Post $post
+	 * @param string            $type
+	 * @param array             $setting
+	 *
+	 * @return string
+	 */
+	public function display_location( $post = null, $type = 'card', $setting = [] ) {
+		$post = get_post( $post );
+		if ( ! $post ) {
+			return '';
+		}
+		$file = '';
+		switch ( $type ) {
+			case 'block':
+				$file = tsoh_template( 'location-' . $type . '.php' );
+				break;
+		}
+		if ( ! $file ) {
+			$file = tsoh_template( 'location.php' );
+		}
+		ob_start();
+		include $file;
+		$output = ob_get_contents();
+		ob_end_clean();
+		return apply_filters( 'tsoh_location_display', $output, $post, $type );
+	}
+	
+	/**
+	 * Get formatted address.
+	 *
+	 * @param null|int|\WP_Post $post
+	 * @param string[]          $excludes Key name to be excluded.
+	 *
+	 * @return string
+	 */
+	public function format_address( $post = null, $excludes = [] ) {
+		$address_parts = [];
+		$post = get_post( $post );
+		if ( ! $post ) {
+			return '';
+		}
+		foreach ( $this->get_address_parts() as $key => $label ) {
+			if ( in_array( $key, $excludes ) ) {
+				continue;
+			}
+			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
+			if ( ! $value ) {
+				continue;
+			}
+			switch ( $key ) {
+				case 'zip':
+					$address_parts[ $key ] = _x( '', 'zip_prefix', 'tsoh' ) . $value;
+					break;
+				case 'country':
+					if ( 'no' !== _x( 'yes', 'display_country', 'tsoh' ) ) {
+						$address_parts[ $key ] = $value;
+					}
+					break;
+				default:
+					$address_parts[ $key ] = $value;
+					break;
+			}
+		}
+		$address_parts = apply_filters( 'tsoh_formatted_address', $address_parts, $post );
+		return implode( ' ', $address_parts );
+	}
+	
+	/**
+	 * Get Google map iframe.
+	 *
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return string
+	 */
+	public function get_map_src( $post = null ) {
+		$post = get_post( $post );
+		$api_key = get_option( 'tsoh_google_api_key' );
+		if ( ! $api_key || ! $post ) {
+			return '';
+		}
+		$q = $this->format_address( $post, [ 'zip', 'address2' ] );
+		return (string) apply_filters( 'tsoh_gmap_src', sprintf( 'https://www.google.com/maps/embed/v1/place?q=%s&key=%s', rawurlencode( $q ), $api_key ), $post );
+	}
+	
+	/**
+	 * Get location contacts.
+	 *
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return array
+	 */
+	public function location_contacts( $post = null ) {
+		$contacts = [];
+		$post = get_post( $post );
+		if ( ! $post ) {
+			return $contacts;
+		}
+		foreach ( [ 'tel', 'email', 'url' ] as $key ) {
+			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
+			if ( ! $value ) {
+				continue;
+			}
+			$icon  = $key;
+			$label = $value;
+			switch ( $key ) {
+				case 'tel':
+					$url   = 'tel:' . $value;
+					$icon = 'phone';
+					break;
+				case 'email':
+					$url = 'mailto:' . $value;
+					break;
+				case 'url':
+					$url = $value;
+					$label = __( 'Web Site', 'tsoh' );
+					$icon = 'admin-links';
+					break;
+				default:
+					continue;
+			}
+			$contacts[ $key ] = [
+				'label' => $label,
+				'url'   => $url,
+				'icon'  => $icon,
+				'value' => $value,
+			];
+		}
+		return $contacts;
 	}
 	
 	/**

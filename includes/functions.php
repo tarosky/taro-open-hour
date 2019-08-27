@@ -5,6 +5,8 @@
  * @package tsoh
  */
 
+use Tarosky\OpenHour\Places;
+
 
 /**
  * Detect
@@ -15,7 +17,7 @@
  */
 function tsoh_supported( $post_type ) {
 	$post_types = (array) get_option( 'tsoh_post_types', [] );
-
+	$post_types = array_merge( $post_types, Places::instance()->post_types );
 	return false !== array_search( $post_type, $post_types );
 }
 

@@ -30,5 +30,39 @@ class Bootstrap extends Singleton {
 		LocationMetaBox::instance();
 		// Places instance.
 		Places::instance();
+		// Register widgets.
+		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
+	}
+	
+	/**
+	 * Register all widgets.
+	 */
+	public function register_widgets() {
+		$dir = __DIR__ . '/Widgets';
+		if ( ! is_dir( $dir ) ) {
+			return;
+		}
+		foreach ( scandir( $dir ) as $file ) {
+			if ( ! preg_match( '#(.*)\.php$#u', $file, $matches ) ) {
+				continue;
+			}
+			$class_name = "Tarosky\\OpenHour\\Widgets\\" . $matches[1];
+			if ( ! class_exists( $class_name ) ) {
+				continue;
+			}
+			try {
+				$reflection = new \ReflectionClass( $class_name );
+				if ( ! $reflection->isSubclassOf( 'WP_Widget' ) ) {
+					continue;
+				}
+				if ( $reflection->hasConstant( 'DUPLICATED' ) ) {
+					// If class has duplicated flag, skip loading.
+					continue;
+				}
+				register_widget( $class_name );
+			} catch ( \Exception $e ) {
+				continue;
+			}
+		}
 	}
 }
