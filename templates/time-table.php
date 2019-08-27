@@ -14,7 +14,7 @@
 ?>
 
 <table class="<?php echo esc_attr( $classes ) ?>">
-	<thead>
+	<thead class="tsoh-time-table-header">
 	<tr>
 		<th scope="col" class="time-belt"><?php _e( 'Open Hour', 'tsoh' ) ?></th>
 		<th scope="col" class="date"><?php _e( 'Mon' ) ?></th>
@@ -27,7 +27,7 @@
 	</tr>
 	</thead>
 	<?php if ( tsoh_holiday_note( $post ) ) : ?>
-	<tfoot>
+	<tfoot class="tsoh-time-table-footer">
 		<tr class="tsoh-holiday-note">
 			<td colspan="8">
 			<?php tsoh_the_holiday_note( '', $post ) ?>

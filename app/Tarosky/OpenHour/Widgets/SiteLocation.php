@@ -31,8 +31,8 @@ class SiteLocation extends AbstractWidget{
 	protected function form_elements( $instance ) {
 		
 		foreach ( [
-			'' => __( 'Display Google Map', 'tsoh' ),
-			'show_map' => __( 'Display Google Map', 'tsoh' ),
+			'show_map'    => __( 'Display Google Map', 'tsoh' ),
+			'show_access' => __( 'Display Google Map', 'tsoh' ),
 		] as $key => $label) {
 		
 		}

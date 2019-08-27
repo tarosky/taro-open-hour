@@ -1,6 +1,12 @@
 .tsoh{
   &-time-table{
     width: auto;
+    @media only screen and (max-width: 786px) {
+      width: 100%;
+    }
+      &-widget{
+      width: 100%;
+    }
     max-width: 100%;
     table-layout: auto;
     border-collapse: collapse;
@@ -10,16 +16,19 @@
       border: 1px solid #ddd;
       @media only screen and (max-width: 786px) {
         padding: 0.5em;
+        font-size: 0.85em;
+      }
+      @media only screen and (max-width: 320px) {
+        padding: 0.25em;
       }
     }
-  }
-  thead{
-    text-align: center;
-    .time-belt{
-
-    }
-    .date{
-
+    &-header {
+      .time-belt {
+        text-align: center;
+      }
+      .date {
+        text-align: center;
+      }
     }
   }
   &-cell{
@@ -46,6 +55,17 @@
       padding: 1em;
       border-color: transparent;
       color: #888;
+    }
+  }
+
+  &-time-table-narrow{
+    width: 100%;
+    th, td{
+      padding: 0.5em;
+      font-size: 0.85em;
+      @media only screen and (max-width: 320px) {
+        padding: 0.25em;
+      }
     }
   }
 }
