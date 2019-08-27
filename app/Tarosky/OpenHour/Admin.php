@@ -11,12 +11,7 @@ use Tarosky\OpenHour\Pattern\Singleton;
  */
 class Admin extends Singleton {
 
-	/**
-	 * Bootstrap
-	 *
-	 * @param array $settings
-	 */
-	protected function init( array $settings = [] ) {
+	protected function init() {
 		add_action( 'admin_enqueue_scripts', function() {
 			wp_enqueue_style( 'tsoh-admin', tsoh_asset( 'css/admin.css' ), [], tsoh_version() );
 		} );
@@ -52,6 +47,7 @@ class Admin extends Singleton {
 			update_option( 'tsoh_place_post_type', filter_input( INPUT_POST, 'tsoh_place_post_type' ) );
 			update_option( 'tsoh_place_post_type_public', filter_input( INPUT_POST, 'tsoh_place_post_type_public' ) );
 			update_option( 'tsoh_place_post_types', filter_input( INPUT_POST, 'tsoh_place_post_types', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) );
+			update_option( 'tsoh_google_api_key', filter_input( INPUT_POST, 'tsoh_google_api_key' ) );
 			// Save post type
 			$post_types = isset( $_POST['post_type'] ) ? (array) $_POST['post_type'] : [];
 			update_option( 'tsoh_post_types', array_filter( $post_types, function( $post_type ) {

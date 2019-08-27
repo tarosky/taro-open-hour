@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Tarosky\OpenHour\MetaBox $this
+ * @var \Tarosky\OpenHour\MetaBoxes\OpenHourMetaBox $this
  * @package tsoh
  */
 wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );

@@ -17,9 +17,8 @@ class Places extends Singleton {
 	/**
 	 * Initialize Constructor
 	 *
-	 * @param array $settings
 	 */
-	protected function init( array $settings = [] ) {
+	protected function init() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
 	}
 	
@@ -59,6 +58,44 @@ class Places extends Singleton {
 	}
 	
 	/**
+	 * Set site location
+	 *
+	 * @param null|int|\WP_Post $post
+	 * @param bool              $delete If set to true,
+	 */
+	public function set_site_location( $post = null, $delete = false ) {
+		$post = get_post( $post );
+		if ( ! $post ) {
+			return;
+		}
+		// Remove exiting.
+		global $wpdb;
+		$wpdb->delete( $wpdb->postmeta, [
+			'meta_key'   => '_tsoh_site_location',
+			'meta_value' => 1,
+		], [ '%d' ] );
+		// Save if exists.
+		if ( ! $delete ) {
+			update_post_meta( $post->ID, '_tsoh_site_location', 1 );
+		}
+	}
+	
+	/**
+	 * Get site location.
+	 *
+	 * @param null|int|\WP_Post $post
+	 *
+	 * @return bool
+	 */
+	public function is_site_location( $post = null ) {
+		$post = get_post( $post );
+		if ( ! $post ) {
+			return false;
+		}
+		return (bool) get_post_meta( $post->ID, '_tsoh_site_location', true );
+	}
+	
+	/**
 	 * Check if post type is supported as places.
 	 *
 	 * @param string $post_type
@@ -67,6 +104,30 @@ class Places extends Singleton {
 	 */
 	public function is_supported( $post_type ) {
 		return in_array( $post_type, $this->post_types );
+	}
+	
+	/**
+	 * Get address parts in i18n order.
+	 *
+	 * @return string[]
+	 */
+	public function get_address_parts() {
+		$parts = [
+			'address'  => _x( 'Address line 1', 'address', 'tsoh' ),
+			'address2' => _x( 'Address line 2', 'address', 'tsoh' ),
+			'city'     => _x( 'City', 'address', 'tsoh' ),
+			'state'    => _x( 'State / Province', 'address', 'tsoh' ),
+			'country'  => _x( 'Country', 'address', 'tsoh' ),
+			'zip'      => _x( 'Postal Code / Zip', 'address', 'tsoh' ),
+		];
+		$address_order = _x( 'address,address2,city,state,country,zip', 'address-order', 'tsoh' );
+		$filtered      = [];
+		foreach ( array_map( 'trim', explode( ',', $address_order ) ) as $key ) {
+			if ( isset( $parts[ $key ] ) ) {
+				$filtered[ $key ] = $parts[ $key ];
+			}
+		}
+		return $filtered;
 	}
 	
 	/**
@@ -83,7 +144,7 @@ class Places extends Singleton {
 			case 'post_types':
 				$post_types = (array) get_option( 'tsoh_place_post_types', [] );
 				if ( $this->post_type ) {
-					$post_types[] = 'places';
+					$post_types[] = 'location';
 				}
 				return array_unique( array_filter( $post_types ) );
 			default:

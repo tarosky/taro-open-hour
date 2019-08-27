@@ -17,18 +17,16 @@ abstract class Singleton {
 	/**
 	 * Singleton constructor.
 	 *
-	 * @param array $settings
 	 */
-	final private function __construct( array $settings = [] ) {
-		$this->init( $settings );
+	final private function __construct() {
+		$this->init();
 	}
 
 	/**
 	 * Override this function if do something in constructor.
 	 *
-	 * @param array $settings
 	 */
-	protected function init( array $settings = [] ) {}
+	protected function init() {}
 
 	/**
 	 * Get instance
@@ -37,10 +35,10 @@ abstract class Singleton {
 	 *
 	 * @return static
 	 */
-	final public static function instance( array $settings = [] ) {
+	final public static function instance() {
 		$class_name = get_called_class();
 		if ( ! isset( self::$instances[ $class_name ] ) ) {
-			self::$instances[ $class_name ] = new $class_name( $settings );
+			self::$instances[ $class_name ] = new $class_name();
 		}
 		return self::$instances[ $class_name ];
 	}
