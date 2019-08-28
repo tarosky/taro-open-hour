@@ -17,13 +17,13 @@
 	<thead class="tsoh-time-table-header">
 	<tr>
 		<th scope="col" class="time-belt"><?php _e( 'Open Hour', 'tsoh' ) ?></th>
-		<th scope="col" class="date"><?php _e( 'Mon' ) ?></th>
-		<th scope="col" class="date"><?php _e( "Tue" ) ?></th>
-		<th scope="col" class="date"><?php _e( "Wed" ) ?></th>
-		<th scope="col" class="date"><?php _e( "Thu" ) ?></th>
-		<th scope="col" class="date"><?php _e( "Fri" ) ?></th>
-		<th scope="col" class="date"><?php _e( "Sat" ) ?></th>
-		<th scope="col" class="date"><?php _e( "Sun" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( 'Mon' ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Tue" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Wed" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Thu" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Fri" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Sat" ) ?></th>
+		<th scope="col" class="date"><?php esc_html_e( "Sun" ) ?></th>
 	</tr>
 	</thead>
 	<?php if ( tsoh_holiday_note( $post ) ) : ?>

@@ -4,6 +4,7 @@ namespace Tarosky\OpenHour;
 use Tarosky\OpenHour\MetaBoxes\LocationMetaBox;
 use Tarosky\OpenHour\MetaBoxes\OpenHourMetaBox;
 use Tarosky\OpenHour\Pattern\Singleton;
+use Tarosky\OpenHour\Services\MetaInfo;
 
 
 /**
@@ -30,6 +31,8 @@ class Bootstrap extends Singleton {
 		LocationMetaBox::instance();
 		// Places instance.
 		Places::instance();
+		// Enable JSON-LD
+		MetaInfo::instance();
 		// Register widgets.
 		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
 		// Load style

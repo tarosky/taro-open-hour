@@ -6,6 +6,7 @@
  */
 
 use Tarosky\OpenHour\Places;
+use Tarosky\OpenHour\Services\MetaInfo;
 
 
 /**
@@ -111,22 +112,13 @@ function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, W
 /**
  * Open days for OGP
  *
+ * @deprecated 2.0.0
  * @param null|int|WP_post $post
  *
  * @return array
  */
 function tsoh_get_open_days_for_ogp( $post = null ) {
-	$post      = get_post( $post );
-	$date_arr  = \Tarosky\OpenHour\Model::instance()->get_open_date( $post->ID );
-	$dates     = array( 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' );
-	$open_days = [];
-	for ( $i = 0; $i < 7; $i ++ ) {
-		if ( false !== $date_arr[ $i ] ) {
-			$open_days[] = $dates[ $i ];
-		}
-	}
-
-	return $open_days;
+	return MetaInfo::instance()->get_open_days( $post );
 }
 
 /**
@@ -305,5 +297,5 @@ function tsoh_load_style() {
 		// Do nothing.
 		return;
 	}
-	wp_enqueue_style( 'tsoh-style', $style['url'], [], $style['version'] );
+	wp_enqueue_style( 'tsoh-style', $style['url'], [ 'dashicons' ], $style['version'] );
 }

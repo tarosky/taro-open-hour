@@ -31,7 +31,7 @@ class LocationMetaBox extends AbstractMetaBox {
 		if ( ! wp_verify_nonce( filter_input( INPUT_POST, '_tsohplacenonce' ), 'tsoh_place_meta_box' ) ) {
 			return;
 		}
-		$keys = array_merge( array_keys( $this->places->get_address_parts() ), [ 'access', 'tel', 'url', 'email' ] );
+		$keys = array_merge( array_keys( $this->places->get_address_parts() ), [ 'access', 'tel', 'url', 'email', 'local_business_type' ] );
 		foreach ( $keys as $key ) {
 			$id = '_tsoh_' . $key;
 			update_post_meta( $post_id, $id, filter_input( INPUT_POST, $id ) );

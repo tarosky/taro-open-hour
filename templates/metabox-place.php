@@ -30,9 +30,23 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 		</tr>
 	<?php endforeach; ?>
 	<tr>
-		<th><label for="_tsoh_access"><?php esc_html_e( 'Access Information', '' ) ?></label></th>
+		<th><label for="_tsoh_access"><?php esc_html_e( 'Access Information', 'tsoh' ) ?></label></th>
 		<td>
 			<textarea rows="5" class="widefat" name="_tsoh_access" id="_tsoh_access"><?php echo esc_textarea( get_post_meta( $post->ID, '_tsoh_access', true ) ) ?></textarea>
+		</td>
+	</tr>
+	<tr>
+		<th><label for="_tsoh_local_business_type"><?php esc_html_e( 'Business Type', 'tsoh' ) ?></label></th>
+		<td>
+			<input type="text" class="regular-text" name="_tsoh_local_business_type" id="_tsoh_local_business_type"
+				   value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ) ?>"
+				   placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'tsoh' ); ?>" />
+			<p class="description">
+				<?php esc_html_e( 'This type is used to display structured data for search engines. Default type is "LocalBusiness". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'tsoh' ) ?>
+				<a class="button" href="https://schema.org/LocalBusiness#subtypes" target="_blank">
+					<?php esc_html_e( 'Visit Schema.org', 'tsoh' ) ?>
+				</a>
+			</p>
 		</td>
 	</tr>
 	</tbody>
