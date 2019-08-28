@@ -2,19 +2,36 @@ Business Places
 ==================================
 
 Contributors: tarosky,Takahashi_Fumiki
-Tags: custom field  
+Tags: business,place,open-hour,widget  
 Requires at least: 4.7.0  
 Requres PHP: 5.6  
-Tested up to: 4.7.5  
-Stable tag: 1.0.0  
+Tested up to: 5.2.2  
+Stable tag: 2.0.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-A WordPress plugin for Open Hour.
+A WordPress plugin for business place and open hour.
 
 ## Description
 
-This plugin displays open hour table on single page.
+This plugin add places and open hours to your WordPress site.
+
+* Google Map supprted.
+* JSON-LD supported.
+
+### Case Study
+
+#### Case 1
+
+If your site is for your book store, add site location as your business place.
+
+These location and open hour are available via widget.
+
+#### Case 2
+
+If your site is bouldering shop database, choose post type to be treated as location.
+
+Each single page have place and open hour information.
 
 ### How to display
 
@@ -73,18 +90,24 @@ add_filter( 'tsoh_timetable_template_path', function( $path, $post ) {
 
 ## Frequently Asked Questions
 
-### How to make request?
+### How can I contribute to?
 
 Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
-
 
 ## Screenshots
 
 1. Time table displayed on single page with short code.
 2. You can enter time shift with metabox.
 3. You can choose post types, default time shift and default open day. Good for business with several branches.
+4. Footer widgets available.
 
 ## Changelog
+
+### 2.0.0
+
+* Change plugin name.
+* Add location feature.
+* Add widgets.
 
 ### 1.0.0
 
