@@ -9,6 +9,9 @@
             "email": "info@tarosky.co.jp"
         }
     ],
+    "scripts": {
+        "test": "phpunit"
+    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4"
