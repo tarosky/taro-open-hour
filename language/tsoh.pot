@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taro Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 16:33+0900\n"
+"POT-Creation-Date: 2019-08-28 16:23+0900\n"
 "PO-Revision-Date: 2014-04-02 22:50+0900\n"
 "Last-Translator: Takahashi Fumiki <info@takahashifumiki.com>\n"
 "Language-Team: TAROSKY INC <info@tarosky.co.jp>\n"
@@ -15,90 +15,192 @@ msgstr ""
 "esc_attr__;esc_attr_e;_ex:1,2c\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: app/Tarosky/OpenHour/Admin.php:21 app/Tarosky/OpenHour/MetaBox.php:26
+#: app/Tarosky/OpenHour/Admin.php:19 templates/setting.php:19
+msgid "Business Places"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Admin.php:26
+#, php-format
+msgid ""
+"[Business Places] No post type is specified. Please go to <a href=\"%s"
+"\">setting screen</a>."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Admin.php:38
+msgid "Business Places Setting"
+msgstr ""
+
+#: app/Tarosky/OpenHour/MetaBoxes/LocationMetaBox.php:24
+msgid "Location Setting"
+msgstr ""
+
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:20
 #: templates/time-table.php:19
 msgid "Open Hour"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Admin.php:27
-#, php-format
-msgid ""
-"[Taro Open Hour] No post type is specified. Please go to <a href=\"%s"
-"\">setting screen</a>."
-msgstr ""
-
-#: app/Tarosky/OpenHour/Admin.php:39
-msgid "Taro Open Hour Setting"
-msgstr ""
-
-#: app/Tarosky/OpenHour/MetaBox.php:55
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:67
 msgctxt "metabox-js"
-msgid "Start time is invalid format."
+msgid "Start time is invalid. Please input in \"hh:mm\" format."
 msgstr ""
 
-#: app/Tarosky/OpenHour/MetaBox.php:56
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:68
 msgctxt "metabox-js"
-msgid "End time is invalid format."
+msgid "End time is invalid. Please input in \"hh:mm\" format."
 msgstr ""
 
-#: app/Tarosky/OpenHour/MetaBox.php:57
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:69
 msgctxt "metabox-js"
 msgid "Start time must be earlier than end time."
 msgstr ""
 
-#: app/Tarosky/OpenHour/MetaBox.php:58
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:70
 msgctxt "metabox-js"
-msgid "Tims shift is not empty. Clear them all before insert defaults."
+msgid "Time shift is not empty. Clear them all before insert defaults."
 msgstr ""
 
-#: app/Tarosky/OpenHour/MetaBox.php:59
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:71
 msgctxt "metabox-js"
 msgid "Delete"
 msgstr ""
 
-#: app/Tarosky/OpenHour/MetaBox.php:60
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:72
 msgctxt "metabox-js"
 msgid "Are you sure to delete this time shift?"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:21 templates/setting.php:60
-#: templates/time-table.php:20
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:97
+msgid "Title"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:34
+msgid "Business Locations"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:36
+msgid "Locations"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:37
+msgid "Business Location"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:50
+msgid "Location Type"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:138
+msgctxt "address"
+msgid "Address line 1"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:139
+msgctxt "address"
+msgid "Address line 2"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:140
+msgctxt "address"
+msgid "City"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:141
+msgctxt "address"
+msgid "State / Province"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:142
+msgctxt "address"
+msgid "Country"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:143
+msgctxt "address"
+msgid "Postal Code / Zip"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:145
+msgctxt "address-order"
+msgid "address,address2,city,state,country,zip"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:209
+msgctxt "zip_prefix"
+msgid ""
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:212
+msgctxt "display_country"
+msgid "yes"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:272
+msgid "Web Site"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:24
+msgid "Site Location"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:28
+msgid "Display site location or nothing if not set."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:34
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:35
+msgid "Display Google Map"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:42
+msgid "This site has no site location. Please register one."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:22
+msgid "Site Open Hour"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:26
+msgid "Display site open hour or nothing if not set."
+msgstr ""
+
+#: includes/functions.php:90 templates/metabox.php:21
+#: templates/setting.php:135 templates/time-table.php:20
 msgid "Mon"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:22 templates/setting.php:60
-#: templates/time-table.php:21
+#: includes/functions.php:90 templates/metabox.php:22
+#: templates/setting.php:135 templates/time-table.php:21
 msgid "Tue"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:23 templates/setting.php:60
-#: templates/time-table.php:22
+#: includes/functions.php:90 templates/metabox.php:23
+#: templates/setting.php:135 templates/time-table.php:22
 msgid "Wed"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:24 templates/setting.php:60
-#: templates/time-table.php:23
+#: includes/functions.php:90 templates/metabox.php:24
+#: templates/setting.php:135 templates/time-table.php:23
 msgid "Thu"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:25 templates/setting.php:60
-#: templates/time-table.php:24
+#: includes/functions.php:90 templates/metabox.php:25
+#: templates/setting.php:135 templates/time-table.php:24
 msgid "Fri"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:26 templates/setting.php:60
-#: templates/time-table.php:25
+#: includes/functions.php:90 templates/metabox.php:26
+#: templates/setting.php:135 templates/time-table.php:25
 msgid "Sat"
 msgstr ""
 
-#: includes/functions.php:87 templates/metabox.php:27 templates/setting.php:60
-#: templates/time-table.php:26
+#: includes/functions.php:90 templates/metabox.php:27
+#: templates/setting.php:135 templates/time-table.php:26
 msgid "Sun"
 msgstr ""
 
@@ -117,8 +219,55 @@ msgstr ""
 #: taro-open-hour.php:60
 #, php-format
 msgid ""
-"[ERROR] Taro Open Hour doesn't work because your PHP version %1$s is too "
+"[ERROR] Business Places doesn't work because your PHP version %1$s is too "
 "low. PHP %2$s and over is required."
+msgstr ""
+
+#: templates/metabox-place.php:12
+msgid "Mark as site main place(e.g. company address)"
+msgstr ""
+
+#: templates/metabox-place.php:15
+msgid "Address"
+msgstr ""
+
+#: templates/metabox-place.php:33
+msgid "Access Information"
+msgstr ""
+
+#: templates/metabox-place.php:39
+msgid "Business Type"
+msgstr ""
+
+#: templates/metabox-place.php:43
+msgid "Default: LocalBusiness"
+msgstr ""
+
+#: templates/metabox-place.php:45
+msgid ""
+"This type is used to display structured data for search engines. Default "
+"type is \"LocalBusiness\". This should be sub type of \"LocalBusiness\" and "
+"find proper one at Schema.org"
+msgstr ""
+
+#: templates/metabox-place.php:47
+msgid "Visit Schema.org"
+msgstr ""
+
+#: templates/metabox-place.php:55
+msgid "Contact"
+msgstr ""
+
+#: templates/metabox-place.php:60
+msgid "Tel"
+msgstr ""
+
+#: templates/metabox-place.php:61
+msgid "Email"
+msgstr ""
+
+#: templates/metabox-place.php:62
+msgid "URL"
 msgstr ""
 
 #: templates/metabox.php:12
@@ -163,33 +312,80 @@ msgstr ""
 msgid "Changes are not saved until you push update button."
 msgstr ""
 
-#: templates/setting.php:18
-#, fuzzy
+#: templates/setting.php:23 templates/setting.php:96
 msgid "Post Type"
-msgstr "Post Type"
+msgstr ""
 
-#: templates/setting.php:33
+#: templates/setting.php:28
+msgid "Create post type for business location."
+msgstr ""
+
+#: templates/setting.php:31
+msgid "If you don't need post type for locations, leave unchecked."
+msgstr ""
+
+#: templates/setting.php:36
+msgid "Post Type Visibility"
+msgstr ""
+
+#: templates/setting.php:41
+msgid "Post type for business places is public."
+msgstr ""
+
+#: templates/setting.php:45
+msgid ""
+"If you need each single page for business places, check above as true. "
+"Default is false."
+msgstr ""
+
+#: templates/setting.php:51
+msgid "Treated as Location"
+msgstr ""
+
+#: templates/setting.php:68
+msgid ""
+"Selected post types will be recognized as business place same as above."
+msgstr ""
+
+#: templates/setting.php:74
+msgid "API Key"
+msgstr ""
+
+#: templates/setting.php:80
+msgid ""
+"To display Google MAP with business location, enter Google API Key here."
+msgstr ""
+
+#: templates/setting.php:82
+msgid "Google API Documentation"
+msgstr ""
+
+#: templates/setting.php:91
+msgid "Business Hours"
+msgstr ""
+
+#: templates/setting.php:108
 msgid "Select post types which have open hour."
 msgstr ""
 
-#: templates/setting.php:40
+#: templates/setting.php:115
 msgid "Default Time Shift"
 msgstr ""
 
-#: templates/setting.php:44
+#: templates/setting.php:119
 msgid "09:00, 18:00"
 msgstr ""
 
-#: templates/setting.php:47
+#: templates/setting.php:122
 msgid ""
 "Enter time shift in CSV format on each line. 1st is start time, 2nd is end "
 "time."
 msgstr ""
 
-#: templates/setting.php:54
+#: templates/setting.php:129
 msgid "Default Open day"
 msgstr ""
 
-#: templates/setting.php:82
+#: templates/setting.php:157
 msgid "Update Option"
 msgstr ""

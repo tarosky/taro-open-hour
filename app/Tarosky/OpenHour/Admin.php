@@ -23,7 +23,7 @@ class Admin extends Singleton {
 		if ( current_user_can( 'manage_options' ) && ! get_option( 'tsoh_post_types', [] ) ) {
 			add_action( 'admin_notices', function() {
 				/* translators: %s link to admin screen. */
-				$message = sprintf( __( '[Taro Open Hour] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), admin_url( 'options-general.php?page=tsoh' ) );
+				$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), admin_url( 'options-general.php?page=tsoh' ) );
 				echo "<div class=\"error\"><p>{$message}</p></div>";
 			} );
 		}

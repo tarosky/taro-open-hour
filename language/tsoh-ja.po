@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hametuha Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 16:33+0900\n"
-"PO-Revision-Date: 2017-09-06 00:33+0900\n"
+"POT-Creation-Date: 2019-08-28 16:23+0900\n"
+"PO-Revision-Date: 2019-08-28 16:34+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Hametuha inc. <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja_JP\n"
@@ -13,91 +13,193 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: app/Tarosky/OpenHour/Admin.php:21 app/Tarosky/OpenHour/MetaBox.php:26
+#: app/Tarosky/OpenHour/Admin.php:19 templates/setting.php:19
+msgid "Business Places"
+msgstr "ビジネス・プレイス"
+
+#: app/Tarosky/OpenHour/Admin.php:26
+#, php-format
+msgid ""
+"[Business Places] No post type is specified. Please go to <a href=\"%s"
+"\">setting screen</a>."
+msgstr ""
+"[ビジネス・プレイス] 投稿タイプが指定されていません。<a href=\"%s\">設定画面"
+"</a>へ移動してください。"
+
+#: app/Tarosky/OpenHour/Admin.php:38
+msgid "Business Places Setting"
+msgstr "ビジネス・プレイス設定"
+
+#: app/Tarosky/OpenHour/MetaBoxes/LocationMetaBox.php:24
+msgid "Location Setting"
+msgstr "場所設定"
+
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:20
 #: templates/time-table.php:19
 msgid "Open Hour"
 msgstr "営業時間"
 
-#: app/Tarosky/OpenHour/Admin.php:27
-#, php-format
-msgid ""
-"[Taro Open Hour] No post type is specified. Please go to <a href=\"%s"
-"\">setting screen</a>."
-msgstr ""
-"[Taro Open Hour] 投稿タイプが指定されていません。<a href=\"%s\">設定画面</a>"
-"へ移動してください。"
-
-#: app/Tarosky/OpenHour/Admin.php:39
-msgid "Taro Open Hour Setting"
-msgstr "Taro Open Hour 設定"
-
-#: app/Tarosky/OpenHour/MetaBox.php:55
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:67
 msgctxt "metabox-js"
-msgid "Start time is invalid format."
-msgstr "始業時間の形式が不正です。"
+msgid "Start time is invalid. Please input in \"hh:mm\" format."
+msgstr "始業時間の形式が不正です。hh:mm形式で入力してください。"
 
-#: app/Tarosky/OpenHour/MetaBox.php:56
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:68
 msgctxt "metabox-js"
-msgid "End time is invalid format."
-msgstr "終業時間の形式が不正です。"
+msgid "End time is invalid. Please input in \"hh:mm\" format."
+msgstr "終業時間の形式が不正です。hh:mm形式で入力してください。"
 
-#: app/Tarosky/OpenHour/MetaBox.php:57
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:69
 msgctxt "metabox-js"
 msgid "Start time must be earlier than end time."
 msgstr "始業時間は終業時間より早くなければいけません。"
 
-#: app/Tarosky/OpenHour/MetaBox.php:58
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:70
 msgctxt "metabox-js"
-msgid "Tims shift is not empty. Clear them all before insert defaults."
+msgid "Time shift is not empty. Clear them all before insert defaults."
 msgstr ""
 "タイムシフトが埋まっています。デフォルト値を入れる前にすべて削除してくださ"
 "い。"
 
-#: app/Tarosky/OpenHour/MetaBox.php:59
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:71
 msgctxt "metabox-js"
 msgid "Delete"
 msgstr "削除"
 
-#: app/Tarosky/OpenHour/MetaBox.php:60
+#: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:72
 msgctxt "metabox-js"
 msgid "Are you sure to delete this time shift?"
 msgstr "この時間帯を削除してよろしいですか ?"
 
-#: includes/functions.php:87 templates/metabox.php:21 templates/setting.php:60
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:97
+msgid "Title"
+msgstr "タイトル"
+
+#: app/Tarosky/OpenHour/Places.php:34
+msgid "Business Locations"
+msgstr "場所"
+
+#: app/Tarosky/OpenHour/Places.php:36
+msgid "Locations"
+msgstr "場所"
+
+#: app/Tarosky/OpenHour/Places.php:37
+msgid "Business Location"
+msgstr "ビジネスの場所"
+
+#: app/Tarosky/OpenHour/Places.php:50
+msgid "Location Type"
+msgstr "場所タイプ"
+
+#: app/Tarosky/OpenHour/Places.php:138
+msgctxt "address"
+msgid "Address line 1"
+msgstr "住所"
+
+#: app/Tarosky/OpenHour/Places.php:139
+msgctxt "address"
+msgid "Address line 2"
+msgstr "建物・部屋番号"
+
+#: app/Tarosky/OpenHour/Places.php:140
+msgctxt "address"
+msgid "City"
+msgstr "市区町村"
+
+#: app/Tarosky/OpenHour/Places.php:141
+msgctxt "address"
+msgid "State / Province"
+msgstr "都道府県"
+
+#: app/Tarosky/OpenHour/Places.php:142
+msgctxt "address"
+msgid "Country"
+msgstr "国"
+
+#: app/Tarosky/OpenHour/Places.php:143
+msgctxt "address"
+msgid "Postal Code / Zip"
+msgstr "郵便番号"
+
+#: app/Tarosky/OpenHour/Places.php:145
+msgctxt "address-order"
+msgid "address,address2,city,state,country,zip"
+msgstr "country,zip,state,city,address,address2"
+
+#: app/Tarosky/OpenHour/Places.php:209
+msgctxt "zip_prefix"
+msgid ""
+msgstr "〒"
+
+#: app/Tarosky/OpenHour/Places.php:212
+msgctxt "display_country"
+msgid "yes"
+msgstr "no"
+
+#: app/Tarosky/OpenHour/Places.php:272
+msgid "Web Site"
+msgstr "Web サイト"
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:24
+msgid "Site Location"
+msgstr "サイトの場所"
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:28
+msgid "Display site location or nothing if not set."
+msgstr "サイトの場所が設定されていれば表示します。"
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:34
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:35
+msgid "Display Google Map"
+msgstr "Google マップを表示する"
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:42
+msgid "This site has no site location. Please register one."
+msgstr "このサイトはサイトの場所が登録されていません。一つ登録してください。"
+
+#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:22
+msgid "Site Open Hour"
+msgstr "サイトの開業時間"
+
+#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:26
+msgid "Display site open hour or nothing if not set."
+msgstr "設定されている場合はサイトの開業時間を表示します。"
+
+#: includes/functions.php:90 templates/metabox.php:21 templates/setting.php:135
 #: templates/time-table.php:20
 msgid "Mon"
 msgstr "月"
 
-#: includes/functions.php:87 templates/metabox.php:22 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:22 templates/setting.php:135
 #: templates/time-table.php:21
 msgid "Tue"
 msgstr "火"
 
-#: includes/functions.php:87 templates/metabox.php:23 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:23 templates/setting.php:135
 #: templates/time-table.php:22
 msgid "Wed"
 msgstr "水"
 
-#: includes/functions.php:87 templates/metabox.php:24 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:24 templates/setting.php:135
 #: templates/time-table.php:23
 msgid "Thu"
 msgstr "木"
 
-#: includes/functions.php:87 templates/metabox.php:25 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:25 templates/setting.php:135
 #: templates/time-table.php:24
 msgid "Fri"
 msgstr "金"
 
-#: includes/functions.php:87 templates/metabox.php:26 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:26 templates/setting.php:135
 #: templates/time-table.php:25
 msgid "Sat"
 msgstr "土"
 
-#: includes/functions.php:87 templates/metabox.php:27 templates/setting.php:60
+#: includes/functions.php:90 templates/metabox.php:27 templates/setting.php:135
 #: templates/time-table.php:26
 msgid "Sun"
 msgstr "日"
@@ -118,11 +220,61 @@ msgstr ""
 #: taro-open-hour.php:60
 #, php-format
 msgid ""
-"[ERROR] Taro Open Hour doesn't work because your PHP version %1$s is too "
+"[ERROR] Business Places doesn't work because your PHP version %1$s is too "
 "low. PHP %2$s and over is required."
 msgstr ""
-"[エラー] 現在の PHP バージョン %1$s は低すぎるため Taro Open Hour は動作しま"
-"せん。PHP %2$s 以上が必須です。"
+"[エラー] 現在の PHP バージョン %1$s は低すぎるため ビジネス・プレイス は動作"
+"しません。PHP %2$s 以上が必須です。"
+
+#: templates/metabox-place.php:12
+msgid "Mark as site main place(e.g. company address)"
+msgstr "サイトのメインの場所（例・会社の住所）としてマークする"
+
+#: templates/metabox-place.php:15
+msgid "Address"
+msgstr "住所"
+
+#: templates/metabox-place.php:33
+msgid "Access Information"
+msgstr "アクセス情報"
+
+#: templates/metabox-place.php:39
+msgid "Business Type"
+msgstr "ビジネスタイプ"
+
+#: templates/metabox-place.php:43
+msgid "Default: LocalBusiness"
+msgstr "デフォルト： LocalBusiness"
+
+#: templates/metabox-place.php:45
+msgid ""
+"This type is used to display structured data for search engines. Default "
+"type is \"LocalBusiness\". This should be sub type of \"LocalBusiness\" and "
+"find proper one at Schema.org"
+msgstr ""
+"このタイプは検索エンジン用の構造化データを表示するために使われます。デフォル"
+"トのタイプは LocalBusiness です。この値は LocalBusiness のサブタイプである必"
+"要があり、適切なものを Schema.org で見つけられます。"
+
+#: templates/metabox-place.php:47
+msgid "Visit Schema.org"
+msgstr "Schema.org へ行く"
+
+#: templates/metabox-place.php:55
+msgid "Contact"
+msgstr "コンタクト"
+
+#: templates/metabox-place.php:60
+msgid "Tel"
+msgstr "電話"
+
+#: templates/metabox-place.php:61
+msgid "Email"
+msgstr "メールアドレス"
+
+#: templates/metabox-place.php:62
+msgid "URL"
+msgstr "URL"
 
 #: templates/metabox.php:12
 msgid "Labels"
@@ -156,7 +308,7 @@ msgstr "休業日の注記"
 
 #: templates/metabox.php:57
 msgid "ex. Closing every Monday & National Holidays."
-msgstr "例: 毎週月曜日と祝祭日はお休みです"
+msgstr "例: 毎週月曜日と祝祭日はお休みです。"
 
 #: templates/metabox.php:82
 msgid "Delete"
@@ -166,39 +318,90 @@ msgstr "削除"
 msgid "Changes are not saved until you push update button."
 msgstr "変更は更新ボタンを押さない限り保存されません。"
 
-#: templates/setting.php:18
+#: templates/setting.php:23 templates/setting.php:96
 msgid "Post Type"
 msgstr "投稿タイプ"
 
-#: templates/setting.php:33
-msgid "Select post types which have open hour."
-msgstr "営業時間を表示する投稿タイプを選んでください"
+#: templates/setting.php:28
+msgid "Create post type for business location."
+msgstr "ビジネスの場所として投稿タイプを作成する。"
 
-#: templates/setting.php:40
+#: templates/setting.php:31
+msgid "If you don't need post type for locations, leave unchecked."
+msgstr "場所のための投稿タイプが必要ないのであれば、チェックしないでください。"
+
+#: templates/setting.php:36
+msgid "Post Type Visibility"
+msgstr "投稿タイプの表示"
+
+#: templates/setting.php:41
+msgid "Post type for business places is public."
+msgstr "場所の投稿タイプは表示されます。"
+
+#: templates/setting.php:45
+msgid ""
+"If you need each single page for business places, check above as true. "
+"Default is false."
+msgstr ""
+"それぞれの場所をシングルページとして表示したい場合は上記をチェックしてくださ"
+"い。デフォルトでは表示されません。"
+
+#: templates/setting.php:51
+msgid "Treated as Location"
+msgstr "場所として扱う"
+
+#: templates/setting.php:68
+msgid "Selected post types will be recognized as business place same as above."
+msgstr "選択された投稿タイプは上記と同じくビジネスの場所として認識されます。"
+
+#: templates/setting.php:74
+msgid "API Key"
+msgstr "APIキー"
+
+#: templates/setting.php:80
+msgid ""
+"To display Google MAP with business location, enter Google API Key here."
+msgstr ""
+"ビジネスの場所に Google マップを表示するには、こちらに Google API キーを入力"
+"してください。"
+
+#: templates/setting.php:82
+msgid "Google API Documentation"
+msgstr "Google API ドキュメント"
+
+#: templates/setting.php:91
+msgid "Business Hours"
+msgstr "開業時間"
+
+#: templates/setting.php:108
+msgid "Select post types which have open hour."
+msgstr "営業時間を表示する投稿タイプを選んでください。"
+
+#: templates/setting.php:115
 msgid "Default Time Shift"
 msgstr "デフォルトのタイムシフト"
 
-#: templates/setting.php:44
+#: templates/setting.php:119
 msgid "09:00, 18:00"
 msgstr "09:00, 18:00"
 
-#: templates/setting.php:47
+#: templates/setting.php:122
 msgid ""
 "Enter time shift in CSV format on each line. 1st is start time, 2nd is end "
 "time."
 msgstr ""
 "営業時間を CSV 形式で入力してください。1つめが始業時間、2つめが終業時間です。"
 
-#: templates/setting.php:54
+#: templates/setting.php:129
 msgid "Default Open day"
 msgstr "デフォルトの営業日"
 
-#: templates/setting.php:82
+#: templates/setting.php:157
 msgid "Update Option"
 msgstr "設定を更新"
 
-#~ msgid "Select Open Hour"
-#~ msgstr "開業時間を選んでください"
+#~ msgid "Taro Open Hour Setting"
+#~ msgstr "Taro Open Hour 設定"
 
 #~ msgid "Selected Time"
 #~ msgstr "選択された時間"

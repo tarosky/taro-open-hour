@@ -77,7 +77,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 					<input type="text" class="regular-text" name="tsoh_google_api_key" id="tsoh_google_api_key"
 						   value="<?php echo esc_attr( get_option( 'tsoh_google_api_key', '' ) ) ?>" />
 					<p class="description">
-						<?php esc_html_e( 'To display Google MAP with business location, enter Google API Key here.' ) ?>
+						<?php esc_html_e( 'To display Google MAP with business location, enter Google API Key here.', 'tsoh' ) ?>
 						<a class="button" href="https://developers.google.com/maps/gmp-get-started" target="_blank">
 							<?php esc_html_e( 'Google API Documentation', 'tsoh' ) ?>
 						</a>

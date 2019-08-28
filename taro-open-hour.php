@@ -25,7 +25,7 @@ function tsoh_plugins_loaded() {
 	// Register i18n
 	load_plugin_textdomain( 'tsoh', false, basename( dirname(__FILE__) ) . '/language' );
 	// Check PHP version
-	if ( version_compare( phpversion(), '5.4.0', '<' ) ) {
+	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
 		add_action( 'admin_notices', 'tsoh_php_low' );
 	} else {
 		// Version check O.K.
@@ -57,9 +57,9 @@ function tsoh_plugins_loaded() {
  */
 function tsoh_php_low() {
 	$message = sprintf(
-		__( '[ERROR] Taro Open Hour doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'tsoh' ),
+		__( '[ERROR] Business Places doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'tsoh' ),
 		phpversion(),
-		'5.4.0'
+		'5.6.0'
 	);
 	printf( '<div class="error"><p>%s</p></div>', $message );
 }
