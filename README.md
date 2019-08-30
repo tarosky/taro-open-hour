@@ -40,6 +40,10 @@ just use `tsoh_the_timetable()` function.
 
 This plugin is hosted on [Github](https://github.com/tarosky/taro-open-hour/), any Pull Requests are welcomed!
 
+### Acknowledgements
+
+* Banner images is a deliverative of the work of the Geospatial Information Authority of Japan.
+
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/taro-open-hour` directory, or install the plugin through the WordPress plugins screen directly.
