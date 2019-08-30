@@ -4,9 +4,9 @@ Business Places
 Contributors: tarosky,Takahashi_Fumiki
 Tags: business,place,open-hour,widget  
 Requires at least: 4.7.0  
-Requres PHP: 5.6  
+Requires PHP: 5.6  
 Tested up to: 5.2.2  
-Stable tag: 2.0.0  
+Stable tag: 2.0.1  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -99,9 +99,13 @@ Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 1. Time table displayed on single page with short code.
 2. You can enter time shift with metabox.
 3. You can choose post types, default time shift and default open day. Good for business with several branches.
-4. Footer widgets available.
+4. Widgets available. Open hour widget and location widget.
 
 ## Changelog
+
+### 2.0.1
+
+* Bugfix: version number changed.
 
 ### 2.0.0
 
