@@ -15,6 +15,7 @@ A WordPress plugin for business place and open hour.
 ## Description
 
 This plugin add places and open hours to your WordPress site.
+Formerly known as "**Taro Open Hour**".
 
 * Google Map supprted.
 * JSON-LD supported.
