@@ -3,6 +3,7 @@
  * Template for displaying business places.
  *
  * @package tsoh
+ * @since 1.1.0
  */
 /** @var WP_Post                 $post */
 /** @var Tarosky\OpenHour\Places $this */
