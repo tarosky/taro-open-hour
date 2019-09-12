@@ -5,8 +5,8 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: business,place,open-hour,widget  
 Requires at least: 4.7.0  
 Requires PHP: 5.6  
-Tested up to: 5.2.2  
-Stable tag: 2.0.2  
+Tested up to: 5.2.3  
+Stable tag: 2.1.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -114,6 +114,11 @@ Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 4. Widgets available. Open hour widget and location widget.
 
 ## Changelog
+
+### 2.1.0
+
+* Add shortcode `business-place`.
+* Add filter and action hooks.
 
 ### 2.0.1
 

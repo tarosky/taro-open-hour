@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taro Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-28 16:23+0900\n"
+"POT-Creation-Date: 2019-09-12 13:31+0900\n"
 "PO-Revision-Date: 2014-04-02 22:50+0900\n"
 "Last-Translator: Takahashi Fumiki <info@takahashifumiki.com>\n"
 "Language-Team: TAROSKY INC <info@tarosky.co.jp>\n"
@@ -41,7 +41,7 @@ msgid "Location Setting"
 msgstr ""
 
 #: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:20
-#: templates/time-table.php:19
+#: templates/time-table.php:21
 msgid "Open Hour"
 msgstr ""
 
@@ -130,18 +130,22 @@ msgctxt "address-order"
 msgid "address,address2,city,state,country,zip"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Places.php:209
+#: app/Tarosky/OpenHour/Places.php:232
 msgctxt "zip_prefix"
 msgid ""
 msgstr ""
 
-#: app/Tarosky/OpenHour/Places.php:212
+#: app/Tarosky/OpenHour/Places.php:235
 msgctxt "display_country"
 msgid "yes"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Places.php:272
+#: app/Tarosky/OpenHour/Places.php:295
 msgid "Web Site"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Places.php:310
+msgid "See Detail"
 msgstr ""
 
 #: app/Tarosky/OpenHour/Widgets/SiteLocation.php:24
@@ -170,37 +174,37 @@ msgid "Display site open hour or nothing if not set."
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:21
-#: templates/setting.php:135 templates/time-table.php:20
+#: templates/setting.php:135 templates/time-table.php:22
 msgid "Mon"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:22
-#: templates/setting.php:135 templates/time-table.php:21
+#: templates/setting.php:135 templates/time-table.php:23
 msgid "Tue"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:23
-#: templates/setting.php:135 templates/time-table.php:22
+#: templates/setting.php:135 templates/time-table.php:24
 msgid "Wed"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:24
-#: templates/setting.php:135 templates/time-table.php:23
+#: templates/setting.php:135 templates/time-table.php:25
 msgid "Thu"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:25
-#: templates/setting.php:135 templates/time-table.php:24
+#: templates/setting.php:135 templates/time-table.php:26
 msgid "Fri"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:26
-#: templates/setting.php:135 templates/time-table.php:25
+#: templates/setting.php:135 templates/time-table.php:27
 msgid "Sat"
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:27
-#: templates/setting.php:135 templates/time-table.php:26
+#: templates/setting.php:135 templates/time-table.php:28
 msgid "Sun"
 msgstr ""
 
@@ -243,30 +247,31 @@ msgstr ""
 msgid "Default: LocalBusiness"
 msgstr ""
 
-#: templates/metabox-place.php:45
+#: templates/metabox-place.php:46
+#, php-format
 msgid ""
 "This type is used to display structured data for search engines. Default "
-"type is \"LocalBusiness\". This should be sub type of \"LocalBusiness\" and "
-"find proper one at Schema.org"
+"type is \"%s\". This should be sub type of \"LocalBusiness\" and find "
+"proper one at Schema.org"
 msgstr ""
 
-#: templates/metabox-place.php:47
+#: templates/metabox-place.php:50
 msgid "Visit Schema.org"
 msgstr ""
 
-#: templates/metabox-place.php:55
+#: templates/metabox-place.php:58
 msgid "Contact"
 msgstr ""
 
-#: templates/metabox-place.php:60
+#: templates/metabox-place.php:63
 msgid "Tel"
 msgstr ""
 
-#: templates/metabox-place.php:61
+#: templates/metabox-place.php:64
 msgid "Email"
 msgstr ""
 
-#: templates/metabox-place.php:62
+#: templates/metabox-place.php:65
 msgid "URL"
 msgstr ""
 

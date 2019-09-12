@@ -4,7 +4,7 @@ Plugin Name: Business Places
 Plugin URI: https://wordpress.org/plugin/taro-open-hour
 Description: Add place and open hour to any post type.
 Author: Tarosky INC
-Version: 2.0.1
+Version: 2.1.0
 PHP Version: 5.6.0
 Author URI: https://tarosky.co.jp
 */
