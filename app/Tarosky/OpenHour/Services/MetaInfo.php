@@ -48,7 +48,10 @@ HTML;
 	 */
 	public function get_json( $post ) {
 		// Basic information.
-		$type = get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ?: 'LocalBusiness';
+		$type = apply_filters( 'tsoh_local_business_type', get_post_meta( $post->ID, '_tsoh_local_business_type', true ), $post );
+		if ( ! $type ) {
+			$type = tsoh_get_default_local_business( $post->post_type );
+		}
 		$json = [
 			'@context' => 'http://schema.org',
 			'@type'    => $type,

@@ -1,6 +1,8 @@
 <?php
 
 // Time table short code
+use Tarosky\OpenHour\Places;
+
 add_shortcode( 'open-hour', function ( $args, $content = '' ) {
 	$args             = shortcode_atts( [
 		'post_id'   => get_the_ID(),
@@ -11,4 +13,9 @@ add_shortcode( 'open-hour', function ( $args, $content = '' ) {
 	tsoh_load_style();
 
 	return tsoh_get_timetable( $args['timestamp'], $additional_class, $args['post_id'] );
+} );
+
+
+add_shortcode( 'business-place', function( $args, $content = '' ) {
+	return Places::instance()->short_code_display( $args, $content );
 } );

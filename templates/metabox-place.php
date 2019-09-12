@@ -42,7 +42,10 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 				   value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ) ?>"
 				   placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'tsoh' ); ?>" />
 			<p class="description">
-				<?php esc_html_e( 'This type is used to display structured data for search engines. Default type is "LocalBusiness". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'tsoh' ) ?>
+				<?php printf(
+						esc_html__( 'This type is used to display structured data for search engines. Default type is "%s". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'tsoh' ),
+						esc_html( tsoh_get_default_local_business( $post->post_type ) )
+				); ?>
 				<a class="button" href="https://schema.org/LocalBusiness#subtypes" target="_blank">
 					<?php esc_html_e( 'Visit Schema.org', 'tsoh' ) ?>
 				</a>

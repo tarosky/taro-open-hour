@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hametuha Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-28 16:23+0900\n"
-"PO-Revision-Date: 2019-08-28 16:34+0900\n"
+"POT-Creation-Date: 2019-09-12 13:31+0900\n"
+"PO-Revision-Date: 2019-09-12 13:32+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Hametuha inc. <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja_JP\n"
@@ -39,7 +39,7 @@ msgid "Location Setting"
 msgstr "場所設定"
 
 #: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:20
-#: templates/time-table.php:19
+#: templates/time-table.php:21
 msgid "Open Hour"
 msgstr "営業時間"
 
@@ -130,19 +130,23 @@ msgctxt "address-order"
 msgid "address,address2,city,state,country,zip"
 msgstr "country,zip,state,city,address,address2"
 
-#: app/Tarosky/OpenHour/Places.php:209
+#: app/Tarosky/OpenHour/Places.php:232
 msgctxt "zip_prefix"
 msgid ""
 msgstr "〒"
 
-#: app/Tarosky/OpenHour/Places.php:212
+#: app/Tarosky/OpenHour/Places.php:235
 msgctxt "display_country"
 msgid "yes"
 msgstr "no"
 
-#: app/Tarosky/OpenHour/Places.php:272
+#: app/Tarosky/OpenHour/Places.php:295
 msgid "Web Site"
 msgstr "Web サイト"
+
+#: app/Tarosky/OpenHour/Places.php:310
+msgid "See Detail"
+msgstr "もっと詳しく"
 
 #: app/Tarosky/OpenHour/Widgets/SiteLocation.php:24
 msgid "Site Location"
@@ -170,37 +174,37 @@ msgid "Display site open hour or nothing if not set."
 msgstr "設定されている場合はサイトの開業時間を表示します。"
 
 #: includes/functions.php:90 templates/metabox.php:21 templates/setting.php:135
-#: templates/time-table.php:20
+#: templates/time-table.php:22
 msgid "Mon"
 msgstr "月"
 
 #: includes/functions.php:90 templates/metabox.php:22 templates/setting.php:135
-#: templates/time-table.php:21
+#: templates/time-table.php:23
 msgid "Tue"
 msgstr "火"
 
 #: includes/functions.php:90 templates/metabox.php:23 templates/setting.php:135
-#: templates/time-table.php:22
+#: templates/time-table.php:24
 msgid "Wed"
 msgstr "水"
 
 #: includes/functions.php:90 templates/metabox.php:24 templates/setting.php:135
-#: templates/time-table.php:23
+#: templates/time-table.php:25
 msgid "Thu"
 msgstr "木"
 
 #: includes/functions.php:90 templates/metabox.php:25 templates/setting.php:135
-#: templates/time-table.php:24
+#: templates/time-table.php:26
 msgid "Fri"
 msgstr "金"
 
 #: includes/functions.php:90 templates/metabox.php:26 templates/setting.php:135
-#: templates/time-table.php:25
+#: templates/time-table.php:27
 msgid "Sat"
 msgstr "土"
 
 #: includes/functions.php:90 templates/metabox.php:27 templates/setting.php:135
-#: templates/time-table.php:26
+#: templates/time-table.php:28
 msgid "Sun"
 msgstr "日"
 
@@ -246,33 +250,34 @@ msgstr "ビジネスタイプ"
 msgid "Default: LocalBusiness"
 msgstr "デフォルト： LocalBusiness"
 
-#: templates/metabox-place.php:45
+#: templates/metabox-place.php:46
+#, php-format
 msgid ""
 "This type is used to display structured data for search engines. Default "
-"type is \"LocalBusiness\". This should be sub type of \"LocalBusiness\" and "
-"find proper one at Schema.org"
+"type is \"%s\". This should be sub type of \"LocalBusiness\" and find proper "
+"one at Schema.org"
 msgstr ""
 "このタイプは検索エンジン用の構造化データを表示するために使われます。デフォル"
-"トのタイプは LocalBusiness です。この値は LocalBusiness のサブタイプである必"
-"要があり、適切なものを Schema.org で見つけられます。"
+"トのタイプは %s です。この値は LocalBusiness のサブタイプである必要があり、適"
+"切なものを Schema.org で見つけられます。"
 
-#: templates/metabox-place.php:47
+#: templates/metabox-place.php:50
 msgid "Visit Schema.org"
 msgstr "Schema.org へ行く"
 
-#: templates/metabox-place.php:55
+#: templates/metabox-place.php:58
 msgid "Contact"
 msgstr "コンタクト"
 
-#: templates/metabox-place.php:60
+#: templates/metabox-place.php:63
 msgid "Tel"
 msgstr "電話"
 
-#: templates/metabox-place.php:61
+#: templates/metabox-place.php:64
 msgid "Email"
 msgstr "メールアドレス"
 
-#: templates/metabox-place.php:62
+#: templates/metabox-place.php:65
 msgid "URL"
 msgstr "URL"
 

@@ -157,11 +157,11 @@ class Places extends Singleton {
 	 *
 	 * @param null|int|\WP_Post $post
 	 * @param string            $type
-	 * @param array             $setting
+	 * @param array             $settings
 	 *
 	 * @return string
 	 */
-	public function display_location( $post = null, $type = 'card', $setting = [] ) {
+	public function display_location( $post = null, $type = 'card', $settings = [] ) {
 		$post = get_post( $post );
 		if ( ! $post ) {
 			return '';
@@ -180,6 +180,29 @@ class Places extends Singleton {
 		$output = ob_get_contents();
 		ob_end_clean();
 		return apply_filters( 'tsoh_location_display', $output, $post, $type );
+	}
+	
+	
+	/**
+	 * Display location.
+	 *
+	 * @param array  $attributes
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public function short_code_display( $attributes, $content = '' ) {
+		$attributes = shortcode_atts( [
+			'post_id' => get_the_ID(),
+			'class'   => '',
+			'type'    => 'block',
+		], $attributes, 'business-place' );
+		
+		$location = get_post( $attributes['post_id'] );
+		if ( ! $location || ! $this->is_supported( $location->post_type ) ) {
+			return '';
+		}
+		return $this->display_location( $location, $attributes['type'], $attributes );
 	}
 	
 	/**
@@ -282,6 +305,15 @@ class Places extends Singleton {
 				'value' => $value,
 			];
 		}
+		if ( get_post_type_object( $post->post_type )->public && ! is_single( $post ) ) {
+			$contacts[ 'detail' ] = [
+				'label' => __( 'See Detail', 'tsoh' ),
+				'url'   => get_permalink( $post ),
+				'icon'  => 'info',
+				'value' => get_permalink( $post ),
+			];
+		}
+		$contacts = apply_filters( 'tsoh_contacts', $contacts, $post );
 		return $contacts;
 	}
 	

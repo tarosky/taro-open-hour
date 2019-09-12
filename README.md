@@ -5,8 +5,8 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: business,place,open-hour,widget  
 Requires at least: 4.7.0  
 Requires PHP: 5.6  
-Tested up to: 5.2.2  
-Stable tag: 2.0.1  
+Tested up to: 5.2.3  
+Stable tag: 2.1.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -36,10 +36,17 @@ Each single page have place and open hour information.
 
 ### How to display
 
-You can use shortcode `[open-hour]` for it. If you are a theme developer,
+#### Widgets
+
+You can use widget for open our and business location.
+
+#### Shortcodes
+
+You can use shortcode `[open-hour]` for time table. If you are a theme developer,
 just use `tsoh_the_timetable()` function.
 
-This plugin is hosted on [Github](https://github.com/tarosky/taro-open-hour/), any Pull Requests are welcomed!
+For business places, you can use `[business-place post_id='10']`.
+The attribute `post_id` can be omitted and it's default value is current post.
 
 ### Acknowledgements
 
@@ -49,7 +56,7 @@ This plugin is hosted on [Github](https://github.com/tarosky/taro-open-hour/), a
 
 1. Upload the plugin files to the `/wp-content/plugins/taro-open-hour` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress.
-1. Go to `Setting > Open Hour` and set it up.
+1. Go to `Setting > Business Places` and set it up.
 
 ## Customization
 
@@ -107,6 +114,11 @@ Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 4. Widgets available. Open hour widget and location widget.
 
 ## Changelog
+
+### 2.1.0
+
+* Add shortcode `business-place`.
+* Add filter and action hooks.
 
 ### 2.0.1
 
