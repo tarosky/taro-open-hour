@@ -241,7 +241,7 @@ function tsoh_holiday_note( $post = null ) {
  */
 function tsoh_the_holiday_note( $placeholder = '', $post = null ) {
 	$note = tsoh_holiday_note( $post );
-	echo $note ? wp_kses_post( $note ) : $placeholder;
+	echo $note ? wp_kses_post( nl2br( trim( $note ) ) ) : $placeholder;
 }
 
 /**

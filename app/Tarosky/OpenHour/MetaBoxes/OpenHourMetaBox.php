@@ -32,7 +32,7 @@ class OpenHourMetaBox extends AbstractMetaBox {
 			return;
 		}
 		// Save note
-		update_post_meta( $post_id, '_tsoh_holiday_note', sanitize_text_field( filter_input( INPUT_POST, 'tsoh_note' ) ) );
+		update_post_meta( $post_id, '_tsoh_holiday_note', sanitize_textarea_field( filter_input( INPUT_POST, 'tsoh_note' ) ) );
 		// Clear all time shift.
 		$this->model->clear( $post_id );
 		// Save new time shift

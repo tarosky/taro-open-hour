@@ -21,9 +21,9 @@ $contacts = $this->location_contacts( $post );
 			<?php echo esc_html( $this->format_address( $post ) ) ?>
 		</p>
 		<?php if ( $access && ! $settings['no_access'] ) : ?>
-		<p class="tsoh-location-address-access">
-			<?php echo esc_html( $access ) ?>
-		</p>
+		<div class="tsoh-location-address-access">
+			<?php echo wp_kses_post( wpautop( trim( $access ) ) )?>
+		</div>
 		<?php endif; ?>
 	</address>
 	
