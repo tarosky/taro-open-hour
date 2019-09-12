@@ -1,14 +1,21 @@
 <?php
+/**
+ * Template for displaying business places.
+ *
+ * @package tsoh
+ */
 /** @var WP_Post                 $post */
 /** @var Tarosky\OpenHour\Places $this */
 /** @var array                   $settings */
-$src    = $this->get_map_src( $post );
-$access = get_post_meta( $post->ID, '_tsoh_access', true );
+$src      = $this->get_map_src( $post );
+$access   = get_post_meta( $post->ID, '_tsoh_access', true );
 $contacts = $this->location_contacts( $post );
 ?>
 
 <div class="tsoh-location tsoh-location-card">
-
+	
+	<?php do_action( 'tsoh_before_location', $post, $settings ); ?>
+	
 	<?php if ( $src ) : ?>
 	<figure class="tsoh-location-map">
 		<iframe src="<?php echo esc_url( $src ) ?>" class="tsoh-location-map-iframe" frameborder="0"></iframe>
@@ -25,6 +32,7 @@ $contacts = $this->location_contacts( $post );
 			<?php echo wp_kses_post( wpautop( trim( $access ) ) )?>
 		</div>
 		<?php endif; ?>
+		<?php do_action( 'tsoh_after_location_address', $post, $settings ); ?>
 	</address>
 	
 	<?php if ( $contacts ) : ?>
@@ -38,5 +46,7 @@ $contacts = $this->location_contacts( $post );
 		<?php endforeach; ?>
 	</div>
 	<?php endif; ?>
+	
+	<?php do_action( 'tsoh_after_location', $post, $settings ); ?>
 	
 </div>

@@ -157,11 +157,11 @@ class Places extends Singleton {
 	 *
 	 * @param null|int|\WP_Post $post
 	 * @param string            $type
-	 * @param array             $setting
+	 * @param array             $settings
 	 *
 	 * @return string
 	 */
-	public function display_location( $post = null, $type = 'card', $setting = [] ) {
+	public function display_location( $post = null, $type = 'card', $settings = [] ) {
 		$post = get_post( $post );
 		if ( ! $post ) {
 			return '';
