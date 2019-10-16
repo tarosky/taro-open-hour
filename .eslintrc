@@ -1,0 +1,6 @@
+{
+	"globals": {
+		"jQuery": false
+	},
+	"extends": [ "plugin:@wordpress/eslint-plugin/recommended" ]
+}
