@@ -29,23 +29,20 @@ class SiteLocation extends AbstractWidget{
 	}
 	
 	protected function form_elements( $instance ) {
-		
+		$instance = wp_parse_args( $instance, [
+			'location_id' => '',
+		] );
+		$this->location_selector( $this->get_field_id( 'location_id' ), $this->get_field_name( 'location_id' ), $instance['location_id'] );
 		foreach ( [
 			'show_map'    => __( 'Display Google Map', 'tsoh' ),
 			'show_access' => __( 'Display Google Map', 'tsoh' ),
 		] as $key => $label) {
 		
 		}
-		if ( ! $this->places->get_site_location() ) {
-			?>
-			<p class="description" style="color: red;">
-				<?php esc_html_e( 'This site has no site location. Please register one.', 'tsoh' ) ?>
-			</p>
-			<?php
-		}
 	}
 	
 	protected function handle_update( $instance, $new_instance ) {
+		$instance['location_id'] = $new_instance['location_id'];
 		return $instance;
 	}
 	

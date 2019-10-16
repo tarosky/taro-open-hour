@@ -18,7 +18,9 @@
     "type": "git",
     "url": ""
   },
-  "keywords": [ "wordpress" ],
+  "keywords": [
+    "wordpress"
+  ],
   "author": "Tarosky INC",
   "license": "GPL-3.0",
   "bugs": {
@@ -50,6 +52,7 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^6.0.1",
     "merge-stream": "^2.0.0",
+    "select2": "^4.0.11",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.41.0",
     "webpack-stream": "^5.2.1"

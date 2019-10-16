@@ -62,13 +62,13 @@ gulp.task( 'sass', function() {
  */
 gulp.task( 'js:bundle', function() {
 	const tmp = {};
-	return gulp.src( [ './assets/js/*.js', '!./assets/js/_*.js' ] )
+	return gulp.src( srcDir.js )
 		.pipe( $.plumber( {
 			errorHandler: $.notify.onError( '<%= error.message %>' ),
 		} ) )
 		.pipe( named() )
 		.pipe( $.rename( function( path ) {
-			tmp[path.basename] = path.dirname;
+			tmp[ path.basename ] = path.dirname;
 		} ) )
 		.pipe( webpackStream( webpackConfig, webpack ) )
 		.pipe( $.rename( function( path ) {
@@ -79,7 +79,7 @@ gulp.task( 'js:bundle', function() {
 			}
 			return path;
 		} ) )
-		.pipe( gulp.dest( './public/assets/js' ) );
+		.pipe( gulp.dest( destDir.js ) );
 } );
 
 // ESLint
@@ -98,8 +98,16 @@ gulp.task( 'js', gulp.parallel(
 // Build Libraries.
 gulp.task( 'copylib', function() {
 	// pass gulp tasks to event stream.
-	// return eventStream.merge(
-	// );
+	return mergeStream(
+		gulp.src( [
+			'node_modules/select2/dist/js/select2.min.js',
+		] )
+			.pipe( gulp.dest( 'assets/js' ) ),
+		gulp.src( [
+			'node_modules/select2/dist/css/select2.min.css',
+		] )
+			.pipe( gulp.dest( 'assets/css' ) ),
+	);
 } );
 
 // Image min
@@ -125,15 +133,15 @@ gulp.task( 'imagemin', () => {
 // watch
 gulp.task( 'watch', function() {
 	// Make SASS
-	gulp.watch( srcDir.scss, [ 'sass' ] );
+	gulp.watch( srcDir.scss, gulp.task( 'sass' ) );
 	// Uglify all
-	gulp.watch( srcDir.jsLint, [ 'js' ] );
+	gulp.watch( srcDir.jsLint, gulp.task( 'js' ) );
 	// Minify Image
-	gulp.watch( srcDir.img, [ 'imagemin' ] );
+	gulp.watch( srcDir.img, gulp.task( 'imagemin' ) );
 } );
 
 // Build
-gulp.task( 'build', gulp.parallel( 'js', 'sass', 'imagemin' ) );
+gulp.task( 'build', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) );
 
 // Default Tasks
 gulp.task( 'default', gulp.task( 'watch' ) );

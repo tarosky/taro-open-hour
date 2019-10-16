@@ -37,6 +37,16 @@ class Bootstrap extends Singleton {
 		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
 		// Load style
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+		// Load all REST api.
+		foreach ( scandir( __DIR__ . '/Rest' ) as $file ) {
+			if ( ! preg_match( '/^([^._].*)\.php$/u', $file, $matches ) ) {
+				continue;
+			}
+			$class_name = "Tarosky\\OpenHour\\Rest\\{$matches[1]}";
+			if ( class_exists( $class_name ) ) {
+				call_user_func( "{$class_name}::instance" );
+			}
+		}
 	}
 	
 	/**
