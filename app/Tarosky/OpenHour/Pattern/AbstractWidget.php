@@ -2,6 +2,8 @@
 
 namespace Tarosky\OpenHour\Pattern;
 
+use Tarosky\OpenHour\Rest\PlacesApi;
+
 /**
  * Widget base
  *
@@ -102,6 +104,43 @@ abstract class AbstractWidget extends \WP_Widget {
 			<?php
 		}
 		$this->form_elements( $instance );
+	}
+	
+	/**
+	 * Display location selector field.
+	 *
+	 * @param string $id
+	 * @param string $name
+	 * @param string $current
+	 */
+	protected function location_selector( $id, $name, $current = '' ) {
+		if ( is_numeric( $current ) ) {
+			$place = get_post( $current );
+		} else {
+			$place = null;
+		}
+		?>
+		<p>
+			<label for="<?php echo esc_attr( $id ) ?>"><?php esc_html_e( 'Post ID of Place', 'tsoh' ) ?></label><br />
+			<select class="location-selector" id="<?php echo esc_attr( $id ) ?>" name="<?php echo esc_attr( $name ) ?>"
+					data-placeholder="<?php esc_attr_e( 'Search places...', 'tsoh' ) ?>">
+				<?php if ( $place ) : ?>
+				<option value="<?php echo esc_attr( $place->ID ) ?>" selected="selected"><?php echo esc_html( PlacesApi::instance()->get_location_label( $place ) ) ?></option>
+				<?php endif; ?>
+			</select>
+		</p>
+		<p class="description">
+			<?php esc_html_e( 'If left black, site default location will be used.', 'tsoh' ) ?>
+			<?php if ( ! ( $default = $this->places->get_site_location() ) ) : ?>
+				<span style="color: orange;">
+					<strong><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Notice' ) ?>: </strong>
+					<?php esc_html_e( 'This site has no site location. Please register one.', 'tsoh' ) ?>
+				</span>
+			<?php else: ?>
+				<?php printf( esc_html__( 'Current site location is %s', 'tsoh' ), PlacesApi::instance()->get_location_label( $default ) ) ?>
+			<?php endif; ?>
+		</p>
+		<?php
 	}
 	
 	/**

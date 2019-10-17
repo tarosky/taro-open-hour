@@ -296,7 +296,7 @@ class Places extends Singleton {
 					$icon = 'admin-links';
 					break;
 				default:
-					continue;
+					continue 2;
 			}
 			$contacts[ $key ] = [
 				'label' => $label,

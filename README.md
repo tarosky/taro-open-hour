@@ -3,10 +3,10 @@ Business Places
 
 Contributors: tarosky,Takahashi_Fumiki
 Tags: business,place,open-hour,widget  
-Requires at least: 4.7.0  
+Requires at least: 4.9.0  
 Requires PHP: 5.6  
-Tested up to: 5.2.3  
-Stable tag: 2.1.0  
+Tested up to: 5.2.4  
+Stable tag: 2.2.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -114,6 +114,11 @@ Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 4. Widgets available. Open hour widget and location widget.
 
 ## Changelog
+
+### 2.2.0
+
+* Add widgets for place and time table.
+* Drop support for WordPress 4.8 and below.
 
 ### 2.1.0
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taro Open Hour\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 13:31+0900\n"
+"POT-Creation-Date: 2019-10-17 19:35+0900\n"
 "PO-Revision-Date: 2014-04-02 22:50+0900\n"
 "Last-Translator: Takahashi Fumiki <info@takahashifumiki.com>\n"
 "Language-Team: TAROSKY INC <info@tarosky.co.jp>\n"
@@ -21,18 +21,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: node_modules\n"
 
-#: app/Tarosky/OpenHour/Admin.php:19 templates/setting.php:19
+#: app/Tarosky/OpenHour/Admin.php:26 templates/setting.php:19
 msgid "Business Places"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Admin.php:26
+#: app/Tarosky/OpenHour/Admin.php:33
 #, php-format
 msgid ""
-"[Business Places] No post type is specified. Please go to <a href=\"%s"
+"[Business Places] No post type is specified. Please go to <a href=\"2%s"
 "\">setting screen</a>."
 msgstr ""
 
-#: app/Tarosky/OpenHour/Admin.php:38
+#: app/Tarosky/OpenHour/Admin.php:45
 msgid "Business Places Setting"
 msgstr ""
 
@@ -41,6 +41,7 @@ msgid "Location Setting"
 msgstr ""
 
 #: app/Tarosky/OpenHour/MetaBoxes/OpenHourMetaBox.php:20
+#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:22
 #: templates/time-table.php:21
 msgid "Open Hour"
 msgstr ""
@@ -75,8 +76,37 @@ msgctxt "metabox-js"
 msgid "Are you sure to delete this time shift?"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:97
+#: app/Tarosky/OpenHour/Pattern/AbstractRest.php:77
+msgid "Specified endpoint is not available."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:99
 msgid "Title"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:124
+msgid "Post ID of Place"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:126
+msgid "Search places..."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:133
+msgid "If left black, site default location will be used."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:136
+msgid "Notice"
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:137
+msgid "This site has no site location. Please register one."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Pattern/AbstractWidget.php:140
+#, php-format
+msgid "Current site location is %s"
 msgstr ""
 
 #: app/Tarosky/OpenHour/Places.php:34
@@ -148,29 +178,25 @@ msgstr ""
 msgid "See Detail"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:24
-msgid "Site Location"
+#: app/Tarosky/OpenHour/Rest/PlaceApi.php:34
+msgid "You have no permission to access this place."
 msgstr ""
 
-#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:28
-msgid "Display site location or nothing if not set."
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:25
+msgid "Business Place"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:34
-#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:35
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:29
+msgid "Display place information."
+msgstr ""
+
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:38
+#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:39
 msgid "Display Google Map"
 msgstr ""
 
-#: app/Tarosky/OpenHour/Widgets/SiteLocation.php:42
-msgid "This site has no site location. Please register one."
-msgstr ""
-
-#: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:22
-msgid "Site Open Hour"
-msgstr ""
-
 #: app/Tarosky/OpenHour/Widgets/SiteOpenHour.php:26
-msgid "Display site open hour or nothing if not set."
+msgid "Display time table."
 msgstr ""
 
 #: includes/functions.php:90 templates/metabox.php:21

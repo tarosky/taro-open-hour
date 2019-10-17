@@ -19,15 +19,37 @@ class SiteOpenHour extends AbstractWidget {
 	}
 	
 	protected function get_name() {
-		return __( 'Site Open Hour', 'tsoh' );
+		return __( 'Open Hour', 'tsoh' );
 	}
 	
 	protected function get_description() {
-		return __( 'Display site open hour or nothing if not set.', 'tsoh' );
+		return __( 'Display time table.' );
+	}
+	
+	
+	protected function form_elements( $instance ) {
+		$instance = wp_parse_args( $instance, [
+			'location_id' => '',
+		] );
+		$this->location_selector( $this->get_field_id( 'location_id' ), $this->get_field_name( 'location_id' ), $instance['location_id'] );
+	}
+	
+	
+	protected function handle_update( $instance, $new_instance ) {
+		$instance['location_id'] = $new_instance['location_id'];
+		return $instance;
 	}
 	
 	protected function skip_widget( $args, $instance ) {
-		$this->location = $this->places->get_site_location();
+		$location_id = isset( $instance[ 'location_id' ] ) ? $instance['location_id'] : '';
+		if ( ! is_numeric( $location_id ) ) {
+			$this->location = $this->places->get_site_location();
+		} else {
+			$post = get_post( $location_id );
+			if ( $post ) {
+				$this->location = $post;
+			}
+		}
 		return ! $this->location || ! tsoh_has_timetable( $this->location );
 	}
 	

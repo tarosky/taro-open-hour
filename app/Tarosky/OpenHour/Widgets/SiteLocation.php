@@ -2,6 +2,7 @@
 
 namespace Tarosky\OpenHour\Widgets;
 
+use phpDocumentor\Reflection\Location;
 use Tarosky\OpenHour\Pattern\AbstractWidget;
 
 /**
@@ -21,36 +22,41 @@ class SiteLocation extends AbstractWidget{
 	}
 	
 	protected function get_name() {
-		return __( 'Site Location', 'tsoh' );
+		return __( 'Business Place', 'tsoh' );
 	}
 	
 	protected function get_description() {
-		return __( 'Display site location or nothing if not set.', 'tsoh' );
+		return __( 'Display place information.', 'tsoh' );
 	}
 	
 	protected function form_elements( $instance ) {
-		
+		$instance = wp_parse_args( $instance, [
+			'location_id' => '',
+		] );
+		$this->location_selector( $this->get_field_id( 'location_id' ), $this->get_field_name( 'location_id' ), $instance['location_id'] );
 		foreach ( [
 			'show_map'    => __( 'Display Google Map', 'tsoh' ),
 			'show_access' => __( 'Display Google Map', 'tsoh' ),
 		] as $key => $label) {
 		
 		}
-		if ( ! $this->places->get_site_location() ) {
-			?>
-			<p class="description" style="color: red;">
-				<?php esc_html_e( 'This site has no site location. Please register one.', 'tsoh' ) ?>
-			</p>
-			<?php
-		}
 	}
 	
 	protected function handle_update( $instance, $new_instance ) {
+		$instance['location_id'] = $new_instance['location_id'];
 		return $instance;
 	}
 	
 	protected function skip_widget( $args, $instance ) {
-		$this->location = $this->places->get_site_location();
+		$location_id = isset( $instance[ 'location_id' ] ) ? $instance['location_id'] : '';
+		if ( ! is_numeric( $location_id ) ) {
+			$this->location = $this->places->get_site_location();
+		} else {
+			$post = get_post( $location_id );
+			if ( $post && $this->places->is_supported( $post->post_type ) && 'publish' === $post->post_status ) {
+				$this->location = $post;
+			}
+		}
 		return ! $this->location;
 	}
 	
