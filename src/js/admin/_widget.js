@@ -38,8 +38,25 @@ const makeSelect2 = ( select ) => {
 	} );
 };
 
+// Executed on domready.
 $( document ).ready( function() {
 	$( '.location-selector' ).each( function( index, select ) {
+		if ( $( select ).attr( 'id' ).match( /__i__/ ) ) {
+			return true;
+		}
+		makeSelect2( select );
+	} );
+} );
+
+// Widgets updated.
+$( document ).on( 'widget-updated widget-added', function( e ) {
+	$( '.location-selector' ).each( function( index, select ) {
+		if ( $( select ).attr( 'id' ).match( /__i__/ ) ) {
+			return true;
+		}
+		if ( $( select ).hasClass( '.select2-hidden-accessible' ) ) {
+			return true;
+		}
 		makeSelect2( select );
 	} );
 } );
