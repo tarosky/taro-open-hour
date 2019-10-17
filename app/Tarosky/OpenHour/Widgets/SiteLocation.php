@@ -47,7 +47,15 @@ class SiteLocation extends AbstractWidget{
 	}
 	
 	protected function skip_widget( $args, $instance ) {
-		$this->location = $this->places->get_site_location();
+		$location_id = isset( $instance[ 'location_id' ] ) ? $instance['location_id'] : '';
+		if ( ! is_numeric( $location_id ) ) {
+			$location_id = $this->places->get_site_location();
+		} else {
+			$post = get_post( $location_id );
+			if ( $post && $this->places->is_supported( $post->post_type ) && 'publish' === $post->post_status ) {
+				$this->location = $post;
+			}
+		}
 		return ! $this->location;
 	}
 	
