@@ -2,6 +2,7 @@
 
 namespace Tarosky\OpenHour\Widgets;
 
+use phpDocumentor\Reflection\Location;
 use Tarosky\OpenHour\Pattern\AbstractWidget;
 
 /**
@@ -21,11 +22,11 @@ class SiteLocation extends AbstractWidget{
 	}
 	
 	protected function get_name() {
-		return __( 'Site Location', 'tsoh' );
+		return __( 'Business Place', 'tsoh' );
 	}
 	
 	protected function get_description() {
-		return __( 'Display site location or nothing if not set.', 'tsoh' );
+		return __( 'Display place information.', 'tsoh' );
 	}
 	
 	protected function form_elements( $instance ) {
@@ -49,7 +50,7 @@ class SiteLocation extends AbstractWidget{
 	protected function skip_widget( $args, $instance ) {
 		$location_id = isset( $instance[ 'location_id' ] ) ? $instance['location_id'] : '';
 		if ( ! is_numeric( $location_id ) ) {
-			$location_id = $this->places->get_site_location();
+			$this->location = $this->places->get_site_location();
 		} else {
 			$post = get_post( $location_id );
 			if ( $post && $this->places->is_supported( $post->post_type ) && 'publish' === $post->post_status ) {
