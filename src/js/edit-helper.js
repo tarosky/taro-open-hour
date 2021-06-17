@@ -26,6 +26,7 @@ jQuery( document ).ready( function( $ ) {
 		if ( '' === errorMsg ) {
 			createTable( start, end );
 		} else {
+			/*eslint no-alert: "off"*/
 			window.alert( errorMsg );
 		}
 	} );

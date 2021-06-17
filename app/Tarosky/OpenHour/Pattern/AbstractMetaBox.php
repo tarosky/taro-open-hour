@@ -10,20 +10,20 @@ namespace Tarosky\OpenHour\Pattern;
 abstract class AbstractMetaBox extends Singleton {
 
 	use ControllerAccessor;
-	
+
 	protected static $is_duplicated = false;
-	
+
 	protected $id = '';
-	
+
 	protected $position = 'side';
-	
+
 	protected $priority = 'low';
-	
+
 	protected function init() {
-		add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
-		add_action( 'save_post', [ $this, 'save_post' ], 10, 2 );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
+		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 	}
-	
+
 	/**
 	 * Add meta box if supported.
 	 *
@@ -33,10 +33,10 @@ abstract class AbstractMetaBox extends Singleton {
 		if ( ! $this->should_display( $post_type ) ) {
 			return;
 		}
-		add_meta_box( $this->id, $this->get_title(), [ $this, 'render_meta_box' ], $post_type, $this->position, $this->priority );
+		add_meta_box( $this->id, $this->get_title(), array( $this, 'render_meta_box' ), $post_type, $this->position, $this->priority );
 	}
-	
-	
+
+
 	/**
 	 * Detect if this meta box is duplicated.
 	 *
@@ -45,7 +45,7 @@ abstract class AbstractMetaBox extends Singleton {
 	public static function is_duplicated() {
 		return static::$is_duplicated;
 	}
-	
+
 	/**
 	 * Executed on save post hook.
 	 *
@@ -55,14 +55,14 @@ abstract class AbstractMetaBox extends Singleton {
 	public function save_post( $post_id, $post ) {
 		// Override this to do something.
 	}
-	
+
 	/**
 	 * Get meta box title.
 	 *
 	 * @return string
 	 */
 	abstract protected function get_title();
-	
+
 	/**
 	 * Detect if post type should have meta box.
 	 *
@@ -71,7 +71,7 @@ abstract class AbstractMetaBox extends Singleton {
 	 * @return boolean
 	 */
 	abstract protected function should_display( $post_type );
-	
+
 	/**
 	 * Render meta box content.
 	 *

@@ -4,7 +4,7 @@ Plugin Name: Business Places
 Plugin URI: https://wordpress.org/plugin/taro-open-hour
 Description: Add place and open hour to any post type.
 Author: Tarosky INC
-Version: 2.2.0
+Version: nightly
 PHP Version: 5.6.0
 Author URI: https://tarosky.co.jp
 */
@@ -23,7 +23,7 @@ add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
  */
 function tsoh_plugins_loaded() {
 	// Register i18n
-	load_plugin_textdomain( 'tsoh', false, basename( dirname(__FILE__) ) . '/language' );
+	load_plugin_textdomain( 'tsoh', false, basename( dirname( __FILE__ ) ) . '/language' );
 	// Check PHP version
 	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
 		add_action( 'admin_notices', 'tsoh_php_low' );
@@ -42,7 +42,7 @@ function tsoh_plugins_loaded() {
 		$auto_loader = __DIR__ . '/vendor/autoload.php';
 		if ( file_exists( $auto_loader ) ) {
 			require $auto_loader;
-			call_user_func( [ 'Tarosky\\OpenHour\\Bootstrap', 'instance' ] );
+			call_user_func( array( 'Tarosky\\OpenHour\\Bootstrap', 'instance' ) );
 		} else {
 			trigger_error( __( 'Auto loader file is missing. You should run composer install.', 'tsoh' ), E_USER_WARNING );
 		}
@@ -73,9 +73,12 @@ function tsoh_php_low() {
 function tsoh_version() {
 	static $data = null;
 	if ( is_null( $data ) ) {
-		$data = get_file_data( __FILE__, array(
-			'version' => 'Version',
-		) );
+		$data = get_file_data(
+			__FILE__,
+			array(
+				'version' => 'Version',
+			)
+		);
 	}
 	return $data['version'];
 }

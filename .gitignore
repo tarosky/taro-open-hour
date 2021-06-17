@@ -3,3 +3,4 @@ vendor/
 assets/
 package-lock.json
 composer.lock
+/wordpress/

@@ -7,12 +7,17 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp build && gulp watch",
+    "start": "wp-env start",
+    "update": "wp-env start --update",
+    "stop": "wp-env stop",
+    "cli": "wp-env run cli wp",
     "watch": "gulp watch",
     "package": "gulp build",
     "gulp": "gulp",
-    "fix": "eslint --fix"
+    "gulp:task": "gulp --tasks",
+    "lint": "gulp lint",
+    "fix:js": "eslint --fix -c .eslintrc src/js",
+    "fix:css": "stylelint --fix src/scss"
   },
   "repository": {
     "type": "git",
@@ -31,12 +36,14 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/preset-env": "^7.5.4",
+    "@wordpress/env": "^4.0",
     "@wordpress/eslint-plugin": "^3.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
-    "eslint": "^6.0.1",
+    "eslint": "^7.13",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-imagemin": "^6.1.1",
     "gulp-load-plugins": "^1.4.0",
@@ -47,14 +54,16 @@
     "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^2.0.1",
-    "gulp-util": "^3.0.8",
+    "gulp-stylelint": "^13.0.0",
     "imagemin": "^6.0.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^6.0.1",
     "merge-stream": "^2.0.0",
     "select2": "^4.0.11",
+    "stylelint": "^13.13.1",
+    "stylelint-config-wordpress": "^17.0.0",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.41.0",
-    "webpack-stream": "^5.2.1"
+    "webpack": "^5.3",
+    "webpack-stream": "^6.1"
   }
 }

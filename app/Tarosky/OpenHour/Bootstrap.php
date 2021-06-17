@@ -34,9 +34,9 @@ class Bootstrap extends Singleton {
 		// Enable JSON-LD
 		MetaInfo::instance();
 		// Register widgets.
-		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
+		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 		// Load style
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 11 );
 		// Load all REST api.
 		foreach ( scandir( __DIR__ . '/Rest' ) as $file ) {
 			if ( ! preg_match( '/^([^._].*)\.php$/u', $file, $matches ) ) {
@@ -48,7 +48,7 @@ class Bootstrap extends Singleton {
 			}
 		}
 	}
-	
+
 	/**
 	 * Register all widgets.
 	 */
@@ -61,7 +61,7 @@ class Bootstrap extends Singleton {
 			if ( ! preg_match( '#(.*)\.php$#u', $file, $matches ) ) {
 				continue;
 			}
-			$class_name = "Tarosky\\OpenHour\\Widgets\\" . $matches[1];
+			$class_name = 'Tarosky\\OpenHour\\Widgets\\' . $matches[1];
 			if ( ! class_exists( $class_name ) ) {
 				continue;
 			}
@@ -80,7 +80,7 @@ class Bootstrap extends Singleton {
 			}
 		}
 	}
-	
+
 	/**
 	 * Load styles.
 	 */

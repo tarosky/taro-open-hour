@@ -5,8 +5,8 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: business,place,open-hour,widget  
 Requires at least: 4.9.0  
 Requires PHP: 5.6  
-Tested up to: 5.2.4  
-Stable tag: 2.2.0  
+Tested up to: 5.7.2  
+Stable tag: nightly  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 

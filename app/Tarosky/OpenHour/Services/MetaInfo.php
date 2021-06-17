@@ -12,13 +12,13 @@ use Tarosky\OpenHour\Pattern\Singleton;
  * @package Tarosky\OpenHour\Services
  */
 class MetaInfo extends Singleton {
-	
+
 	use ControllerAccessor;
-	
+
 	protected function init() {
-		add_action( 'wp_head', [ $this, 'display_json_ld' ] );
+		add_action( 'wp_head', array( $this, 'display_json_ld' ) );
 	}
-	
+
 	/**
 	 * Display JSON LD on every page.
 	 */
@@ -39,7 +39,7 @@ class MetaInfo extends Singleton {
 HTML;
 
 	}
-	
+
 	/**
 	 * Get business location.
 	 *
@@ -52,18 +52,18 @@ HTML;
 		if ( ! $type ) {
 			$type = tsoh_get_default_local_business( $post->post_type );
 		}
-		$json = [
+		$json = array(
 			'@context' => 'http://schema.org',
 			'@type'    => $type,
 			'@id'      => get_the_guid( $post ),
 			'name'     => get_the_title( $post ),
-		];
+		);
 		// Contacts.
-		foreach ( [
+		foreach ( array(
 			'tel'   => 'telephone',
 			'url'   => 'url',
 			'email' => 'email',
-		] as $key => $prop ) {
+		) as $key => $prop ) {
 			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
 			if ( $value ) {
 				$json[ $prop ] = $value;
@@ -86,7 +86,7 @@ HTML;
 		// Done.
 		return apply_filters( 'tsoh_json_ld', $json, $post );
 	}
-	
+
 	/**
 	 * Get postal address for JSON-LD
 	 *
@@ -94,33 +94,33 @@ HTML;
 	 * @return array
 	 */
 	public function get_postal_address( $post ) {
-		$address = [];
-		$keys    = [
+		$address = array();
+		$keys    = array(
 			'address'  => 'streetAddress',
 			'address2' => '',
 			'city'     => 'addressLocality',
 			'state'    => 'addressRegion',
 			'country'  => 'addressCountry',
 			'zip'      => 'postalCode',
-		];
+		);
 		foreach ( $this->places->get_address_parts() as $key => $label ) {
-			$value = get_post_meta(  $post->ID, '_tsoh_' . $key, true );
+			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
 			if ( ! $value || ! isset( $keys[ $key ] ) ) {
 				continue;
 			}
 			if ( 'address2' === $key ) {
-				$address[ 'streetAddress' ] .= ' ' . $value;
+				$address['streetAddress'] .= ' ' . $value;
 			} else {
 				$address[ $keys[ $key ] ] = $value;
 			}
 		}
 		if ( ! $address ) {
-			return [];
+			return array();
 		}
-		$address[ '@type' ] = 'PostalAddress';
+		$address['@type'] = 'PostalAddress';
 		return $address;
 	}
-	
+
 	/**
 	 * Get opening hours specifications.
 	 *
@@ -128,23 +128,23 @@ HTML;
 	 * @return array[]
 	 */
 	public function get_opening_hours( $post ) {
-		$opening_horus = [];
+		$opening_horus = array();
 		foreach ( $this->model->get_timetable( $post->ID ) as $row ) {
 			for ( $i = 0; $i < 7; $i++ ) {
 				if ( ! isset( $row[ $i ] ) ) {
 					continue;
 				}
-				$opening_horus[] = [
+				$opening_horus[] = array(
 					'@type'     => 'OpeningHoursSpecification',
 					'opens'     => $row['open'] . ':00',
 					'closes'    => $row['close'] . ':00',
-					'dayOfWeek' => 'http://schema.org/' . [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ $i ],
-				];
+					'dayOfWeek' => 'http://schema.org/' . array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' )[ $i ],
+				);
 			}
 		}
 		return $opening_horus;
 	}
-	
+
 	/**
 	 * Get location for current page.
 	 *
@@ -157,7 +157,7 @@ HTML;
 			return $this->places->is_supported( get_queried_object()->post_type ) ? get_queried_object() : null;
 		}
 	}
-	
+
 	/**
 	 * Get open days for OGP
 	 *
@@ -168,18 +168,18 @@ HTML;
 	public function get_open_days( $post = null ) {
 		$post = get_post( $post );
 		if ( ! $post ) {
-			return [];
+			return array();
 		}
 		$date_arr  = $this->model->get_open_date( $post->ID );
-		$dates     = [ 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' ];
-		$open_days = [];
+		$dates     = array( 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' );
+		$open_days = array();
 		for ( $i = 0; $i < 7; $i ++ ) {
 			if ( false !== $date_arr[ $i ] ) {
 				$open_days[] = $dates[ $i ];
 			}
 		}
-		
+
 		return $open_days;
 	}
-	
+
 }

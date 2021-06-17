@@ -14,15 +14,15 @@ use Tarosky\OpenHour\Places;
  * @property-read Places $places
  */
 abstract class AbstractRest extends Singleton {
-	
+
 	protected $route = '';
-	
+
 	protected $namespace = 'business-places/v1';
-	
+
 	protected $is_duplicated = false;
-	
-	const ENDPOINTS = [ 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH' ];
-	
+
+	const ENDPOINTS = array( 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH' );
+
 	/**
 	 * Constructor
 	 */
@@ -30,9 +30,9 @@ abstract class AbstractRest extends Singleton {
 		if ( $this->is_duplicated ) {
 			return;
 		}
-		add_action( 'rest_api_init', [ $this, 'register_rest_routes'] );
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 	}
-	
+
 	/**
 	 * Arguments for REST route.
 	 *
@@ -41,21 +41,21 @@ abstract class AbstractRest extends Singleton {
 	 * @return array
 	 */
 	abstract protected function get_args( $method );
-	
+
 	/**
 	 * Register REST endpoints.
 	 */
 	public function register_rest_routes() {
-		$args = [];
+		$args = array();
 		foreach ( self::ENDPOINTS as $method ) {
 			$method_name = 'handle_' . strtolower( $method );
 			if ( method_exists( $this, $method_name ) ) {
-				$args[] = [
+				$args[] = array(
 					'methods'             => $method,
 					'args'                => $this->get_args( $method ),
-					'callback'            => [ $this, 'call' ],
-					'permission_callback' => [ $this, 'permission_callback' ],
-				];
+					'callback'            => array( $this, 'call' ),
+					'permission_callback' => array( $this, 'permission_callback' ),
+				);
 			}
 		}
 		if ( ! $args ) {
@@ -63,7 +63,7 @@ abstract class AbstractRest extends Singleton {
 		}
 		register_rest_route( $this->namespace, $this->route, $args );
 	}
-	
+
 	/**
 	 * Handle rest request.
 	 *
@@ -76,19 +76,23 @@ abstract class AbstractRest extends Singleton {
 			if ( ! method_exists( $this, $method_name ) ) {
 				throw new \Exception( __( 'Specified endpoint is not available.', 'tsoh' ), 400 );
 			}
-			$result = call_user_func_array( [ $this, $method_name ], [ $request ] );
+			$result = call_user_func_array( array( $this, $method_name ), array( $request ) );
 			if ( is_wp_error( $result ) || is_a( $result, 'WP_REST_Response' ) ) {
 				return $result;
 			} else {
 				return new \WP_REST_Response( $result );
 			}
 		} catch ( \Exception $e ) {
-			return new \WP_Error( 'invalid_request', $e->getMessage(), [
-				'status' => $e->getCode(),
-			] );
+			return new \WP_Error(
+				'invalid_request',
+				$e->getMessage(),
+				array(
+					'status' => $e->getCode(),
+				)
+			);
 		}
 	}
-	
+
 	/**
 	 * Permission callback.
 	 *
@@ -98,7 +102,7 @@ abstract class AbstractRest extends Singleton {
 	public function permission_callback( $request ) {
 		return true;
 	}
-	
+
 	/**
 	 * Convert a place to array.
 	 *
@@ -106,11 +110,11 @@ abstract class AbstractRest extends Singleton {
 	 * @return array
 	 */
 	protected function place_to_array( $post ) {
-		$result = (array) $post;
+		$result          = (array) $post;
 		$result['label'] = $this->get_location_label( $post );
 		return $result;
 	}
-	
+
 	/**
 	 * Get site location label.
 	 *
@@ -118,15 +122,15 @@ abstract class AbstractRest extends Singleton {
 	 * @return string
 	 */
 	public function get_location_label( $post ) {
-		$obj = get_post_type_object( $post->post_type );
+		$obj   = get_post_type_object( $post->post_type );
 		$label = sprintf( '%s(%s)', get_the_title( $post ), $obj->label );
 		if ( 'publish' !== $post->post_status ) {
 			$statuses = get_post_statuses();
-			$label .= ' - ' . ( isset( $statuses[ $post->post_status ] ) ? $statuses[ $post->post_status ] : $post->post_status );
+			$label   .= ' - ' . ( isset( $statuses[ $post->post_status ] ) ? $statuses[ $post->post_status ] : $post->post_status );
 		}
 		return $label;
 	}
-	
+
 	/**
 	 * Getter.
 	 *
@@ -143,6 +147,6 @@ abstract class AbstractRest extends Singleton {
 				return null;
 		}
 	}
-	
-	
+
+
 }

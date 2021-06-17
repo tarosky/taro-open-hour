@@ -1,6 +1,9 @@
+.editorconfig
+.eslintrc
 .git
 .gitignore
 .travis.yml
+.wp-env.json
 tests
 bin
 node_modules
@@ -8,5 +11,5 @@ package.json
 phpdoc.xml
 phpunit.xml.dist
 phpcs.ruleset.xml
-composer.json
 composer.lock
+README.md

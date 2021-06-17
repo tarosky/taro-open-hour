@@ -39,8 +39,8 @@ const makeSelect2 = ( select ) => {
 };
 
 // Executed on domready.
-$( document ).ready( function() {
-	$( '.location-selector' ).each( function( index, select ) {
+$( document ).ready( function () {
+	$( '.location-selector' ).each( function ( index, select ) {
 		if ( $( select ).attr( 'id' ).match( /__i__/ ) ) {
 			return true;
 		}
@@ -49,8 +49,8 @@ $( document ).ready( function() {
 } );
 
 // Widgets updated.
-$( document ).on( 'widget-updated widget-added', function( e ) {
-	$( '.location-selector' ).each( function( index, select ) {
+$( document ).on( 'widget-updated widget-added', function () {
+	$( '.location-selector' ).each( function ( index, select ) {
 		if ( $( select ).attr( 'id' ).match( /__i__/ ) ) {
 			return true;
 		}

@@ -48,12 +48,12 @@ EOS;
 			ORDER BY open ASC
 EOS;
 		$time_tables = $this->db->get_results( $this->db->prepare( $sql, $post_id ) );
-		$times       = [];
+		$times       = array();
 		if ( ! empty( $time_tables ) ) {
 			// Parse all time and create table.
-			$time_segments = [];
+			$time_segments = array();
 			foreach ( $time_tables as $time ) {
-				foreach ( [ 'open', 'close' ] as $key ) {
+				foreach ( array( 'open', 'close' ) as $key ) {
 					if ( false === array_search( $time->{$key}, $time_segments ) ) {
 						$time_segments[] = $time->{$key};
 					}
@@ -65,19 +65,19 @@ EOS;
 				if ( isset( $time_segments[ $i + 1 ] ) ) {
 					$start           = $this->formatter->my2time( $time_segments[ $i ] );
 					$end             = $this->formatter->my2time( $time_segments[ $i + 1 ] );
-					$times[ $start ] = [
+					$times[ $start ] = array(
 						'open'  => $start,
 						'close' => $end,
-					];
+					);
 				}
 			}
 			// Compare time shift and if conditions match, insert it.
 			foreach ( $times as $key => $time ) {
 				foreach ( $time_tables as $data ) {
-					$range = [
+					$range = array(
 						'open'  => $this->formatter->my2time( $data->open ),
 						'close' => $this->formatter->my2time( $data->close ),
-					];
+					);
 					if ( $this->is_included( $time, $range ) ) {
 						$times[ $key ][ $data->day ] = $data->crowdedness;
 					}
@@ -104,7 +104,7 @@ EOS;
 			ORDER BY open ASC
 EOS;
 		$results    = $this->db->get_results( $this->db->prepare( $sql, $post_id ) );
-		$time_belts = [];
+		$time_belts = array();
 		foreach ( $results as $r ) {
 			$time_belts[ $this->formatter->my2time( $r->open ) ] = $this->formatter->my2time( $r->close );
 		}
@@ -122,9 +122,9 @@ EOS;
 	 * @return array
 	 */
 	public function get_open_date( $post_id, $start = null, $end = null ) {
-		$wheres = [
-			$this->db->prepare( '( object_id = %d )', $post_id )
-		];
+		$wheres = array(
+			$this->db->prepare( '( object_id = %d )', $post_id ),
+		);
 		if ( ! is_null( $start ) ) {
 			$wheres[] = $this->db->prepare( ' (open <= %s) ', $start );
 		}
@@ -139,11 +139,11 @@ EOS;
 			ORDER BY day ASC
 EOS;
 		$dates        = $this->db->get_results( $sql );
-		$date_arr     = [];
+		$date_arr     = array();
 		foreach ( $dates as $d ) {
 			$date_arr[ $d->day ] = $d->crowdedness;
 		}
-		$results = [];
+		$results = array();
 		for ( $i = 0; $i < 7; $i ++ ) {
 			$results[ $i ] = array_key_exists( $i, $date_arr ) ? $date_arr[ $i ] : false;
 		}
@@ -198,11 +198,11 @@ EOS;
 	 *
 	 * @return bool
 	 */
-	public function is_open( $post = null, $days = [], $time = '' ) {
+	public function is_open( $post = null, $days = array(), $time = '' ) {
 		$post  = get_post( $post );
-		$where = [
+		$where = array(
 			$this->db->prepare( '( object_id = %d )', $post->ID ),
-		];
+		);
 		// If time is specified.
 		if ( $time ) {
 			$where[] = $this->db->prepare( '( open <= %s )', $time );
@@ -234,13 +234,13 @@ EOS;
 	 * @return false|int
 	 */
 	public function add( $post_id, $day, $open, $close, $crowdedness = false ) {
-		$data  = [
+		$data  = array(
 			'object_id' => $post_id,
 			'day'       => $day,
 			'open'      => $open,
 			'close'     => $close,
-		];
-		$where = [ '%d', '%d', '%s', '%s' ];
+		);
+		$where = array( '%d', '%d', '%s', '%s' );
 		if ( false !== $crowdedness ) {
 			$data['crowdedness'] = $crowdedness;
 			$where[]             = '%d';
@@ -257,9 +257,13 @@ EOS;
 	 * @return false|int
 	 */
 	public function clear( $post_id ) {
-		return $this->db->delete( $this->table, [
-			'object_id' => $post_id,
-		], [ '%d' ] );
+		return $this->db->delete(
+			$this->table,
+			array(
+				'object_id' => $post_id,
+			),
+			array( '%d' )
+		);
 	}
 
 	/**

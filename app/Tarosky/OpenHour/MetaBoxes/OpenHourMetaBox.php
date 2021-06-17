@@ -11,19 +11,19 @@ use Tarosky\OpenHour\Pattern\AbstractMetaBox;
  * @package tsoh
  */
 class OpenHourMetaBox extends AbstractMetaBox {
-	
+
 	protected $id = 'tsoh-meta';
-	
+
 	protected $position = 'advanced';
-	
+
 	protected function get_title() {
 		return __( 'Open Hour', 'tsoh' );
 	}
-	
+
 	protected function should_display( $post_type ) {
 		return tsoh_supported( $post_type );
 	}
-	
+
 	public function save_post( $post_id, $post ) {
 		if ( ! tsoh_supported( $post->post_type ) ) {
 			return;
@@ -49,10 +49,10 @@ class OpenHourMetaBox extends AbstractMetaBox {
 			}
 		}
 	}
-	
-	
+
+
 	public function render_meta_box( $post ) {
-		wp_enqueue_script( 'tsoh-edit-helper', tsoh_asset( '/js/edit-helper.js' ), [ 'jquery-effects-highlight' ], tsoh_version(), true );
+		wp_enqueue_script( 'tsoh-edit-helper', tsoh_asset( '/js/edit-helper.js' ), array( 'jquery-effects-highlight' ), tsoh_version(), true );
 		$default_time = tsoh_default();
 		/**
 		 * tsoh_default_days
@@ -62,18 +62,22 @@ class OpenHourMetaBox extends AbstractMetaBox {
 		 * @return array
 		 */
 		$default_days = array_map( 'intval', apply_filters( 'tsoh_default_days', (array) get_option( 'tsoh_default_days', range( 0, 4 ) ) ) );
-		
-		wp_localize_script( 'tsoh-edit-helper', 'TsOpenHour', [
-			'startError'     => _x( 'Start time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
-			'endError'       => _x( 'End time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
-			'pastStartError' => _x( 'Start time must be earlier than end time.', 'metabox-js', 'tsoh' ),
-			'notEmpty'       => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
-			'deleteBtn'      => _x( 'Delete', 'metabox-js', 'tsoh' ),
-			'deleteConfirm'  => _x( 'Are you sure to delete this time shift?', 'metabox-js', 'tsoh' ),
-			'defaultTime'    => $default_time,
-			'defaultDays'    => $default_days,
-		] );
-		
+
+		wp_localize_script(
+			'tsoh-edit-helper',
+			'TsOpenHour',
+			array(
+				'startError'     => _x( 'Start time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
+				'endError'       => _x( 'End time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
+				'pastStartError' => _x( 'Start time must be earlier than end time.', 'metabox-js', 'tsoh' ),
+				'notEmpty'       => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
+				'deleteBtn'      => _x( 'Delete', 'metabox-js', 'tsoh' ),
+				'deleteConfirm'  => _x( 'Are you sure to delete this time shift?', 'metabox-js', 'tsoh' ),
+				'defaultTime'    => $default_time,
+				'defaultDays'    => $default_days,
+			)
+		);
+
 		$file = tsoh_template( 'metabox.php' );
 		if ( $file ) {
 			include $file;

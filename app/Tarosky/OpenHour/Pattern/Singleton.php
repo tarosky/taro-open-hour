@@ -12,7 +12,7 @@ abstract class Singleton {
 	/**
 	 * @var array Instance holders
 	 */
-	private static $instances = [];
+	private static $instances = array();
 
 	/**
 	 * Singleton constructor.

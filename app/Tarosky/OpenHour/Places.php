@@ -13,15 +13,15 @@ use Tarosky\OpenHour\Pattern\Singleton;
  * @property-read string[] $post_types
  */
 class Places extends Singleton {
-	
+
 	/**
 	 * Initialize Constructor
 	 *
 	 */
 	protected function init() {
-		add_action( 'init', [ $this, 'register_post_type' ] );
+		add_action( 'init', array( $this, 'register_post_type' ) );
 	}
-	
+
 	/**
 	 * Register post type for location.
 	 */
@@ -30,33 +30,39 @@ class Places extends Singleton {
 		if ( ! $this->post_type ) {
 			return;
 		}
-		$args = apply_filters( 'tsoh_location_post_type_args', [
-			'label'           => __( 'Business Locations', 'tsoh' ),
-			'labels'          => [
-				'menu_name'     => __( 'Locations', 'tsoh' ),
-				'singular_name' => __( 'Business Location', 'tsoh' ),
-			],
-			'public'          => get_option( 'tsoh_place_post_type_public', false ),
-			'show_ui'         => true,
-			'menu_icon'       => 'dashicons-location',
-			'capability_type' => 'page',
-			'hierarchical'    => false,
-			'supports'        => [ 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ],
-			'taxonomies'      => [ 'location-type' ],
-		] );
+		$args = apply_filters(
+			'tsoh_location_post_type_args',
+			array(
+				'label'           => __( 'Business Locations', 'tsoh' ),
+				'labels'          => array(
+					'menu_name'     => __( 'Locations', 'tsoh' ),
+					'singular_name' => __( 'Business Location', 'tsoh' ),
+				),
+				'public'          => get_option( 'tsoh_place_post_type_public', false ),
+				'show_ui'         => true,
+				'menu_icon'       => 'dashicons-location',
+				'capability_type' => 'page',
+				'hierarchical'    => false,
+				'supports'        => array( 'title', 'editor', 'excerpt', 'thumbnail', 'page-attributes' ),
+				'taxonomies'      => array( 'location-type' ),
+			)
+		);
 		register_post_type( 'location', $args );
 		// Register taxonomy.
-		$taxonomy_args = apply_filters( 'tsoh_location_taxonomy_args', [
-			'label'             => __( 'Location Type', 'tsoh' ),
-			'public'            => get_option( 'tsoh_place_post_type_public', false ),
-			'show_ui'           => true,
-			'show_tagcloud'     => false,
-			'show_admin_column' => true,
-			'hierarchical'      => true,
-		] );
-		register_taxonomy( 'location-type', [ 'location' ], $taxonomy_args );
+		$taxonomy_args = apply_filters(
+			'tsoh_location_taxonomy_args',
+			array(
+				'label'             => __( 'Location Type', 'tsoh' ),
+				'public'            => get_option( 'tsoh_place_post_type_public', false ),
+				'show_ui'           => true,
+				'show_tagcloud'     => false,
+				'show_admin_column' => true,
+				'hierarchical'      => true,
+			)
+		);
+		register_taxonomy( 'location-type', array( 'location' ), $taxonomy_args );
 	}
-	
+
 	/**
 	 * Set site location
 	 *
@@ -70,16 +76,20 @@ class Places extends Singleton {
 		}
 		// Remove exiting.
 		global $wpdb;
-		$wpdb->delete( $wpdb->postmeta, [
-			'meta_key'   => '_tsoh_site_location',
-			'meta_value' => 1,
-		], [ '%d' ] );
+		$wpdb->delete(
+			$wpdb->postmeta,
+			array(
+				'meta_key'   => '_tsoh_site_location',
+				'meta_value' => 1,
+			),
+			array( '%d' )
+		);
 		// Save if exists.
 		if ( ! $delete ) {
 			update_post_meta( $post->ID, '_tsoh_site_location', 1 );
 		}
 	}
-	
+
 	/**
 	 * Get site location.
 	 *
@@ -94,29 +104,31 @@ class Places extends Singleton {
 		}
 		return (bool) get_post_meta( $post->ID, '_tsoh_site_location', true );
 	}
-	
+
 	/**
 	 * Get site location
 	 *
 	 * @return \WP_Post|null
 	 */
 	public function get_site_location() {
-		foreach ( get_posts( [
-			'post_type'      => $this->post_types,
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'meta_query'     => [
-				[
-					'key'   => '_tsoh_site_location',
-					'value' => '1',
-				],
-			],
-		] ) as $post ) {
+		foreach ( get_posts(
+			array(
+				'post_type'      => $this->post_types,
+				'post_status'    => 'publish',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array(
+						'key'   => '_tsoh_site_location',
+						'value' => '1',
+					),
+				),
+			)
+		) as $post ) {
 			return $post;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Check if post type is supported as places.
 	 *
@@ -127,23 +139,23 @@ class Places extends Singleton {
 	public function is_supported( $post_type ) {
 		return in_array( $post_type, $this->post_types );
 	}
-	
+
 	/**
 	 * Get address parts in i18n order.
 	 *
 	 * @return string[]
 	 */
 	public function get_address_parts() {
-		$parts = [
+		$parts         = array(
 			'address'  => _x( 'Address line 1', 'address', 'tsoh' ),
 			'address2' => _x( 'Address line 2', 'address', 'tsoh' ),
 			'city'     => _x( 'City', 'address', 'tsoh' ),
 			'state'    => _x( 'State / Province', 'address', 'tsoh' ),
 			'country'  => _x( 'Country', 'address', 'tsoh' ),
 			'zip'      => _x( 'Postal Code / Zip', 'address', 'tsoh' ),
-		];
+		);
 		$address_order = _x( 'address,address2,city,state,country,zip', 'address-order', 'tsoh' );
-		$filtered      = [];
+		$filtered      = array();
 		foreach ( array_map( 'trim', explode( ',', $address_order ) ) as $key ) {
 			if ( isset( $parts[ $key ] ) ) {
 				$filtered[ $key ] = $parts[ $key ];
@@ -151,7 +163,7 @@ class Places extends Singleton {
 		}
 		return $filtered;
 	}
-	
+
 	/**
 	 * Render location block
 	 *
@@ -161,7 +173,7 @@ class Places extends Singleton {
 	 *
 	 * @return string
 	 */
-	public function display_location( $post = null, $type = 'card', $settings = [] ) {
+	public function display_location( $post = null, $type = 'card', $settings = array() ) {
 		$post = get_post( $post );
 		if ( ! $post ) {
 			return '';
@@ -181,8 +193,8 @@ class Places extends Singleton {
 		ob_end_clean();
 		return apply_filters( 'tsoh_location_display', $output, $post, $type );
 	}
-	
-	
+
+
 	/**
 	 * Display location.
 	 *
@@ -192,19 +204,23 @@ class Places extends Singleton {
 	 * @return string
 	 */
 	public function short_code_display( $attributes, $content = '' ) {
-		$attributes = shortcode_atts( [
-			'post_id' => get_the_ID(),
-			'class'   => '',
-			'type'    => 'block',
-		], $attributes, 'business-place' );
-		
+		$attributes = shortcode_atts(
+			array(
+				'post_id' => get_the_ID(),
+				'class'   => '',
+				'type'    => 'block',
+			),
+			$attributes,
+			'business-place'
+		);
+
 		$location = get_post( $attributes['post_id'] );
 		if ( ! $location || ! $this->is_supported( $location->post_type ) ) {
 			return '';
 		}
 		return $this->display_location( $location, $attributes['type'], $attributes );
 	}
-	
+
 	/**
 	 * Get formatted address.
 	 *
@@ -213,9 +229,9 @@ class Places extends Singleton {
 	 *
 	 * @return string
 	 */
-	public function format_address( $post = null, $excludes = [] ) {
-		$address_parts = [];
-		$post = get_post( $post );
+	public function format_address( $post = null, $excludes = array() ) {
+		$address_parts = array();
+		$post          = get_post( $post );
 		if ( ! $post ) {
 			return '';
 		}
@@ -244,7 +260,7 @@ class Places extends Singleton {
 		$address_parts = apply_filters( 'tsoh_formatted_address', $address_parts, $post );
 		return implode( ' ', $address_parts );
 	}
-	
+
 	/**
 	 * Get Google map iframe.
 	 *
@@ -253,15 +269,15 @@ class Places extends Singleton {
 	 * @return string
 	 */
 	public function get_map_src( $post = null ) {
-		$post = get_post( $post );
+		$post    = get_post( $post );
 		$api_key = get_option( 'tsoh_google_api_key' );
 		if ( ! $api_key || ! $post ) {
 			return '';
 		}
-		$q = $this->format_address( $post, [ 'zip', 'address2' ] );
+		$q = $this->format_address( $post, array( 'zip', 'address2' ) );
 		return (string) apply_filters( 'tsoh_gmap_src', sprintf( 'https://www.google.com/maps/embed/v1/place?q=%s&key=%s', rawurlencode( $q ), $api_key ), $post );
 	}
-	
+
 	/**
 	 * Get location contacts.
 	 *
@@ -270,12 +286,12 @@ class Places extends Singleton {
 	 * @return array
 	 */
 	public function location_contacts( $post = null ) {
-		$contacts = [];
-		$post = get_post( $post );
+		$contacts = array();
+		$post     = get_post( $post );
 		if ( ! $post ) {
 			return $contacts;
 		}
-		foreach ( [ 'tel', 'email', 'url' ] as $key ) {
+		foreach ( array( 'tel', 'email', 'url' ) as $key ) {
 			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
 			if ( ! $value ) {
 				continue;
@@ -284,39 +300,39 @@ class Places extends Singleton {
 			$label = $value;
 			switch ( $key ) {
 				case 'tel':
-					$url   = 'tel:' . $value;
+					$url  = 'tel:' . $value;
 					$icon = 'phone';
 					break;
 				case 'email':
 					$url = 'mailto:' . $value;
 					break;
 				case 'url':
-					$url = $value;
+					$url   = $value;
 					$label = __( 'Web Site', 'tsoh' );
-					$icon = 'admin-links';
+					$icon  = 'admin-links';
 					break;
 				default:
 					continue 2;
 			}
-			$contacts[ $key ] = [
+			$contacts[ $key ] = array(
 				'label' => $label,
 				'url'   => $url,
 				'icon'  => $icon,
 				'value' => $value,
-			];
+			);
 		}
 		if ( get_post_type_object( $post->post_type )->public && ! is_single( $post ) ) {
-			$contacts[ 'detail' ] = [
+			$contacts['detail'] = array(
 				'label' => __( 'See Detail', 'tsoh' ),
 				'url'   => get_permalink( $post ),
 				'icon'  => 'info',
 				'value' => get_permalink( $post ),
-			];
+			);
 		}
 		$contacts = apply_filters( 'tsoh_contacts', $contacts, $post );
 		return $contacts;
 	}
-	
+
 	/**
 	 * Getter
 	 *
@@ -329,7 +345,7 @@ class Places extends Singleton {
 			case 'post_type':
 				return get_option( 'tsoh_place_post_type', 1 );
 			case 'post_types':
-				$post_types = (array) get_option( 'tsoh_place_post_types', [] );
+				$post_types = (array) get_option( 'tsoh_place_post_types', array() );
 				if ( $this->post_type ) {
 					$post_types[] = 'location';
 				}

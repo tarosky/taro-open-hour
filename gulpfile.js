@@ -9,6 +9,9 @@ const webpack = require( 'webpack' );
 const webpackStream = require( 'webpack-stream' );
 const webpackConfig = require( './webpack.config.js' );
 
+// Plumber.
+let plumber = true;
+
 // Include Path for Scss
 const includesPaths = [
 	'./src/scss',
@@ -39,7 +42,6 @@ const destDir = {
 
 // Sass
 gulp.task( 'sass', function() {
-
 	return gulp.src( srcDir.scss )
 		.pipe( $.plumber( {
 			errorHandler: $.notify.onError( '<%= error.message %>' ),
@@ -56,6 +58,27 @@ gulp.task( 'sass', function() {
 		.pipe( $.sourcemaps.write( './map' ) )
 		.pipe( gulp.dest( destDir.scss ) );
 } );
+
+// Style lint.
+gulp.task( 'stylelint', function () {
+	let task = gulp.src( srcDir.scss );
+	if ( plumber ) {
+		task = task.pipe( $.plumber( {
+			errorHandler: $.notify.onError( '<%= error.message %>' ),
+		} ) );
+	}
+	return task.pipe( $.stylelint( {
+		reporters: [
+			{
+				formatter: 'string',
+				console: true,
+			},
+		],
+	} ) );
+} );
+
+// CSS task
+gulp.task( 'css', gulp.parallel( 'sass', 'stylelint' ) );
 
 /*
  * Bundle JS
@@ -83,17 +106,21 @@ gulp.task( 'js:bundle', function() {
 } );
 
 // ESLint
-gulp.task( 'js:lint', () => gulp
-	.src( srcDir.jsLint )
-	.pipe( $.eslint( { useEslintrc: true } ) )
-	.pipe( $.eslint.format() ),
-);
+gulp.task( 'js:lint', () => {
+	let $src = gulp.src( srcDir.jsLint );
+	if ( plumber ) {
+		$src = $src.pipe( $.plumber( {
+			errorHandler: $.notify.onError( '<%= error.message %>' ),
+		} ) );
+	}
+	return $src
+		.pipe( $.eslint( { useEslintrc: true } ) )
+		.pipe( $.eslint.format() )
+		.pipe( $.eslint.failOnError() );
+} );
 
 // JS task.
-gulp.task( 'js', gulp.parallel(
-	'js:bundle',
-	'js:lint',
-) );
+gulp.task( 'js', gulp.parallel( 'js:bundle', 'js:lint' ) );
 
 // Build Libraries.
 gulp.task( 'copylib', function() {
@@ -133,7 +160,7 @@ gulp.task( 'imagemin', () => {
 // watch
 gulp.task( 'watch', function() {
 	// Make SASS
-	gulp.watch( srcDir.scss, gulp.task( 'sass' ) );
+	gulp.watch( srcDir.scss, gulp.task( 'css' ) );
 	// Uglify all
 	gulp.watch( srcDir.jsLint, gulp.task( 'js' ) );
 	// Minify Image
@@ -146,3 +173,11 @@ gulp.task( 'build', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) );
 // Default Tasks
 gulp.task( 'default', gulp.task( 'watch' ) );
 
+// No plumber.
+gulp.task( 'noplumber', ( done ) => {
+	plumber = false;
+	done();
+} );
+
+// Lint.
+gulp.task( 'lint', gulp.series( 'noplumber', gulp.parallel( 'js:lint', 'stylelint' ) ) );

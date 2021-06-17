@@ -17,7 +17,7 @@ use Tarosky\OpenHour\Places;
  * @property \wpdb     $db
  */
 trait ControllerAccessor {
-	
+
 	/**
 	 * Getter
 	 *
@@ -41,5 +41,5 @@ trait ControllerAccessor {
 				break;
 		}
 	}
-	
+
 }
