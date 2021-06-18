@@ -90,7 +90,7 @@ abstract class AbstractWidget extends \WP_Widget {
 	 *
 	 * @param array $instance
 	 *
-	 * @return string|void
+	 * @return void
 	 */
 	public function form( $instance ) {
 		if ( $this->has_title ) {
@@ -171,7 +171,7 @@ abstract class AbstractWidget extends \WP_Widget {
 	abstract protected function get_id_base();
 
 	/**
-	 * Get name
+	 * Get name.
 	 *
 	 * @return string
 	 */
