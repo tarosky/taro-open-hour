@@ -45,6 +45,7 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 			<p class="description">
 				<?php
 				printf(
+					// translators: %s is entity type of schema.org.
 					esc_html__( 'This type is used to display structured data for search engines. Default type is "%s". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'tsoh' ),
 					esc_html( tsoh_get_default_local_business( $post->post_type ) )
 				);

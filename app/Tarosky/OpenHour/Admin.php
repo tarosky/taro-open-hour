@@ -61,7 +61,7 @@ class Admin extends Singleton {
 	 * Save post types
 	 */
 	public function save_option() {
-		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'tsoh' == $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
+		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'tsoh' === $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
 			// Save location.
 			update_option( 'tsoh_place_post_type', filter_input( INPUT_POST, 'tsoh_place_post_type' ) );
 			update_option( 'tsoh_place_post_type_public', filter_input( INPUT_POST, 'tsoh_place_post_type_public' ) );

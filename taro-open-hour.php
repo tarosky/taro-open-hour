@@ -57,6 +57,7 @@ function tsoh_plugins_loaded() {
  */
 function tsoh_php_low() {
 	$message = sprintf(
+		// translators: %1$s is current PHP version, %2$s is required version.
 		__( '[ERROR] Business Places doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'tsoh' ),
 		phpversion(),
 		'5.6.0'

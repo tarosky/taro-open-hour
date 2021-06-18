@@ -13,11 +13,11 @@ $places = \Tarosky\OpenHour\Places::instance();
 	</h2>
 
 	<form action="<?php echo admin_url( 'options-general.php?page=tsoh' ); ?>" method="post">
-		
+
 		<?php wp_nonce_field( 'tsoh_option' ); ?>
 
 		<h2><?php esc_html_e( 'Business Places', 'tsoh' ); ?></h2>
-		
+
 		<table class="form-table">
 			<tr>
 				<th><label for="tsoh_place_post_type"><?php esc_html_e( 'Post Type', 'tsoh' ); ?></label></th>
@@ -40,7 +40,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 							   value="1" <?php checked( get_option( 'tsoh_place_post_type_public' ) ); ?> />
 						<?php esc_html_e( 'Post type for business places is public.', 'tsoh' ); ?>
 					</label>
-					
+
 					<p class="description">
 						<?php esc_html_e( 'If you need each single page for business places, check above as true. Default is false.', 'tsoh' ); ?>
 					</p>
@@ -85,11 +85,11 @@ $places = \Tarosky\OpenHour\Places::instance();
 				</td>
 			</tr>
 		</table>
-		
+
 		<hr />
 
 		<h2><?php esc_html_e( 'Business Hours', 'tsoh' ); ?></h2>
-		
+
 		<table class="form-table">
 			<tr>
 				<th>
@@ -149,7 +149,7 @@ HTML;
 						printf(
 							$format,
 							$index,
-							checked( false !== array_search( $index, $days ), true, false ),
+							checked( false !== array_search( $index, $days, true ), true, false ),
 							$label
 						);
 					}

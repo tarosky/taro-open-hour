@@ -137,7 +137,7 @@ class Places extends Singleton {
 	 * @return bool
 	 */
 	public function is_supported( $post_type ) {
-		return in_array( $post_type, $this->post_types );
+		return in_array( $post_type, $this->post_types, true );
 	}
 
 	/**
@@ -236,7 +236,7 @@ class Places extends Singleton {
 			return '';
 		}
 		foreach ( $this->get_address_parts() as $key => $label ) {
-			if ( in_array( $key, $excludes ) ) {
+			if ( in_array( $key, $excludes, true ) ) {
 				continue;
 			}
 			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
@@ -245,6 +245,7 @@ class Places extends Singleton {
 			}
 			switch ( $key ) {
 				case 'zip':
+					// phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
 					$address_parts[ $key ] = _x( '', 'zip_prefix', 'tsoh' ) . $value;
 					break;
 				case 'country':

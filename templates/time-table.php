@@ -54,7 +54,7 @@
 				<?php
 				for ( $i = 0; $i < 7; $i ++ ) :
 					$classes = array( 'tsoh-cell' );
-					if ( $i == $day ) {
+					if ( $i === $day ) {
 						$classes[] = 'today';
 					}
 					$classes[] = isset( $time[ $i ] ) ? 'open' : 'close';

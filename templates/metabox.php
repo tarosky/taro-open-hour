@@ -70,7 +70,7 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 		}
 		$counter ++;
 		?>
-		<tr class="<?php echo ( $counter % 2 == 0 ) ? 'alt' : 'odd'; ?>">
+		<tr class="<?php echo esc_attr( ( 0 === $counter % 2 ) ? 'alt' : 'odd' ); ?>">
 			<th scope="row">
 				<input name="tsoh_open_hour[<?php echo $counter - 1; ?>]" type="text"
 					   value="<?php echo "{$time['open']}-{$time['close']}"; ?>"/>

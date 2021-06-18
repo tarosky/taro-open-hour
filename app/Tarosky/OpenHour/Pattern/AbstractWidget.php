@@ -131,13 +131,19 @@ abstract class AbstractWidget extends \WP_Widget {
 		</p>
 		<p class="description">
 			<?php esc_html_e( 'If left black, site default location will be used.', 'tsoh' ); ?>
-			<?php if ( ! ( $default = $this->places->get_site_location() ) ) : ?>
+			<?php
+			$default = $this->places->get_site_location();
+			if ( ! $default ) :
+				?>
 				<span style="color: orange;">
 					<strong><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Notice' ); ?>: </strong>
 					<?php esc_html_e( 'This site has no site location. Please register one.', 'tsoh' ); ?>
 				</span>
 			<?php else : ?>
-				<?php printf( esc_html__( 'Current site location is %s', 'tsoh' ), PlacesApi::instance()->get_location_label( $default ) ); ?>
+				<?php
+				// translators: %s is location label.
+				printf( esc_html__( 'Current site location is %s', 'tsoh' ), PlacesApi::instance()->get_location_label( $default ) );
+				?>
 			<?php endif; ?>
 		</p>
 		<?php

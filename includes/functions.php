@@ -19,7 +19,7 @@ use Tarosky\OpenHour\Services\MetaInfo;
 function tsoh_supported( $post_type ) {
 	$post_types = (array) get_option( 'tsoh_post_types', array() );
 	$post_types = array_merge( $post_types, Places::instance()->post_types );
-	return false !== array_search( $post_type, $post_types );
+	return false !== array_search( $post_type, $post_types, true );
 }
 
 /**
@@ -288,7 +288,7 @@ function tsoh_style_url( $context = '' ) {
 			'version' => filemtime( get_template_directory() . '/tsoh-style.css' ),
 		);
 	}
-	if ( get_template_directory() != get_stylesheet_directory() && file_exists( get_stylesheet_directory() . '/tsoh-style.css' ) ) {
+	if ( get_template_directory() !== get_stylesheet_directory() && file_exists( get_stylesheet_directory() . '/tsoh-style.css' ) ) {
 		$style = array(
 			'url'     => get_stylesheet_directory_uri() . '/tsoh-style.css',
 			'version' => filemtime( get_stylesheet_directory() . '/tsoh-style.css' ),

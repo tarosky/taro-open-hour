@@ -115,6 +115,11 @@ Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
 
 ## Changelog
 
+### 2.2.1
+
+* Map iframe is now `loading="lazy"`
+* Fix admin link.
+
 ### 2.2.0
 
 * Add widgets for place and time table.

@@ -13,3 +13,4 @@ phpunit.xml.dist
 phpcs.ruleset.xml
 composer.lock
 README.md
+readme.txt.bak

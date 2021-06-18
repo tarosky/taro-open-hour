@@ -54,7 +54,7 @@ EOS;
 			$time_segments = array();
 			foreach ( $time_tables as $time ) {
 				foreach ( array( 'open', 'close' ) as $key ) {
-					if ( false === array_search( $time->{$key}, $time_segments ) ) {
+					if ( ! array_search( $time->{$key}, $time_segments, true ) ) {
 						$time_segments[] = $time->{$key};
 					}
 				}

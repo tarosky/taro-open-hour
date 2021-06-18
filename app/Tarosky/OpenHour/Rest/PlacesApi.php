@@ -78,7 +78,8 @@ class PlacesApi extends AbstractRest {
 			'post_status'      => current_user_can( 'edit_others_posts' ) ? 'any' : 'publish',
 			'suppress_filters' => false,
 		);
-		if ( $s = $request->get_param( 's' ) ) {
+		$s    = $request->get_param( 's' );
+		if ( ! empty( $s ) ) {
 			$args['s'] = $s;
 		}
 		$query    = new \WP_Query( $args );

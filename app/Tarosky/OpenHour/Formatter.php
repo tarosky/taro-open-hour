@@ -57,7 +57,7 @@ class Formatter extends Singleton {
 	 */
 	public function normalize_day( $string = '' ) {
 		$string = (string) $string;
-		if ( '' == $string ) {
+		if ( '' === $string ) {
 			return false;
 		}
 		switch ( strtolower( $string ) ) {
