@@ -1,6 +1,7 @@
 .editorconfig
 .eslintrc
 .git
+.github
 .gitignore
 .travis.yml
 .wp-env.json

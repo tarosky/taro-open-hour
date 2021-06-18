@@ -2,6 +2,10 @@
 
 set -e
 
+# Set variables.
+PREFIX="refs/tags/"
+VERSION=${1#"$PREFIX"}
+
 # Build files
 composer install --no-dev --prefer-dist
 npm install

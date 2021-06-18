@@ -29,7 +29,7 @@ $contacts = $this->location_contacts( $post );
 			<strong><?php echo wp_kses_post( get_the_title( $post ) ); ?></strong><br />
 			<?php echo esc_html( $this->format_address( $post ) ); ?>
 		</p>
-		<?php if ( $access && ! $settings['no_access'] ) : ?>
+		<?php if ( $access && empty( $settings['no_access'] ) ) : ?>
 		<div class="tsoh-location-address-access">
 			<?php echo wp_kses_post( wpautop( trim( $access ) ) ); ?>
 		</div>
