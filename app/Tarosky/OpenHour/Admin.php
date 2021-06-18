@@ -41,8 +41,8 @@ class Admin extends Singleton {
 				'admin_notices',
 				function() {
 					/* translators: %s link to admin screen. */
-					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="2%s">setting screen</a>.', 'tsoh' ), admin_url( 'options-general.php?page=tsoh' ) );
-					echo "<div class=\"error\"><p>{$message}</p></div>";
+					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), esc_url( admin_url( 'options-general.php?page=tsoh' ) ) );
+					echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
 				}
 			);
 		}
