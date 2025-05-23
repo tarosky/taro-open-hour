@@ -2,10 +2,8 @@ Business Places
 ==================================
 
 Contributors: tarosky,Takahashi_Fumiki
-Tags: business,place,open-hour,widget  
-Requires at least: 4.9.0  
-Requires PHP: 5.6  
-Tested up to: 5.7.2  
+Tags: business,place,open-hour,widget   
+Tested up to: 6.8  
 Stable tag: nightly  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
