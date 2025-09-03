@@ -15,23 +15,23 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
-        php: [ '5.6', '7.2', '7.4' ] # PHP versions to check.
-        wp: [ 'latest', '5.4' ]      # WordPress version to check.
+        operating-system: [ ubuntu-22.04 ]
+        php: [ '7.4', '8.1', '8.2' ]   # PHP versions to check.
+        wp: [ 'latest', '5.4' ] # WordPress version to check.
     services:
       mysql:
         image: mysql:5.7
         options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
         ports:
-          - 3306/tcp
+          - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
     name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Setup PHP
-        uses: nanasess/setup-php@master
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
 
@@ -40,9 +40,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Start MySQL
-        run: sudo systemctl start mysql
 
       - name: Install WordPress
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
@@ -53,17 +50,16 @@ jobs:
       - name: PHP syntax check
         run: composer lint
 
-
   lint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     name: Asset Files Test
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Install Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
+          node-version: '18'
 
       - name: Install NPM Packages
         run: npm install
@@ -75,20 +71,20 @@ jobs:
     name: Deploy WordPress.org
     needs: [test, lint]
     if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
-        uses: nanasess/setup-php@master
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: 5.6
+          php-version: 7.4
 
       - name: Install Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12'
+          node-version: '18'
 
       - name: Build Plugin
         run: bash bin/build.sh ${{ github.ref }}
