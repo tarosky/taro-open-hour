@@ -14,6 +14,7 @@
 		"node": "16.20.2"
 	},
 	"scripts": {
+		"test": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/plugins/$RESULT/vendor/bin/phpunit -c ./wp-content/plugins/$RESULT/phpunit.xml.dist",
 		"start": "wp-env start",
 		"update": "wp-env start --update",
 		"stop": "wp-env stop",
@@ -44,7 +45,7 @@
 		"@babel/core": "^7.5.4",
 		"@babel/plugin-transform-react-jsx": "^7.0.0",
 		"@babel/preset-env": "^7.5.4",
-		"@wordpress/env": "^4.0",
+		"@wordpress/env": "^9.0",
 		"@wordpress/eslint-plugin": "^8.0.0",
 		"babel-eslint": "^10.0.1",
 		"babel-loader": "^8.0.5",
