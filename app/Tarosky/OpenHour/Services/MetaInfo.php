@@ -37,7 +37,6 @@ class MetaInfo extends Singleton {
 {$json}
 </script>
 HTML;
-
 	}
 
 	/**
@@ -173,7 +172,7 @@ HTML;
 		$date_arr  = $this->model->get_open_date( $post->ID );
 		$dates     = array( 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' );
 		$open_days = array();
-		for ( $i = 0; $i < 7; $i ++ ) {
+		for ( $i = 0; $i < 7; $i++ ) {
 			if ( false !== $date_arr[ $i ] ) {
 				$open_days[] = $dates[ $i ];
 			}
@@ -181,5 +180,4 @@ HTML;
 
 		return $open_days;
 	}
-
 }

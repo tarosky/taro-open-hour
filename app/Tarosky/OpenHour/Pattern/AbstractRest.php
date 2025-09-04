@@ -147,6 +147,4 @@ abstract class AbstractRest extends Singleton {
 				return null;
 		}
 	}
-
-
 }

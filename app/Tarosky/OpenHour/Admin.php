@@ -15,7 +15,7 @@ class Admin extends Singleton {
 
 		add_action(
 			'init',
-			function() {
+			function () {
 				wp_register_style( 'select2', tsoh_asset( 'css/select2.min.css' ), array(), '4.0.11' );
 				wp_register_script( 'select2', tsoh_asset( 'js/select2.min.js' ), array( 'jquery' ), '4.0.11', true );
 			}
@@ -23,14 +23,14 @@ class Admin extends Singleton {
 
 		add_action(
 			'admin_enqueue_scripts',
-			function() {
+			function () {
 				wp_enqueue_style( 'tsoh-admin', tsoh_asset( 'css/admin.css' ), array( 'select2' ), tsoh_version() );
 				wp_enqueue_script( 'tsoh-admin', tsoh_asset( 'js/admin.js' ), array( 'select2', 'wp-api-request' ), tsoh_version(), true );
 			}
 		);
 		add_action(
 			'admin_menu',
-			function() {
+			function () {
 				add_options_page( $this->get_title(), __( 'Business Places', 'tsoh' ), 'manage_options', 'tsoh', array( $this, 'admin_screen' ) );
 			}
 		);
@@ -39,7 +39,7 @@ class Admin extends Singleton {
 		if ( current_user_can( 'manage_options' ) && ! get_option( 'tsoh_post_types', array() ) ) {
 			add_action(
 				'admin_notices',
-				function() {
+				function () {
 					/* translators: %s link to admin screen. */
 					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), esc_url( admin_url( 'options-general.php?page=tsoh' ) ) );
 					echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
@@ -73,7 +73,7 @@ class Admin extends Singleton {
 				'tsoh_post_types',
 				array_filter(
 					$post_types,
-					function( $post_type ) {
+					function ( $post_type ) {
 						return post_type_exists( $post_type );
 					}
 				)
@@ -97,5 +97,4 @@ class Admin extends Singleton {
 			include $path;
 		}
 	}
-
 }

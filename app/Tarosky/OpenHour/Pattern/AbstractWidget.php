@@ -98,8 +98,8 @@ abstract class AbstractWidget extends \WP_Widget {
 			<p>
 				<label for="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat"><?php esc_html_e( 'Title', 'tsoh' ); ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-					   name="<?php echo $this->get_field_name( 'title' ); ?>"
-					   value="<?php echo isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : ''; ?>" />
+						name="<?php echo $this->get_field_name( 'title' ); ?>"
+						value="<?php echo isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : ''; ?>" />
 			</p>
 			<?php
 		}

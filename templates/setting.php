@@ -24,7 +24,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 				<td>
 					<label>
 						<input type="checkbox" name="tsoh_place_post_type" id="tsoh_place_post_type" value="1"
-						   <?php checked( get_option( 'tsoh_place_post_type', 1 ) ); ?> />
+							<?php checked( get_option( 'tsoh_place_post_type', 1 ) ); ?> />
 						<?php esc_html_e( 'Create post type for business location.', 'tsoh' ); ?>
 					</label>
 					<p class="description">
@@ -37,7 +37,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 				<td>
 					<label>
 						<input type="checkbox" name="tsoh_place_post_type_public" id="tsoh_place_post_type_public"
-							   value="1" <?php checked( get_option( 'tsoh_place_post_type_public' ) ); ?> />
+								value="1" <?php checked( get_option( 'tsoh_place_post_type_public' ) ); ?> />
 						<?php esc_html_e( 'Post type for business places is public.', 'tsoh' ); ?>
 					</label>
 
@@ -59,7 +59,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 						?>
 						<label class="tsoh-label">
 							<input type="checkbox" name="tsoh_place_post_types[]"
-								   value="<?php echo esc_attr( $post_type->name ); ?>"
+									value="<?php echo esc_attr( $post_type->name ); ?>"
 								<?php checked( $places->is_supported( $post_type->name ) ); ?> />
 							<?php echo esc_html( $post_type->label ); ?>
 						</label>
@@ -75,7 +75,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 				</th>
 				<td>
 					<input type="text" class="regular-text" name="tsoh_google_api_key" id="tsoh_google_api_key"
-						   value="<?php echo esc_attr( get_option( 'tsoh_google_api_key', '' ) ); ?>" />
+							value="<?php echo esc_attr( get_option( 'tsoh_google_api_key', '' ) ); ?>" />
 					<p class="description">
 						<?php esc_html_e( 'To display Google MAP with business location, enter Google API Key here.', 'tsoh' ); ?>
 						<a class="button" href="https://developers.google.com/maps/gmp-get-started" target="_blank">
@@ -116,8 +116,8 @@ $places = \Tarosky\OpenHour\Places::instance();
 				</th>
 				<td>
 					<textarea name="default-time" id="default-time" rows="3" style="width: 90%;"
-							  placeholder="<?php esc_attr_e( '09:00, 18:00', 'tsoh' ); ?>"
-							  ><?php echo esc_textarea( tsoh_default( true ) ); ?></textarea>
+								placeholder="<?php esc_attr_e( '09:00, 18:00', 'tsoh' ); ?>"
+								><?php echo esc_textarea( tsoh_default( true ) ); ?></textarea>
 					<p class="description">
 						<?php esc_html_e( 'Enter time shift in CSV format on each line. 1st is start time, 2nd is end time.', 'tsoh' ); ?>
 					</p>

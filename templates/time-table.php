@@ -52,7 +52,7 @@
 					<?php echo esc_html( $time['open'] . '~' . $time['close'] ); ?>
 				</th>
 				<?php
-				for ( $i = 0; $i < 7; $i ++ ) :
+				for ( $i = 0; $i < 7; $i++ ) :
 					$classes = array( 'tsoh-cell' );
 					if ( $i === $day ) {
 						$classes[] = 'today';

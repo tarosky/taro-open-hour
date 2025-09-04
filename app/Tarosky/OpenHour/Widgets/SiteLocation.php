@@ -73,6 +73,4 @@ class SiteLocation extends AbstractWidget {
 	protected function render_widget( $args, $instance ) {
 		echo $this->places->display_location( $this->location, 'card', $instance );
 	}
-
-
 }

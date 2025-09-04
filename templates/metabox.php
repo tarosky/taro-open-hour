@@ -56,8 +56,8 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 		</th>
 		<td colspan="8">
 			<textarea name="tsoh_note" id="tsoh_note" cols="40" rows="3"
-					  placeholder="<?php esc_attr_e( 'ex. Closing every Monday & National Holidays.', 'tsoh' ); ?>"
-					  style="width:90%;"><?php echo esc_textarea( get_post_meta( $post->ID, '_tsoh_holiday_note', true ) ); ?></textarea>
+						placeholder="<?php esc_attr_e( 'ex. Closing every Monday & National Holidays.', 'tsoh' ); ?>"
+						style="width:90%;"><?php echo esc_textarea( get_post_meta( $post->ID, '_tsoh_holiday_note', true ) ); ?></textarea>
 		</td>
 	</tr>
 	</tfoot>
@@ -68,14 +68,14 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 		if ( count( $time ) < 3 ) {
 			continue;
 		}
-		$counter ++;
+		++$counter;
 		?>
 		<tr class="<?php echo esc_attr( ( 0 === $counter % 2 ) ? 'alt' : 'odd' ); ?>">
 			<th scope="row">
 				<input name="tsoh_open_hour[<?php echo $counter - 1; ?>]" type="text"
-					   value="<?php echo "{$time['open']}-{$time['close']}"; ?>"/>
+						value="<?php echo "{$time['open']}-{$time['close']}"; ?>"/>
 			</th>
-			<?php for ( $index = 0; $index < 7; $index ++ ) : ?>
+			<?php for ( $index = 0; $index < 7; $index++ ) : ?>
 				<td>
 					<select name="tsoh_date_<?php echo $index; ?>[<?php echo $counter - 1; ?>]">
 						<option value=""<?php selected( ! isset( $time[ $index ] ) ); ?>>-</option>

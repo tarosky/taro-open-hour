@@ -41,7 +41,7 @@ class OpenHourMetaBox extends AbstractMetaBox {
 				$time  = explode( '-', $time );
 				$open  = $this->formatter->time2my( $time[0] );
 				$close = $this->formatter->time2my( $time[1] );
-				for ( $i = 0; $i < 7; $i ++ ) {
+				for ( $i = 0; $i < 7; $i++ ) {
 					if ( isset( $_POST[ 'tsoh_date_' . $i ][ $index ] ) && '' !== $_POST[ 'tsoh_date_' . $i ][ $index ] ) {
 						$this->model->add( $post_id, $i, $open, $close, 1 );
 					}
