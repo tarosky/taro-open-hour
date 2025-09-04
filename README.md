@@ -1,8 +1,8 @@
 Business Places
 ==================================
 
-Contributors: tarosky,Takahashi_Fumiki
-Tags: business,place,open-hour,widget   
+Contributors: tarosky,Takahashi_Fumiki, tswallie  
+Tags: business,place,open-hour,widget  
 Tested up to: 6.8  
 Stable tag: nightly  
 License: GPLv3 or later  
