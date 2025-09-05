@@ -62,6 +62,4 @@ class SiteOpenHour extends AbstractWidget {
 		$time_table = tsoh_get_timetable( false, array( 'tsoh-time-table-' . $style ), $this->location );
 		echo $time_table;
 	}
-
-
 }

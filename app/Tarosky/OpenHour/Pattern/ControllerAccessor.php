@@ -41,5 +41,4 @@ trait ControllerAccessor {
 				break;
 		}
 	}
-
 }

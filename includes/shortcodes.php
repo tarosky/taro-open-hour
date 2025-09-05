@@ -25,7 +25,7 @@ add_shortcode(
 
 add_shortcode(
 	'business-place',
-	function( $args, $content = '' ) {
+	function ( $args, $content = '' ) {
 		return Places::instance()->short_code_display( $args, $content );
 	}
 );

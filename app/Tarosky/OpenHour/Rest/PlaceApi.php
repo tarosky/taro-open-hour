@@ -14,7 +14,7 @@ class PlaceApi extends AbstractRest {
 			'post_id' => array(
 				'type'              => 'integer',
 				'description'       => 'ID of place.',
-				'validate_callback' => function( $var ) {
+				'validate_callback' => function ( $var ) {
 					return $var && ( $post = get_post( $var ) ) && $this->places->is_supported( $post->post_type );
 				},
 			),

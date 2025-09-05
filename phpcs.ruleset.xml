@@ -19,6 +19,7 @@
 		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
 		<exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
 		<exclude name="WordPress.DateTime.CurrentTimeTimestamp.Requested" />
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames" />
 	</rule>
 	<arg name="extensions" value="php" />
 	<file>includes</file>

@@ -61,7 +61,7 @@ EOS;
 			}
 			sort( $time_segments );
 			// Create table base.
-			for ( $i = 0, $l = count( $time_segments ); $i < $l; $i ++ ) {
+			for ( $i = 0, $l = count( $time_segments ); $i < $l; $i++ ) {
 				if ( isset( $time_segments[ $i + 1 ] ) ) {
 					$start           = $this->formatter->my2time( $time_segments[ $i ] );
 					$end             = $this->formatter->my2time( $time_segments[ $i + 1 ] );
@@ -144,7 +144,7 @@ EOS;
 			$date_arr[ $d->day ] = $d->crowdedness;
 		}
 		$results = array();
-		for ( $i = 0; $i < 7; $i ++ ) {
+		for ( $i = 0; $i < 7; $i++ ) {
 			$results[ $i ] = array_key_exists( $i, $date_arr ) ? $date_arr[ $i ] : false;
 		}
 
@@ -337,5 +337,4 @@ EOS;
 				break;
 		}
 	}
-
 }

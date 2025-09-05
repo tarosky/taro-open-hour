@@ -5,7 +5,8 @@ Plugin URI: https://wordpress.org/plugin/taro-open-hour
 Description: Add place and open hour to any post type.
 Author: Tarosky INC
 Version: nightly
-PHP Version: 5.6.0
+Requires at least: 5.9
+Requires PHP: 7.2
 Author URI: https://tarosky.co.jp
 */
 
@@ -23,7 +24,7 @@ add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
  */
 function tsoh_plugins_loaded() {
 	// Register i18n
-	load_plugin_textdomain( 'tsoh', false, basename( dirname( __FILE__ ) ) . '/language' );
+	load_plugin_textdomain( 'tsoh', false, basename( __DIR__ ) . '/language' );
 	// Check PHP version
 	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
 		add_action( 'admin_notices', 'tsoh_php_low' );

@@ -64,7 +64,7 @@ class PlacesApi extends AbstractRest {
 		if ( $post_type ) {
 			$post_types = array_filter(
 				explode( ',', $post_type ),
-				function( $type ) {
+				function ( $type ) {
 					return $type && $this->places->is_supported( $type );
 				}
 			);
@@ -95,5 +95,4 @@ class PlacesApi extends AbstractRest {
 		}
 		return $response;
 	}
-
 }

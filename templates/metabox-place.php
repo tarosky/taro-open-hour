@@ -25,8 +25,8 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 			</th>
 			<td>
 				<input type="text" class="regular-text" name="<?php echo esc_attr( $id ); ?>" id="<?php echo esc_attr( $id ); ?>"
-					   value="<?php echo esc_attr( get_post_meta( $post->ID, $id, true ) ); ?>"
-					   />
+						value="<?php echo esc_attr( get_post_meta( $post->ID, $id, true ) ); ?>"
+						/>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -40,8 +40,8 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 		<th><label for="_tsoh_local_business_type"><?php esc_html_e( 'Business Type', 'tsoh' ); ?></label></th>
 		<td>
 			<input type="text" class="regular-text" name="_tsoh_local_business_type" id="_tsoh_local_business_type"
-				   value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ); ?>"
-				   placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'tsoh' ); ?>" />
+					value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ); ?>"
+					placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'tsoh' ); ?>" />
 			<p class="description">
 				<?php
 				printf(
@@ -75,8 +75,8 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 			<th><label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label></th>
 			<td>
 				<input type="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $id ); ?>" id="<?php echo esc_attr( $id ); ?>"
-					   class="regular-text"
-					   value="<?php echo esc_attr( get_post_meta( $post->ID, $id, true ) ); ?>" />
+						class="regular-text"
+						value="<?php echo esc_attr( get_post_meta( $post->ID, $id, true ) ); ?>" />
 			</td>
 		</tr>
 		<?php endforeach; ?>
