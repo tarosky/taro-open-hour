@@ -16,8 +16,8 @@ class Admin extends Singleton {
 		add_action(
 			'init',
 			function () {
-				wp_register_style( 'select2', tsoh_asset( 'css/select2.min.css' ), array(), '4.0.11' );
-				wp_register_script( 'select2', tsoh_asset( 'js/select2.min.js' ), array( 'jquery' ), '4.0.11', true );
+				wp_register_style( 'select2', tsoh_asset( 'vendor/select2.min.css' ), array(), '4.0.11' );
+				wp_register_script( 'select2', tsoh_asset( 'vendor/select2.min.js' ), array( 'jquery' ), '4.0.11', true );
 			}
 		);
 
