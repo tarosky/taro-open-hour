@@ -1,0 +1,80 @@
+[
+	{
+		"handle": "select2.min",
+		"path": "dist/vendor/select2.min.js",
+		"ext": "js",
+		"hash": "0f64f3a3a0c620a6756d36abaff1b4a6",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "select2.min",
+		"path": "dist/vendor/select2.min.css",
+		"ext": "css",
+		"hash": "9f54e6414f87e0d14b9e966f19a174f9",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "edit-helper",
+		"path": "dist/js/edit-helper.js",
+		"ext": "js",
+		"hash": "3a8282997c76a72c86b140c73e9f97cc",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	null,
+	{
+		"handle": "admin",
+		"path": "dist/js/admin.js",
+		"ext": "js",
+		"hash": "f718959286390eb255be62cecde51265",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "_widget",
+		"path": "dist/js/admin/_widget.js",
+		"ext": "js",
+		"hash": "7435668f776db2627db43fe7553e2c65",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "tsoh-style",
+		"path": "dist/css/tsoh-style.css",
+		"ext": "css",
+		"hash": "2234b5132ff070adb110ebf355447012",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "admin",
+		"path": "dist/css/admin.css",
+		"ext": "css",
+		"hash": "30d7f3670465ee45b95b9c17129f7e3e",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	}
+]

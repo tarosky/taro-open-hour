@@ -111,6 +111,6 @@ function tsoh_template( $file ) {
  * @return string
  */
 function tsoh_asset( $path ) {
-	$base = trailingslashit( plugin_dir_url( __FILE__ ) . 'assets' );
+	$base = trailingslashit( plugin_dir_url( __FILE__ ) . 'dist' );
 	return $base . ltrim( $path, '/' );
 }
