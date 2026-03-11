@@ -6,7 +6,7 @@ Description: Add place and open hour to any post type.
 Author: Tarosky INC
 Version: nightly
 Requires at least: 5.9
-Requires PHP: 7.2
+Requires PHP: 7.4
 Author URI: https://tarosky.co.jp
 */
 
