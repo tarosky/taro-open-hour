@@ -10,6 +10,7 @@
 		"node": ">=22.0"
 	},
 	"scripts": {
+		"prepare": "husky",
 		"test": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/plugins/$RESULT/vendor/bin/phpunit -c ./wp-content/plugins/$RESULT/phpunit.xml.dist",
 		"start": "wp-env start",
 		"update": "wp-env start --update",
@@ -70,6 +71,13 @@
 		"stylelint-config-wordpress": "^17.0.0",
 		"vinyl-named": "^1.1.0",
 		"webpack": "^5.3",
-		"webpack-stream": "^6.1"
+		"webpack-stream": "^6.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7"
+	},
+	"lint-staged": {
+		"*.js": "npm run fix:js",
+		"*.scss": "npm run fix:css",
+		"*.php": "composer lint"
 	}
 }
