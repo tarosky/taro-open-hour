@@ -1,0 +1,103 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 8
+			path: app/Tarosky/OpenHour/Formatter.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 4
+			path: app/Tarosky/OpenHour/Model.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Tarosky/OpenHour/Pattern/AbstractMetaBox.php
+
+		-
+			message: '#^Parameter \#1 \$post of function get_post expects int\|WP_Post\|null, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Tarosky/OpenHour/Pattern/AbstractWidget.php
+
+		-
+			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Tarosky/OpenHour/Pattern/AbstractWidget.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Tarosky/OpenHour/Pattern/AbstractWidget.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$settings$#'
+			identifier: parameter.notFound
+			count: 1
+			path: app/Tarosky/OpenHour/Pattern/Singleton.php
+
+		-
+			message: '#^Parameter \#1 \$post of function is_single expects array\<int\|string\>\|int\|string, WP_Post given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Tarosky/OpenHour/Places.php
+
+		-
+			message: '#^Method Tarosky\\OpenHour\\Services\\MetaInfo\:\:get_location_for_current_page\(\) should return WP_Post\|null but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: app/Tarosky/OpenHour/Services/MetaInfo.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: app/Tarosky/OpenHour/Services/MetaInfo.php
+
+		-
+			message: '#^Negated boolean expression is always false\.$#'
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: app/Tarosky/OpenHour/Widgets/SiteLocation.php
+
+		-
+			message: '#^Binary operation "\-" between string and 1 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: includes/functions.php
+
+		-
+			message: '#^Call to method is_open\(\) on an unknown class Bootstrap\.$#'
+			identifier: class.notFound
+			count: 1
+			path: includes/functions.php
+
+		-
+			message: '#^Class WP_Post referenced with incorrect case\: WP_post\.$#'
+			identifier: class.nameCase
+			count: 2
+			path: includes/functions.php
+
+		-
+			message: '#^Expected 1 @param tags, found 2\.$#'
+			identifier: paramTag.count
+			count: 1
+			path: includes/functions.php
+
+		-
+			message: '#^Function tsoh_get_timetable\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: includes/functions.php
+
+		-
+			message: '#^Variable \$wpdb in PHPDoc tag @var does not match any global variable\: \$haoh$#'
+			identifier: varTag.differentVariable
+			count: 1
+			path: includes/functions.php
