@@ -1,8 +1,9 @@
 {
-	"extends": "@wordpress/stylelint-config",
+	"extends": "@wordpress/stylelint-config/scss",
 	"rules": {
 		"value-keyword-case": [ "lower", {
-			"ignoreProperties": [ "font-family" ]
+			"ignoreProperties": [ "font-family" ],
+			"ignoreKeywords": [ "currentColor" ]
 		} ],
 		"rule-empty-line-before": null,
 		"selector-class-pattern": null,

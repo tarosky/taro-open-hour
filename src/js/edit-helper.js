@@ -1,5 +1,8 @@
 /*!
- * Admin screen helper for
+ * Admin screen helper for open hour meta box.
+ *
+ * @handle tsoh-edit-helper
+ * @deps jquery-effects-highlight
  */
 
 /*global TsOpenHour:false */

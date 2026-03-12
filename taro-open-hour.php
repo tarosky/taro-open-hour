@@ -13,6 +13,9 @@ Author URI: https://tarosky.co.jp
 // Avoid direct loading.
 defined( 'ABSPATH' ) or die();
 
+// Register assets.
+add_action( 'init', 'tsoh_register_assets' );
+
 // Register bootstrap.
 add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
 
@@ -23,8 +26,6 @@ add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
  * @package tsoh
  */
 function tsoh_plugins_loaded() {
-	// Register i18n
-	load_plugin_textdomain( 'tsoh', false, basename( __DIR__ ) . '/language' );
 	// Check PHP version
 	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
 		add_action( 'admin_notices', 'tsoh_php_low' );
@@ -64,6 +65,44 @@ function tsoh_php_low() {
 		'5.6.0'
 	);
 	printf( '<div class="error"><p>%s</p></div>', $message );
+}
+
+/**
+ * Register all assets from wp-dependencies.json.
+ *
+ * @return void
+ */
+function tsoh_register_assets() {
+	$json = __DIR__ . '/wp-dependencies.json';
+	if ( ! file_exists( $json ) ) {
+		return;
+	}
+	$dependencies = json_decode( file_get_contents( $json ), true );
+	if ( empty( $dependencies ) ) {
+		return;
+	}
+	$base = trailingslashit( plugin_dir_url( __FILE__ ) );
+	foreach ( $dependencies as $dep ) {
+		if ( empty( $dep['path'] ) ) {
+			continue;
+		}
+		$url = $base . $dep['path'];
+		switch ( $dep['ext'] ) {
+			case 'css':
+				wp_register_style( $dep['handle'], $url, $dep['deps'], $dep['hash'], $dep['media'] );
+				break;
+			case 'js':
+				$footer = array( 'in_footer' => $dep['footer'] );
+				if ( in_array( $dep['strategy'], array( 'defer', 'async' ), true ) ) {
+					$footer['strategy'] = $dep['strategy'];
+				}
+				wp_register_script( $dep['handle'], $url, $dep['deps'], $dep['hash'], $footer );
+				if ( in_array( 'wp-i18n', $dep['deps'], true ) ) {
+					wp_set_script_translations( $dep['handle'], 'tsoh' );
+				}
+				break;
+		}
+	}
 }
 
 /**

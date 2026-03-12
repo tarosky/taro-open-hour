@@ -319,5 +319,11 @@ function tsoh_load_style() {
 		// Do nothing.
 		return;
 	}
-	wp_enqueue_style( 'tsoh-style', $style['url'], array( 'dashicons' ), $style['version'] );
+	// If theme overrides the stylesheet, deregister and re-register with the theme URL.
+	$default_url = tsoh_asset( '/css/tsoh-style.css' );
+	if ( $style['url'] !== $default_url ) {
+		wp_deregister_style( 'tsoh-style' );
+		wp_register_style( 'tsoh-style', $style['url'], array( 'dashicons' ), $style['version'] );
+	}
+	wp_enqueue_style( 'tsoh-style' );
 }
