@@ -24,8 +24,8 @@ class Admin extends Singleton {
 		add_action(
 			'admin_enqueue_scripts',
 			function () {
-				wp_enqueue_style( 'tsoh-admin', tsoh_asset( 'css/admin.css' ), array( 'select2' ), tsoh_version() );
-				wp_enqueue_script( 'tsoh-admin', tsoh_asset( 'js/admin.js' ), array( 'select2', 'wp-api-request' ), tsoh_version(), true );
+				wp_enqueue_style( 'tsoh-admin' );
+				wp_enqueue_script( 'tsoh-admin' );
 			}
 		);
 		add_action(

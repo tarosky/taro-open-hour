@@ -52,7 +52,7 @@ class OpenHourMetaBox extends AbstractMetaBox {
 
 
 	public function render_meta_box( $post ) {
-		wp_enqueue_script( 'tsoh-edit-helper', tsoh_asset( '/js/edit-helper.js' ), array( 'jquery-effects-highlight' ), tsoh_version(), true );
+		wp_enqueue_script( 'tsoh-edit-helper' );
 		$default_time = tsoh_default();
 		/**
 		 * tsoh_default_days
