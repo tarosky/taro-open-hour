@@ -15,6 +15,7 @@
 		"update": "wp-env start --update",
 		"stop": "wp-env stop",
 		"cli": "wp-env run cli wp",
+		"check": "wp-env run cli wp plugin check wp-content/plugins/taro-open-hour --require=./wp-content/plugins/plugin-check.latest-stable/cli.php --exclude-directories=.git,vendor,tests,node_modules,wordpress",
 		"env": "wp-env",
 		"package": "npm run build:css && npm run build:js && npm run copy:vendor && npm run dump",
 		"build:css": "sass ./src/scss/:./dist/css/ --style=compressed && postcss ./dist/css/*.css --use autoprefixer --replace",
