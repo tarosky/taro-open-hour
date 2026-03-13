@@ -29,10 +29,12 @@ jobs:
     outputs:
       pr_number: ${{ steps.pr.outputs.number }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Get PR number
         id: pr
         run: |
-          PR_NUMBER=$(gh pr list --repo "${{ github.repository }}" --head "${{ github.event.workflow_run.head_branch }}" --json number --jq '.[0].number')
+          PR_NUMBER=$(gh pr list --head "${{ github.event.workflow_run.head_branch }}" --json number --jq '.[0].number')
           echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
