@@ -36,12 +36,13 @@ class Admin extends Singleton {
 		);
 		add_action( 'admin_init', array( $this, 'save_option' ) );
 		// If no post type is selected, show link.
-		if ( current_user_can( 'manage_options' ) && ! get_option( 'tsoh_post_types', array() ) ) {
+		$post_types = get_option( 'tsoh_post_types' );
+		if ( current_user_can( 'manage_options' ) && empty( $post_types ) ) {
 			add_action(
 				'admin_notices',
 				function () {
 					/* translators: %s link to admin screen. */
-					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'taro-open-hour' ), esc_url( admin_url( 'options-general.php?page=tsoh' ) ) );
+					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'taro-open-hour' ), esc_url( admin_url( 'options-general.php?page=taro-open-hour' ) ) );
 					echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
 				}
 			);
@@ -83,7 +84,7 @@ class Admin extends Singleton {
 			// days
 			$days = isset( $_POST['default_days'] ) ? array_map( 'intval', (array) $_POST['default_days'] ) : array();
 			update_option( 'tsoh_default_days', $days );
-			wp_redirect( admin_url( 'options-general.php?page=tsoh' ) );
+			wp_safe_redirect( admin_url( 'options-general.php?page=taro-open-hour' ) );
 			exit;
 		}
 	}
