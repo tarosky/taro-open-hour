@@ -94,7 +94,7 @@ function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, W
 	$time_setting = $haoh->retrieve_specified_time( $query );
 	if ( $echo ) {
 		if ( ! $time_setting['time'] && ! $time_setting['days'] ) {
-			echo $undefined_as_now ? __( 'Now', 'taro-open-hour' ) : __( 'Undefined', 'taro-open-hour' );
+			echo $undefined_as_now ? esc_html__( 'Now', 'taro-open-hour' ) : esc_html__( 'Undefined', 'taro-open-hour' );
 		} else {
 			$str = array();
 			if ( $time_setting['time'] ) {
@@ -111,7 +111,7 @@ function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, W
 					)
 				);
 			}
-			echo implode( ' ', $str );
+			echo esc_html( implode( ' ', $str ) );
 		}
 	}
 
@@ -228,6 +228,7 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = array
 function tsoh_the_timetable( $timestamp = false, array $additional_class = array(), $post = null ) {
 	$table = tsoh_get_timetable( $timestamp, $additional_class, $post );
 	if ( $table ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML template output from tsoh_get_timetable().
 		echo $table;
 	}
 }

@@ -18,7 +18,7 @@
 	<table class="<?php echo esc_attr( $classes ); ?>">
 		<thead class="tsoh-time-table-header">
 		<tr>
-			<th scope="col" class="time-belt"><?php _e( 'Open Hour', 'taro-open-hour' ); ?></th>
+			<th scope="col" class="time-belt"><?php esc_html_e( 'Open Hour', 'taro-open-hour' ); ?></th>
 			<th scope="col" class="date"><?php esc_html_e( 'Mon', 'taro-open-hour' ); ?></th>
 			<th scope="col" class="date"><?php esc_html_e( 'Tue', 'taro-open-hour' ); ?></th>
 			<th scope="col" class="date"><?php esc_html_e( 'Wed', 'taro-open-hour' ); ?></th>

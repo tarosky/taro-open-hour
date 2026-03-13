@@ -12,7 +12,7 @@ $places = \Tarosky\OpenHour\Places::instance();
 		<?php echo esc_html( $this->get_title() ); ?>
 	</h2>
 
-	<form action="<?php echo admin_url( 'options-general.php?page=tsoh' ); ?>" method="post">
+	<form action="<?php echo esc_url( admin_url( 'options-general.php?page=tsoh' ) ); ?>" method="post">
 
 		<?php wp_nonce_field( 'tsoh_option' ); ?>
 
@@ -148,9 +148,9 @@ HTML;
 
 						printf(
 							$format,
-							$index,
+							(int) $index,
 							checked( false !== array_search( $index, $days, true ), true, false ),
-							$label
+							esc_html( $label )
 						);
 					}
 					?>

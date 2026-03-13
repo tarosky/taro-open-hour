@@ -48,7 +48,7 @@ function tsoh_plugins_loaded() {
 			require $auto_loader;
 			call_user_func( array( 'Tarosky\\OpenHour\\Bootstrap', 'instance' ) );
 		} else {
-			trigger_error( __( 'Auto loader file is missing. You should run composer install.', 'taro-open-hour' ), E_USER_WARNING );
+			trigger_error( esc_html__( 'Auto loader file is missing. You should run composer install.', 'taro-open-hour' ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		}
 	}
 }
@@ -66,7 +66,7 @@ function tsoh_php_low() {
 		phpversion(),
 		'5.6.0'
 	);
-	printf( '<div class="error"><p>%s</p></div>', $message );
+	printf( '<div class="error"><p>%s</p></div>', esc_html( $message ) );
 }
 
 /**

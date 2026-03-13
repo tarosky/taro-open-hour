@@ -66,11 +66,14 @@ abstract class AbstractWidget extends \WP_Widget {
 			return;
 		}
 		$title = isset( $instance['title'] ) ? $instance['title'] : '';
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from register_sidebar().
 		echo $args['before_widget'];
 		if ( $title ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from register_sidebar().
 			echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 		}
 		$this->render_widget( $args, $instance );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML from register_sidebar().
 		echo $args['after_widget'];
 	}
 

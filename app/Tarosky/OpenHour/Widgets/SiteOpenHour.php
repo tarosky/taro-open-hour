@@ -60,6 +60,7 @@ class SiteOpenHour extends AbstractWidget {
 		$style      = 'widget';
 		$style      = 'narrow';
 		$time_table = tsoh_get_timetable( false, array( 'tsoh-time-table-' . $style ), $this->location );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML template output from tsoh_get_timetable().
 		echo $time_table;
 	}
 }

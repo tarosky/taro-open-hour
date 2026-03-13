@@ -9,9 +9,9 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 	<thead>
 	<tr>
 		<td class="right" colspan="9">
-			<strong><?php _e( 'Labels', 'taro-open-hour' ); ?>:</strong>
-			<span><?php _ex( 'Open', 'time-table', 'taro-open-hour' ); ?>:</span> &#x2713;,
-			<span><?php _ex( 'Close', 'time-table', 'taro-open-hour' ); ?>:</span> -
+			<strong><?php esc_html_e( 'Labels', 'taro-open-hour' ); ?>:</strong>
+			<span><?php echo esc_html( _x( 'Open', 'time-table', 'taro-open-hour' ) ); ?>:</span> &#x2713;,
+			<span><?php echo esc_html( _x( 'Close', 'time-table', 'taro-open-hour' ) ); ?>:</span> -
 		</td>
 	</tr>
 	<tr>
@@ -29,7 +29,7 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 			) as $d
 		) :
 			?>
-			<th scope="col"><?php echo $d; ?></th>
+			<th scope="col"><?php echo esc_html( $d ); ?></th>
 		<?php endforeach; ?>
 		<th>&nbsp;</th>
 	</tr>
@@ -41,7 +41,7 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 			<p>
 				<input type="text" class="tsoh-time" id="tsoh-time-start" name="" value="" placeholder="ex. 09:00"/> ~
 				<input type="text" class="tsoh-time" id="tsoh-time-end" name="" value="" placeholder="ex. 12:00"/>
-				<a class="button" href="#" id="timeadd"><?php _e( 'Add', 'taro-open-hour' ); ?></a>
+				<a class="button" href="#" id="timeadd"><?php esc_html_e( 'Add', 'taro-open-hour' ); ?></a>
 			</p>
 		</td>
 		<td colspan="3">
@@ -72,19 +72,19 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 		?>
 		<tr class="<?php echo esc_attr( ( 0 === $counter % 2 ) ? 'alt' : 'odd' ); ?>">
 			<th scope="row">
-				<input name="tsoh_open_hour[<?php echo $counter - 1; ?>]" type="text"
-						value="<?php echo "{$time['open']}-{$time['close']}"; ?>"/>
+				<input name="tsoh_open_hour[<?php echo (int) ( $counter - 1 ); ?>]" type="text"
+						value="<?php echo esc_attr( $time['open'] . '-' . $time['close'] ); ?>"/>
 			</th>
 			<?php for ( $index = 0; $index < 7; $index++ ) : ?>
 				<td>
-					<select name="tsoh_date_<?php echo $index; ?>[<?php echo $counter - 1; ?>]">
+					<select name="tsoh_date_<?php echo (int) $index; ?>[<?php echo (int) ( $counter - 1 ); ?>]">
 						<option value=""<?php selected( ! isset( $time[ $index ] ) ); ?>>-</option>
 						<option value="0"<?php selected( isset( $time[ $index ] ) ); ?>>&#x2713;</option>
 					</select>
 				</td>
 			<?php endfor; ?>
 			<td>
-				<a class="delete-time-shift" href="#<?php echo $counter; ?>"><?php _e( 'Delete', 'taro-open-hour' ); ?></a>
+				<a class="delete-time-shift" href="#<?php echo (int) $counter; ?>"><?php esc_html_e( 'Delete', 'taro-open-hour' ); ?></a>
 			</td>
 		</tr>
 	<?php endforeach; ?>

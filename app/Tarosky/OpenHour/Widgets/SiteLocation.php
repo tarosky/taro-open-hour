@@ -71,6 +71,7 @@ class SiteLocation extends AbstractWidget {
 	 * @param array $instance
 	 */
 	protected function render_widget( $args, $instance ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML template output from display_location().
 		echo $this->places->display_location( $this->location, 'card', $instance );
 	}
 }
