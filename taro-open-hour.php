@@ -8,6 +8,8 @@ Version: nightly
 Requires at least: 5.9
 Requires PHP: 7.4
 Author URI: https://tarosky.co.jp
+Text Domain: taro-open-hour
+Domain Path: /language
 */
 
 // Avoid direct loading.
@@ -46,7 +48,7 @@ function tsoh_plugins_loaded() {
 			require $auto_loader;
 			call_user_func( array( 'Tarosky\\OpenHour\\Bootstrap', 'instance' ) );
 		} else {
-			trigger_error( __( 'Auto loader file is missing. You should run composer install.', 'tsoh' ), E_USER_WARNING );
+			trigger_error( esc_html__( 'Auto loader file is missing. You should run composer install.', 'taro-open-hour' ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
 		}
 	}
 }
@@ -60,11 +62,11 @@ function tsoh_plugins_loaded() {
 function tsoh_php_low() {
 	$message = sprintf(
 		// translators: %1$s is current PHP version, %2$s is required version.
-		__( '[ERROR] Business Places doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'tsoh' ),
+		__( '[ERROR] Business Places doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'taro-open-hour' ),
 		phpversion(),
 		'5.6.0'
 	);
-	printf( '<div class="error"><p>%s</p></div>', $message );
+	printf( '<div class="error"><p>%s</p></div>', esc_html( $message ) );
 }
 
 /**
@@ -98,7 +100,7 @@ function tsoh_register_assets() {
 				}
 				wp_register_script( $dep['handle'], $url, $dep['deps'], $dep['hash'], $footer );
 				if ( in_array( 'wp-i18n', $dep['deps'], true ) ) {
-					wp_set_script_translations( $dep['handle'], 'tsoh' );
+					wp_set_script_translations( $dep['handle'], 'taro-open-hour' );
 				}
 				break;
 		}

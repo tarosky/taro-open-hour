@@ -19,11 +19,11 @@ class SiteOpenHour extends AbstractWidget {
 	}
 
 	protected function get_name() {
-		return __( 'Open Hour', 'tsoh' );
+		return __( 'Open Hour', 'taro-open-hour' );
 	}
 
 	protected function get_description() {
-		return __( 'Display time table.' );
+		return __( 'Display time table.', 'taro-open-hour' );
 	}
 
 
@@ -60,6 +60,7 @@ class SiteOpenHour extends AbstractWidget {
 		$style      = 'widget';
 		$style      = 'narrow';
 		$time_table = tsoh_get_timetable( false, array( 'tsoh-time-table-' . $style ), $this->location );
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML template output from tsoh_get_timetable().
 		echo $time_table;
 	}
 }

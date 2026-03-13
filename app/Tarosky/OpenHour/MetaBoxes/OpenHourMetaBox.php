@@ -17,7 +17,7 @@ class OpenHourMetaBox extends AbstractMetaBox {
 	protected $position = 'advanced';
 
 	protected function get_title() {
-		return __( 'Open Hour', 'tsoh' );
+		return __( 'Open Hour', 'taro-open-hour' );
 	}
 
 	protected function should_display( $post_type ) {
@@ -67,12 +67,12 @@ class OpenHourMetaBox extends AbstractMetaBox {
 			'tsoh-edit-helper',
 			'TsOpenHour',
 			array(
-				'startError'     => _x( 'Start time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
-				'endError'       => _x( 'End time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'tsoh' ),
-				'pastStartError' => _x( 'Start time must be earlier than end time.', 'metabox-js', 'tsoh' ),
-				'notEmpty'       => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'tsoh' ),
-				'deleteBtn'      => _x( 'Delete', 'metabox-js', 'tsoh' ),
-				'deleteConfirm'  => _x( 'Are you sure to delete this time shift?', 'metabox-js', 'tsoh' ),
+				'startError'     => _x( 'Start time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'taro-open-hour' ),
+				'endError'       => _x( 'End time is invalid. Please input in "hh:mm" format.', 'metabox-js', 'taro-open-hour' ),
+				'pastStartError' => _x( 'Start time must be earlier than end time.', 'metabox-js', 'taro-open-hour' ),
+				'notEmpty'       => _x( 'Time shift is not empty. Clear them all before insert defaults.', 'metabox-js', 'taro-open-hour' ),
+				'deleteBtn'      => _x( 'Delete', 'metabox-js', 'taro-open-hour' ),
+				'deleteConfirm'  => _x( 'Are you sure to delete this time shift?', 'metabox-js', 'taro-open-hour' ),
 				'defaultTime'    => $default_time,
 				'defaultDays'    => $default_days,
 			)

@@ -74,7 +74,7 @@ abstract class AbstractRest extends Singleton {
 		$method_name = strtolower( 'handle_' . $request->get_method() );
 		try {
 			if ( ! method_exists( $this, $method_name ) ) {
-				throw new \Exception( __( 'Specified endpoint is not available.', 'tsoh' ), 400 );
+				throw new \Exception( __( 'Specified endpoint is not available.', 'taro-open-hour' ), 400 );
 			}
 			$result = call_user_func_array( array( $this, $method_name ), array( $request ) );
 			if ( is_wp_error( $result ) || is_a( $result, 'WP_REST_Response' ) ) {

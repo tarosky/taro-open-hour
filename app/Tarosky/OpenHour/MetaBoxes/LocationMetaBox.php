@@ -21,7 +21,7 @@ class LocationMetaBox extends AbstractMetaBox {
 	}
 
 	protected function get_title() {
-		return __( 'Location Setting', 'tsoh' );
+		return __( 'Location Setting', 'taro-open-hour' );
 	}
 
 	public function save_post( $post_id, $post ) {

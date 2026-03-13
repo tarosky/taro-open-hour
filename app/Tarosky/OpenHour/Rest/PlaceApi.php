@@ -31,7 +31,7 @@ class PlaceApi extends AbstractRest {
 	public function handle_get( $request ) {
 		$post = get_post( $request->get_param( 'post_id' ) );
 		if ( ! current_user_can( 'edit_others_posts' ) && 'publish' !== $post->post_status ) {
-			throw new \Exception( __( 'You have no permission to access this place.', 'tsoh' ), 403 );
+			throw new \Exception( __( 'You have no permission to access this place.', 'taro-open-hour' ), 403 );
 		}
 		return $this->place_to_array( $post );
 	}
