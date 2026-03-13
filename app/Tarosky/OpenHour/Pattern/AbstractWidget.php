@@ -96,7 +96,7 @@ abstract class AbstractWidget extends \WP_Widget {
 		if ( $this->has_title ) {
 			?>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat"><?php esc_html_e( 'Title', 'tsoh' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>" class="widefat"><?php esc_html_e( 'Title', 'taro-open-hour' ); ?></label>
 				<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
 						name="<?php echo $this->get_field_name( 'title' ); ?>"
 						value="<?php echo isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : ''; ?>" />
@@ -121,28 +121,28 @@ abstract class AbstractWidget extends \WP_Widget {
 		}
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Post ID of Place', 'tsoh' ); ?></label><br />
+			<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Post ID of Place', 'taro-open-hour' ); ?></label><br />
 			<select class="location-selector" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>"
-					data-placeholder="<?php esc_attr_e( 'Search places...', 'tsoh' ); ?>">
+					data-placeholder="<?php esc_attr_e( 'Search places...', 'taro-open-hour' ); ?>">
 				<?php if ( $place ) : ?>
 				<option value="<?php echo esc_attr( $place->ID ); ?>" selected="selected"><?php echo esc_html( PlacesApi::instance()->get_location_label( $place ) ); ?></option>
 				<?php endif; ?>
 			</select>
 		</p>
 		<p class="description">
-			<?php esc_html_e( 'If left black, site default location will be used.', 'tsoh' ); ?>
+			<?php esc_html_e( 'If left black, site default location will be used.', 'taro-open-hour' ); ?>
 			<?php
 			$default = $this->places->get_site_location();
 			if ( ! $default ) :
 				?>
 				<span style="color: orange;">
-					<strong><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Notice' ); ?>: </strong>
-					<?php esc_html_e( 'This site has no site location. Please register one.', 'tsoh' ); ?>
+					<strong><span class="dashicons dashicons-info"></span> <?php esc_html_e( 'Notice', 'taro-open-hour' ); ?>: </strong>
+					<?php esc_html_e( 'This site has no site location. Please register one.', 'taro-open-hour' ); ?>
 				</span>
 			<?php else : ?>
 				<?php
 				// translators: %s is location label.
-				printf( esc_html__( 'Current site location is %s', 'tsoh' ), PlacesApi::instance()->get_location_label( $default ) );
+				printf( esc_html__( 'Current site location is %s', 'taro-open-hour' ), PlacesApi::instance()->get_location_label( $default ) );
 				?>
 			<?php endif; ?>
 		</p>

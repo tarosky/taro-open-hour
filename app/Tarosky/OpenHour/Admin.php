@@ -31,7 +31,7 @@ class Admin extends Singleton {
 		add_action(
 			'admin_menu',
 			function () {
-				add_options_page( $this->get_title(), __( 'Business Places', 'tsoh' ), 'manage_options', 'tsoh', array( $this, 'admin_screen' ) );
+				add_options_page( $this->get_title(), __( 'Business Places', 'taro-open-hour' ), 'manage_options', 'taro-open-hour', array( $this, 'admin_screen' ) );
 			}
 		);
 		add_action( 'admin_init', array( $this, 'save_option' ) );
@@ -41,7 +41,7 @@ class Admin extends Singleton {
 				'admin_notices',
 				function () {
 					/* translators: %s link to admin screen. */
-					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'tsoh' ), esc_url( admin_url( 'options-general.php?page=tsoh' ) ) );
+					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'taro-open-hour' ), esc_url( admin_url( 'options-general.php?page=tsoh' ) ) );
 					echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
 				}
 			);
@@ -54,14 +54,14 @@ class Admin extends Singleton {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Business Places Setting', 'tsoh' );
+		return __( 'Business Places Setting', 'taro-open-hour' );
 	}
 
 	/**
 	 * Save post types
 	 */
 	public function save_option() {
-		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'tsoh' === $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
+		if ( isset( $_GET['page'], $_POST['_wpnonce'] ) && ( 'taro-open-hour' === $_GET['page'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'tsoh_option' ) ) {
 			// Save location.
 			update_option( 'tsoh_place_post_type', filter_input( INPUT_POST, 'tsoh_place_post_type' ) );
 			update_option( 'tsoh_place_post_type_public', filter_input( INPUT_POST, 'tsoh_place_post_type_public' ) );

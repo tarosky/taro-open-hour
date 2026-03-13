@@ -22,11 +22,11 @@ class SiteLocation extends AbstractWidget {
 	}
 
 	protected function get_name() {
-		return __( 'Business Place', 'tsoh' );
+		return __( 'Business Place', 'taro-open-hour' );
 	}
 
 	protected function get_description() {
-		return __( 'Display place information.', 'tsoh' );
+		return __( 'Display place information.', 'taro-open-hour' );
 	}
 
 	protected function form_elements( $instance ) {
@@ -38,8 +38,8 @@ class SiteLocation extends AbstractWidget {
 		);
 		$this->location_selector( $this->get_field_id( 'location_id' ), $this->get_field_name( 'location_id' ), $instance['location_id'] );
 		foreach ( array(
-			'show_map'    => __( 'Display Google Map', 'tsoh' ),
-			'show_access' => __( 'Display Google Map', 'tsoh' ),
+			'show_map'    => __( 'Display Google Map', 'taro-open-hour' ),
+			'show_access' => __( 'Display Google Map', 'taro-open-hour' ),
 		) as $key => $label ) {
 
 		}

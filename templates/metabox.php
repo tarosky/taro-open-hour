@@ -9,23 +9,23 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 	<thead>
 	<tr>
 		<td class="right" colspan="9">
-			<strong><?php _e( 'Labels', 'tsoh' ); ?>:</strong>
-			<span><?php _ex( 'Open', 'time-table', 'tsoh' ); ?>:</span> &#x2713;,
-			<span><?php _ex( 'Close', 'time-table', 'tsoh' ); ?>:</span> -
+			<strong><?php _e( 'Labels', 'taro-open-hour' ); ?>:</strong>
+			<span><?php _ex( 'Open', 'time-table', 'taro-open-hour' ); ?>:</span> &#x2713;,
+			<span><?php _ex( 'Close', 'time-table', 'taro-open-hour' ); ?>:</span> -
 		</td>
 	</tr>
 	<tr>
-		<th scope="col"><?php esc_html_e( 'Time Shift', 'tsoh' ); ?></th>
+		<th scope="col"><?php esc_html_e( 'Time Shift', 'taro-open-hour' ); ?></th>
 		<?php
 		foreach (
 			array(
-				__( 'Mon', 'tsoh' ),
-				__( 'Tue', 'tsoh' ),
-				__( 'Wed', 'tsoh' ),
-				__( 'Thu', 'tsoh' ),
-				__( 'Fri', 'tsoh' ),
-				__( 'Sat', 'tsoh' ),
-				__( 'Sun', 'tsoh' ),
+				__( 'Mon', 'taro-open-hour' ),
+				__( 'Tue', 'taro-open-hour' ),
+				__( 'Wed', 'taro-open-hour' ),
+				__( 'Thu', 'taro-open-hour' ),
+				__( 'Fri', 'taro-open-hour' ),
+				__( 'Sat', 'taro-open-hour' ),
+				__( 'Sun', 'taro-open-hour' ),
 			) as $d
 		) :
 			?>
@@ -41,22 +41,22 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 			<p>
 				<input type="text" class="tsoh-time" id="tsoh-time-start" name="" value="" placeholder="ex. 09:00"/> ~
 				<input type="text" class="tsoh-time" id="tsoh-time-end" name="" value="" placeholder="ex. 12:00"/>
-				<a class="button" href="#" id="timeadd"><?php _e( 'Add', 'tsoh' ); ?></a>
+				<a class="button" href="#" id="timeadd"><?php _e( 'Add', 'taro-open-hour' ); ?></a>
 			</p>
 		</td>
 		<td colspan="3">
 			<p class="right">
-				<a class="button" href="#" id="timeadd-default"><?php esc_html_e( 'Fill default time shift', 'tsoh' ); ?></a>
+				<a class="button" href="#" id="timeadd-default"><?php esc_html_e( 'Fill default time shift', 'taro-open-hour' ); ?></a>
 			</p>
 		</td>
 	</tr>
 	<tr>
 		<th>
-			<label for="tsoh_note"><?php esc_html_e( 'Holiday Notes', 'tsoh' ); ?></label>
+			<label for="tsoh_note"><?php esc_html_e( 'Holiday Notes', 'taro-open-hour' ); ?></label>
 		</th>
 		<td colspan="8">
 			<textarea name="tsoh_note" id="tsoh_note" cols="40" rows="3"
-						placeholder="<?php esc_attr_e( 'ex. Closing every Monday & National Holidays.', 'tsoh' ); ?>"
+						placeholder="<?php esc_attr_e( 'ex. Closing every Monday & National Holidays.', 'taro-open-hour' ); ?>"
 						style="width:90%;"><?php echo esc_textarea( get_post_meta( $post->ID, '_tsoh_holiday_note', true ) ); ?></textarea>
 		</td>
 	</tr>
@@ -84,14 +84,14 @@ wp_nonce_field( 'tsoh_meta_box', '_tsohnonce' );
 				</td>
 			<?php endfor; ?>
 			<td>
-				<a class="delete-time-shift" href="#<?php echo $counter; ?>"><?php _e( 'Delete', 'tsoh' ); ?></a>
+				<a class="delete-time-shift" href="#<?php echo $counter; ?>"><?php _e( 'Delete', 'taro-open-hour' ); ?></a>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</tbody>
 </table>
 <p class="description right">
-	<?php esc_html_e( 'Changes are not saved until you push update button.', 'tsoh' ); ?>
+	<?php esc_html_e( 'Changes are not saved until you push update button.', 'taro-open-hour' ); ?>
 </p>
 
 <?php

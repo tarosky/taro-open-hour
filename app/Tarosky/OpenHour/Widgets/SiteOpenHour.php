@@ -19,11 +19,11 @@ class SiteOpenHour extends AbstractWidget {
 	}
 
 	protected function get_name() {
-		return __( 'Open Hour', 'tsoh' );
+		return __( 'Open Hour', 'taro-open-hour' );
 	}
 
 	protected function get_description() {
-		return __( 'Display time table.' );
+		return __( 'Display time table.', 'taro-open-hour' );
 	}
 
 

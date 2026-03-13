@@ -16,39 +16,39 @@ $places = \Tarosky\OpenHour\Places::instance();
 
 		<?php wp_nonce_field( 'tsoh_option' ); ?>
 
-		<h2><?php esc_html_e( 'Business Places', 'tsoh' ); ?></h2>
+		<h2><?php esc_html_e( 'Business Places', 'taro-open-hour' ); ?></h2>
 
 		<table class="form-table">
 			<tr>
-				<th><label for="tsoh_place_post_type"><?php esc_html_e( 'Post Type', 'tsoh' ); ?></label></th>
+				<th><label for="tsoh_place_post_type"><?php esc_html_e( 'Post Type', 'taro-open-hour' ); ?></label></th>
 				<td>
 					<label>
 						<input type="checkbox" name="tsoh_place_post_type" id="tsoh_place_post_type" value="1"
 							<?php checked( get_option( 'tsoh_place_post_type', 1 ) ); ?> />
-						<?php esc_html_e( 'Create post type for business location.', 'tsoh' ); ?>
+						<?php esc_html_e( 'Create post type for business location.', 'taro-open-hour' ); ?>
 					</label>
 					<p class="description">
-						<?php esc_html_e( 'If you don\'t need post type for locations, leave unchecked.', 'tsoh' ); ?>
+						<?php esc_html_e( 'If you don\'t need post type for locations, leave unchecked.', 'taro-open-hour' ); ?>
 					</p>
 				</td>
 			</tr>
 			<tr>
-				<th><label for="tsoh_place_post_type_public"><?php esc_html_e( 'Post Type Visibility', 'tsoh' ); ?></label></th>
+				<th><label for="tsoh_place_post_type_public"><?php esc_html_e( 'Post Type Visibility', 'taro-open-hour' ); ?></label></th>
 				<td>
 					<label>
 						<input type="checkbox" name="tsoh_place_post_type_public" id="tsoh_place_post_type_public"
 								value="1" <?php checked( get_option( 'tsoh_place_post_type_public' ) ); ?> />
-						<?php esc_html_e( 'Post type for business places is public.', 'tsoh' ); ?>
+						<?php esc_html_e( 'Post type for business places is public.', 'taro-open-hour' ); ?>
 					</label>
 
 					<p class="description">
-						<?php esc_html_e( 'If you need each single page for business places, check above as true. Default is false.', 'tsoh' ); ?>
+						<?php esc_html_e( 'If you need each single page for business places, check above as true. Default is false.', 'taro-open-hour' ); ?>
 					</p>
 				</td>
 			</tr>
 			<tr>
 				<th>
-					<label><?php esc_html_e( 'Treated as Location', 'tsoh' ); ?></label>
+					<label><?php esc_html_e( 'Treated as Location', 'taro-open-hour' ); ?></label>
 				</th>
 				<td>
 					<?php
@@ -65,21 +65,21 @@ $places = \Tarosky\OpenHour\Places::instance();
 						</label>
 					<?php endforeach; ?>
 					<p class="description">
-						<?php esc_html_e( 'Selected post types will be recognized as business place same as above.', 'tsoh' ); ?>
+						<?php esc_html_e( 'Selected post types will be recognized as business place same as above.', 'taro-open-hour' ); ?>
 					</p>
 				</td>
 			</tr>
 			<tr>
 				<th>
-					<label for="tsoh_google_api_key"><?php esc_html_e( 'API Key', 'tsoh' ); ?></label>
+					<label for="tsoh_google_api_key"><?php esc_html_e( 'API Key', 'taro-open-hour' ); ?></label>
 				</th>
 				<td>
 					<input type="text" class="regular-text" name="tsoh_google_api_key" id="tsoh_google_api_key"
 							value="<?php echo esc_attr( get_option( 'tsoh_google_api_key', '' ) ); ?>" />
 					<p class="description">
-						<?php esc_html_e( 'To display Google MAP with business location, enter Google API Key here.', 'tsoh' ); ?>
+						<?php esc_html_e( 'To display Google MAP with business location, enter Google API Key here.', 'taro-open-hour' ); ?>
 						<a class="button" href="https://developers.google.com/maps/gmp-get-started" target="_blank">
-							<?php esc_html_e( 'Google API Documentation', 'tsoh' ); ?>
+							<?php esc_html_e( 'Google API Documentation', 'taro-open-hour' ); ?>
 						</a>
 					</p>
 				</td>
@@ -88,12 +88,12 @@ $places = \Tarosky\OpenHour\Places::instance();
 
 		<hr />
 
-		<h2><?php esc_html_e( 'Business Hours', 'tsoh' ); ?></h2>
+		<h2><?php esc_html_e( 'Business Hours', 'taro-open-hour' ); ?></h2>
 
 		<table class="form-table">
 			<tr>
 				<th>
-					<label><?php esc_html_e( 'Post Type', 'tsoh' ); ?></label>
+					<label><?php esc_html_e( 'Post Type', 'taro-open-hour' ); ?></label>
 				</th>
 				<td>
 					<?php
@@ -105,40 +105,40 @@ $places = \Tarosky\OpenHour\Places::instance();
 						</label>
 					<?php endforeach; ?>
 					<p class="description">
-						<?php esc_html_e( 'Select post types which have open hour.', 'tsoh' ); ?>
+						<?php esc_html_e( 'Select post types which have open hour.', 'taro-open-hour' ); ?>
 					</p>
 				</td>
 			</tr>
 
 			<tr>
 				<th>
-					<label for="tsoh-default"><?php esc_html_e( 'Default Time Shift', 'tsoh' ); ?></label>
+					<label for="tsoh-default"><?php esc_html_e( 'Default Time Shift', 'taro-open-hour' ); ?></label>
 				</th>
 				<td>
 					<textarea name="default-time" id="default-time" rows="3" style="width: 90%;"
-								placeholder="<?php esc_attr_e( '09:00, 18:00', 'tsoh' ); ?>"
+								placeholder="<?php esc_attr_e( '09:00, 18:00', 'taro-open-hour' ); ?>"
 								><?php echo esc_textarea( tsoh_default( true ) ); ?></textarea>
 					<p class="description">
-						<?php esc_html_e( 'Enter time shift in CSV format on each line. 1st is start time, 2nd is end time.', 'tsoh' ); ?>
+						<?php esc_html_e( 'Enter time shift in CSV format on each line. 1st is start time, 2nd is end time.', 'taro-open-hour' ); ?>
 					</p>
 				</td>
 			</tr>
 
 			<tr>
 				<th>
-					<label for="default-days"><?php esc_html_e( 'Default Open day', 'tsoh' ); ?></label>
+					<label for="default-days"><?php esc_html_e( 'Default Open day', 'taro-open-hour' ); ?></label>
 				</th>
 				<td>
 					<?php
 					$days = (array) get_option( 'tsoh_default_days', range( 0, 4 ) );
 					foreach ( array(
-						__( 'Mon' ),
-						__( 'Tue' ),
-						__( 'Wed' ),
-						__( 'Thu' ),
-						__( 'Fri' ),
-						__( 'Sat' ),
-						__( 'Sun' ),
+						__( 'Mon', 'taro-open-hour' ),
+						__( 'Tue', 'taro-open-hour' ),
+						__( 'Wed', 'taro-open-hour' ),
+						__( 'Thu', 'taro-open-hour' ),
+						__( 'Fri', 'taro-open-hour' ),
+						__( 'Sat', 'taro-open-hour' ),
+						__( 'Sun', 'taro-open-hour' ),
 					) as $index => $label ) {
 						$format = <<<HTML
 							<label style="display: inline-block; margin-right: 1em; margin-bottom: 0.5em; background: #f9f9f9; border: 1px solid #ddd; padding: 5px 10px;">
@@ -160,7 +160,7 @@ HTML;
 
 		</table>
 
-		<?php submit_button( __( 'Update Option', 'tsoh' ) ); ?>
+		<?php submit_button( __( 'Update Option', 'taro-open-hour' ) ); ?>
 
 	</form>
 

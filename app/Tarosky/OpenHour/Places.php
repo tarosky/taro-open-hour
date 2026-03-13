@@ -33,10 +33,10 @@ class Places extends Singleton {
 		$args = apply_filters(
 			'tsoh_location_post_type_args',
 			array(
-				'label'           => __( 'Business Locations', 'tsoh' ),
+				'label'           => __( 'Business Locations', 'taro-open-hour' ),
 				'labels'          => array(
-					'menu_name'     => __( 'Locations', 'tsoh' ),
-					'singular_name' => __( 'Business Location', 'tsoh' ),
+					'menu_name'     => __( 'Locations', 'taro-open-hour' ),
+					'singular_name' => __( 'Business Location', 'taro-open-hour' ),
 				),
 				'public'          => get_option( 'tsoh_place_post_type_public', false ),
 				'show_ui'         => true,
@@ -52,7 +52,7 @@ class Places extends Singleton {
 		$taxonomy_args = apply_filters(
 			'tsoh_location_taxonomy_args',
 			array(
-				'label'             => __( 'Location Type', 'tsoh' ),
+				'label'             => __( 'Location Type', 'taro-open-hour' ),
 				'public'            => get_option( 'tsoh_place_post_type_public', false ),
 				'show_ui'           => true,
 				'show_tagcloud'     => false,
@@ -147,14 +147,14 @@ class Places extends Singleton {
 	 */
 	public function get_address_parts() {
 		$parts         = array(
-			'address'  => _x( 'Address line 1', 'address', 'tsoh' ),
-			'address2' => _x( 'Address line 2', 'address', 'tsoh' ),
-			'city'     => _x( 'City', 'address', 'tsoh' ),
-			'state'    => _x( 'State / Province', 'address', 'tsoh' ),
-			'country'  => _x( 'Country', 'address', 'tsoh' ),
-			'zip'      => _x( 'Postal Code / Zip', 'address', 'tsoh' ),
+			'address'  => _x( 'Address line 1', 'address', 'taro-open-hour' ),
+			'address2' => _x( 'Address line 2', 'address', 'taro-open-hour' ),
+			'city'     => _x( 'City', 'address', 'taro-open-hour' ),
+			'state'    => _x( 'State / Province', 'address', 'taro-open-hour' ),
+			'country'  => _x( 'Country', 'address', 'taro-open-hour' ),
+			'zip'      => _x( 'Postal Code / Zip', 'address', 'taro-open-hour' ),
 		);
-		$address_order = _x( 'address,address2,city,state,country,zip', 'address-order', 'tsoh' );
+		$address_order = _x( 'address,address2,city,state,country,zip', 'address-order', 'taro-open-hour' );
 		$filtered      = array();
 		foreach ( array_map( 'trim', explode( ',', $address_order ) ) as $key ) {
 			if ( isset( $parts[ $key ] ) ) {
@@ -246,10 +246,10 @@ class Places extends Singleton {
 			switch ( $key ) {
 				case 'zip':
 					// phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
-					$address_parts[ $key ] = _x( '', 'zip_prefix', 'tsoh' ) . $value;
+					$address_parts[ $key ] = _x( '', 'zip_prefix', 'taro-open-hour' ) . $value;
 					break;
 				case 'country':
-					if ( 'no' !== _x( 'yes', 'display_country', 'tsoh' ) ) {
+					if ( 'no' !== _x( 'yes', 'display_country', 'taro-open-hour' ) ) {
 						$address_parts[ $key ] = $value;
 					}
 					break;
@@ -309,7 +309,7 @@ class Places extends Singleton {
 					break;
 				case 'url':
 					$url   = $value;
-					$label = __( 'Web Site', 'tsoh' );
+					$label = __( 'Web Site', 'taro-open-hour' );
 					$icon  = 'admin-links';
 					break;
 				default:
@@ -324,7 +324,7 @@ class Places extends Singleton {
 		}
 		if ( get_post_type_object( $post->post_type )->public && ! is_single( $post ) ) {
 			$contacts['detail'] = array(
-				'label' => __( 'See Detail', 'tsoh' ),
+				'label' => __( 'See Detail', 'taro-open-hour' ),
 				'url'   => get_permalink( $post ),
 				'icon'  => 'info',
 				'value' => get_permalink( $post ),

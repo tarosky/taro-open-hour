@@ -9,10 +9,10 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 <p>
 	<label>
 		<input type="checkbox" name="_tsoh_site_location" id="_tsoh_site_location" value="1" <?php checked( $this->places->is_site_location( $post ) ); ?> />
-		<?php esc_html_e( 'Mark as site main place(e.g. company address)', 'tsoh' ); ?>
+		<?php esc_html_e( 'Mark as site main place(e.g. company address)', 'taro-open-hour' ); ?>
 	</label>
 </p>
-<h3><?php esc_html_e( 'Address', 'tsoh' ); ?></h3>
+<h3><?php esc_html_e( 'Address', 'taro-open-hour' ); ?></h3>
 <table class="form-table">
 	<tbody>
 	<?php
@@ -31,27 +31,27 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 		</tr>
 	<?php endforeach; ?>
 	<tr>
-		<th><label for="_tsoh_access"><?php esc_html_e( 'Access Information', 'tsoh' ); ?></label></th>
+		<th><label for="_tsoh_access"><?php esc_html_e( 'Access Information', 'taro-open-hour' ); ?></label></th>
 		<td>
 			<textarea rows="5" class="widefat" name="_tsoh_access" id="_tsoh_access"><?php echo esc_textarea( get_post_meta( $post->ID, '_tsoh_access', true ) ); ?></textarea>
 		</td>
 	</tr>
 	<tr>
-		<th><label for="_tsoh_local_business_type"><?php esc_html_e( 'Business Type', 'tsoh' ); ?></label></th>
+		<th><label for="_tsoh_local_business_type"><?php esc_html_e( 'Business Type', 'taro-open-hour' ); ?></label></th>
 		<td>
 			<input type="text" class="regular-text" name="_tsoh_local_business_type" id="_tsoh_local_business_type"
 					value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ); ?>"
-					placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'tsoh' ); ?>" />
+					placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'taro-open-hour' ); ?>" />
 			<p class="description">
 				<?php
 				printf(
 					// translators: %s is entity type of schema.org.
-					esc_html__( 'This type is used to display structured data for search engines. Default type is "%s". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'tsoh' ),
+					esc_html__( 'This type is used to display structured data for search engines. Default type is "%s". This should be sub type of "LocalBusiness" and find proper one at Schema.org', 'taro-open-hour' ),
 					esc_html( tsoh_get_default_local_business( $post->post_type ) )
 				);
 				?>
 				<a class="button" href="https://schema.org/LocalBusiness#subtypes" target="_blank">
-					<?php esc_html_e( 'Visit Schema.org', 'tsoh' ); ?>
+					<?php esc_html_e( 'Visit Schema.org', 'taro-open-hour' ); ?>
 				</a>
 			</p>
 		</td>
@@ -59,15 +59,15 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 	</tbody>
 </table>
 
-<h3><?php esc_html_e( 'Contact', 'tsoh' ); ?></h3>
+<h3><?php esc_html_e( 'Contact', 'taro-open-hour' ); ?></h3>
 
 <table class="form-table">
 	<tbody>
 		<?php
 		foreach ( array(
-			'tel'   => __( 'Tel', 'tsoh' ),
-			'email' => __( 'Email', 'tsoh' ),
-			'url'   => __( 'URL', 'tsoh' ),
+			'tel'   => __( 'Tel', 'taro-open-hour' ),
+			'email' => __( 'Email', 'taro-open-hour' ),
+			'url'   => __( 'URL', 'taro-open-hour' ),
 		) as $key => $label ) :
 			$id = '_tsoh_' . $key;
 			?>
