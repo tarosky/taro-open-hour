@@ -5,3 +5,4 @@ composer.lock
 wp-dependencies.json
 /wordpress/
 *.cache
+.DS_Store

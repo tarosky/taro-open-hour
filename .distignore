@@ -14,6 +14,7 @@ phpunit.xml.dist
 phpcs.ruleset.xml
 phpstan.neon
 phpstan-baseline.neon
+.DS_Store
 composer.lock
 README.md
 readme.txt.bak

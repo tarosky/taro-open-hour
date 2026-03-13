@@ -8,6 +8,8 @@ Version: nightly
 Requires at least: 5.9
 Requires PHP: 7.4
 Author URI: https://tarosky.co.jp
+Text Domain: taro-open-hour
+Domain Path: /language
 */
 
 // Avoid direct loading.
