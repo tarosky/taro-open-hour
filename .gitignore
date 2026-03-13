@@ -6,3 +6,4 @@ wp-dependencies.json
 /wordpress/
 *.cache
 .DS_Store
+.claude/settings.local.json

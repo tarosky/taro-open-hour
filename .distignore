@@ -5,6 +5,7 @@
 .gitignore
 .travis.yml
 .wp-env.json
+.claude
 tests
 bin
 node_modules

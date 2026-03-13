@@ -1,0 +1,13 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(git checkout:*)",
+			"Bash(git add:*)",
+			"Bash(grep -r *)",
+			"Bash(grep -n *)",
+			"mcp__chrome-devtools__navigate_page",
+			"mcp__chrome-devtools__take_snapshot",
+			"mcp__chrome-devtools__click"
+		]
+	}
+}
