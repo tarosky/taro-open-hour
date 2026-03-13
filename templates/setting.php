@@ -86,6 +86,17 @@ $places = \Tarosky\OpenHour\Places::instance();
 			</tr>
 		</table>
 
+		<p class="description">
+			<?php esc_html_e( 'This plugin outputs structured data (JSON-LD) for business locations. You can validate your markup with the following tools:', 'taro-open-hour' ); ?>
+			<a href="<?php echo esc_url( 'https://search.google.com/test/rich-results' ); ?>" target="_blank" rel="noopener noreferrer">
+				<?php esc_html_e( 'Rich Results Test', 'taro-open-hour' ); ?>
+			</a>
+			|
+			<a href="<?php echo esc_url( 'https://validator.schema.org/' ); ?>" target="_blank" rel="noopener noreferrer">
+				<?php esc_html_e( 'Schema Markup Validator', 'taro-open-hour' ); ?>
+			</a>
+		</p>
+
 		<hr />
 
 		<h2><?php esc_html_e( 'Business Hours', 'taro-open-hour' ); ?></h2>
