@@ -52,7 +52,7 @@ HTML;
 			$type = tsoh_get_default_local_business( $post->post_type );
 		}
 		$json = array(
-			'@context' => 'http://schema.org',
+			'@context' => 'https://schema.org',
 			'@type'    => $type,
 			'@id'      => get_the_guid( $post ),
 			'name'     => get_the_title( $post ),
@@ -137,7 +137,7 @@ HTML;
 					'@type'     => 'OpeningHoursSpecification',
 					'opens'     => $row['open'] . ':00',
 					'closes'    => $row['close'] . ':00',
-					'dayOfWeek' => 'http://schema.org/' . array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' )[ $i ],
+					'dayOfWeek' => 'https://schema.org/' . array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' )[ $i ],
 				);
 			}
 		}
