@@ -13,12 +13,6 @@ parameters:
 			path: app/Tarosky/OpenHour/Model.php
 
 		-
-			message: '#^Unreachable statement \- code above always terminates\.$#'
-			identifier: deadCode.unreachable
-			count: 1
-			path: app/Tarosky/OpenHour/Pattern/AbstractMetaBox.php
-
-		-
 			message: '#^Parameter \#1 \$post of function get_post expects int\|WP_Post\|null, string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -27,12 +21,6 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$text of function esc_attr expects string, int given\.$#'
 			identifier: argument.type
-			count: 1
-			path: app/Tarosky/OpenHour/Pattern/AbstractWidget.php
-
-		-
-			message: '#^Unreachable statement \- code above always terminates\.$#'
-			identifier: deadCode.unreachable
 			count: 1
 			path: app/Tarosky/OpenHour/Pattern/AbstractWidget.php
 
@@ -51,12 +39,6 @@ parameters:
 		-
 			message: '#^Method Tarosky\\OpenHour\\Services\\MetaInfo\:\:get_location_for_current_page\(\) should return WP_Post\|null but return statement is missing\.$#'
 			identifier: return.missing
-			count: 1
-			path: app/Tarosky/OpenHour/Services/MetaInfo.php
-
-		-
-			message: '#^Unreachable statement \- code above always terminates\.$#'
-			identifier: deadCode.unreachable
 			count: 1
 			path: app/Tarosky/OpenHour/Services/MetaInfo.php
 

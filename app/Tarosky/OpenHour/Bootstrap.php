@@ -31,6 +31,8 @@ class Bootstrap extends Singleton {
 		LocationMetaBox::instance();
 		// Places instance.
 		Places::instance();
+		// Register blocks.
+		Blocks::instance();
 		// Enable JSON-LD
 		MetaInfo::instance();
 		// Register widgets.

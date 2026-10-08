@@ -19,7 +19,7 @@ class SiteOpenHour extends AbstractWidget {
 	}
 
 	protected function get_name() {
-		return __( 'Open Hour', 'taro-open-hour' );
+		return __( 'Business Places: Open Hour', 'taro-open-hour' );
 	}
 
 	protected function get_description() {
