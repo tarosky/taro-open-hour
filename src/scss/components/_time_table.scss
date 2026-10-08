@@ -1,4 +1,11 @@
 .tsoh {
+	&-time-table-container {
+		// Contain absolutely positioned screen reader text in the scroll area.
+		position: relative;
+		max-width: 100%;
+		margin: 1em 0;
+		overflow-x: auto;
+	}
 	&-time-table {
 		width: auto;
 
@@ -14,7 +21,7 @@
 		margin: 1em 0;
 		th,
 		td {
-			padding: 1em;
+			padding: 0.75em 0.5em;
 			border: 1px solid #ddd;
 
 			@media only screen and (max-width: 786px) {
@@ -61,6 +68,7 @@
 		}
 	}
 	&-row-header {
+		white-space: nowrap;
 		text-align: center;
 		font-weight: $tsoh-font-weight-regular;
 		color: #444;
