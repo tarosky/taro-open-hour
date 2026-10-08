@@ -32,4 +32,25 @@ class Tsoh_Basic_Test extends WP_UnitTestCase {
 		$this->assertEquals( $style['version'], tsoh_version() );
 	}
 
+	/**
+	 * Theme can override time table template.
+	 *
+	 * @see https://github.com/tarosky/taro-open-hour/issues/102
+	 */
+	function test_timetable_template_override() {
+		$this->assertEquals( tsoh_template( 'time-table.php' ), tsoh_locate_timetable_template() );
+		$theme_dir = get_temp_dir() . 'tsoh-theme-' . wp_generate_password( 6, false );
+		$template  = $theme_dir . '/template-part/tsoh/time-table.php';
+		wp_mkdir_p( dirname( $template ) );
+		file_put_contents( $template, '<?php // override' );
+		$filter = function () use ( $theme_dir ) {
+			return $theme_dir;
+		};
+		add_filter( 'stylesheet_directory', $filter );
+		$located = tsoh_locate_timetable_template();
+		remove_filter( 'stylesheet_directory', $filter );
+		unlink( $template );
+		$this->assertEquals( $template, $located );
+	}
+
 }

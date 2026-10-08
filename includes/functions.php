@@ -152,6 +152,27 @@ function tsoh_is_open( $post = null, WP_Query $query = null ) {
 }
 
 /**
+ * Locate time table template.
+ *
+ * Child theme overrides parent theme.
+ *
+ * @return string
+ */
+function tsoh_locate_timetable_template() {
+	$path = tsoh_template( 'time-table.php' );
+	foreach ( array( get_template_directory(), get_stylesheet_directory() ) as $dir ) {
+		// "templat-part" is a typo kept for backward compatibility.
+		foreach ( array( 'templat-part', 'template-part' ) as $part ) {
+			$style = "{$dir}/{$part}/tsoh/time-table.php";
+			if ( file_exists( $style ) ) {
+				$path = $style;
+			}
+		}
+	}
+	return $path;
+}
+
+/**
  * Get time table
  *
  * @param bool|int $timestamp
@@ -186,13 +207,7 @@ function tsoh_get_timetable( $timestamp = false, array $additional_class = array
 		return '';
 	}
 	$classes = implode( ' ', array_merge( array( 'tsoh-time-table' ), $additional_class ) );
-	$path    = tsoh_template( 'time-table.php' );
-	foreach ( array( get_template_directory(), get_stylesheet_directory() ) as $dir ) {
-		$style = "{$dir}/templat-part/tsoh/time-table.php";
-		if ( file_exists( $style ) ) {
-			$path = $style;
-		}
-	}
+	$path    = tsoh_locate_timetable_template();
 	/**
 	 * tsoh_timetable_template_path
 	 *
