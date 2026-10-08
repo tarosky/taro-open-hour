@@ -53,4 +53,28 @@ class Tsoh_Basic_Test extends WP_UnitTestCase {
 		$this->assertEquals( $template, $located );
 	}
 
+	/**
+	 * Setup notice should not appear if any post type is available.
+	 *
+	 * @see https://github.com/tarosky/taro-open-hour/issues/107
+	 */
+	function test_needs_setup() {
+		$admin = \Tarosky\OpenHour\Admin::instance();
+		// Default: location post type is enabled.
+		delete_option( 'tsoh_post_types' );
+		delete_option( 'tsoh_place_post_type' );
+		$this->assertFalse( $admin->needs_setup() );
+		// Location disabled, but other post type treated as location.
+		update_option( 'tsoh_place_post_type', '' );
+		update_option( 'tsoh_place_post_types', [ 'page' ] );
+		$this->assertFalse( $admin->needs_setup() );
+		// Only business hours post types.
+		update_option( 'tsoh_place_post_types', null );
+		update_option( 'tsoh_post_types', [ 'post' ] );
+		$this->assertFalse( $admin->needs_setup() );
+		// Nothing at all.
+		update_option( 'tsoh_post_types', [] );
+		$this->assertTrue( $admin->needs_setup() );
+	}
+
 }

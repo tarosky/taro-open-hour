@@ -36,17 +36,29 @@ class Admin extends Singleton {
 		);
 		add_action( 'admin_init', array( $this, 'save_option' ) );
 		// If no post type is selected, show link.
-		$post_types = get_option( 'tsoh_post_types' );
-		if ( current_user_can( 'manage_options' ) && empty( $post_types ) ) {
-			add_action(
-				'admin_notices',
-				function () {
-					/* translators: %s link to admin screen. */
-					$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'taro-open-hour' ), esc_url( admin_url( 'options-general.php?page=taro-open-hour' ) ) );
-					echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
+		add_action(
+			'admin_notices',
+			function () {
+				if ( ! current_user_can( 'manage_options' ) || ! $this->needs_setup() ) {
+					return;
 				}
-			);
-		}
+				/* translators: %s link to admin screen. */
+				$message = sprintf( __( '[Business Places] No post type is specified. Please go to <a href="%s">setting screen</a>.', 'taro-open-hour' ), esc_url( admin_url( 'options-general.php?page=taro-open-hour' ) ) );
+				echo wp_kses_post( "<div class=\"error\"><p>{$message}</p></div>" );
+			}
+		);
+	}
+
+	/**
+	 * Whether no post type is assigned to business places nor business hours.
+	 *
+	 * @return bool
+	 */
+	public function needs_setup() {
+		$post_types = array_filter( (array) get_option( 'tsoh_post_types', array() ) );
+		// Places::post_types is a magic property, so empty() does not work.
+		$place_post_types = Places::instance()->post_types;
+		return empty( $post_types ) && empty( $place_post_types );
 	}
 
 	/**
