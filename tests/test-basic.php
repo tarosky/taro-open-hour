@@ -108,4 +108,25 @@ class Tsoh_Basic_Test extends WP_UnitTestCase {
 		);
 	}
 
+	/**
+	 * Day and hour are calculated in site timezone from Unix timestamp.
+	 *
+	 * @see https://github.com/tarosky/taro-open-hour/issues/95
+	 */
+	function test_day_and_hour() {
+		update_option( 'timezone_string', 'Asia/Tokyo' );
+		// 2026-10-04 (Sun) 15:00 UTC is 2026-10-05 (Mon) 00:00 JST.
+		$this->assertEquals( [ 0, '00:00' ], tsoh_day_and_hour( gmmktime( 15, 0, 0, 10, 4, 2026 ) ) );
+		$post_id = self::factory()->post->create();
+		\Tarosky\OpenHour\Model::instance()->add( $post_id, 0, '10:00', '18:00' );
+		// Monday 12:00 JST.
+		$this->assertTrue( tsoh_is_open( $post_id, null, gmmktime( 3, 0, 0, 10, 5, 2026 ) ) );
+		// Monday 12:00 UTC is 21:00 JST.
+		$this->assertFalse( tsoh_is_open( $post_id, null, gmmktime( 12, 0, 0, 10, 5, 2026 ) ) );
+		// Default is now and returns valid format.
+		list( $day, $hour ) = tsoh_day_and_hour();
+		$this->assertContains( $day, range( 0, 6 ) );
+		$this->assertMatchesRegularExpression( '/^\d{2}:\d{2}$/', $hour );
+	}
+
 }

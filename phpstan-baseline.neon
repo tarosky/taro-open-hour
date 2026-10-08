@@ -67,12 +67,6 @@ parameters:
 			path: app/Tarosky/OpenHour/Widgets/SiteLocation.php
 
 		-
-			message: '#^Binary operation "\-" between string and 1 results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: includes/functions.php
-
-		-
 			message: '#^Class WP_Post referenced with incorrect case\: WP_post\.$#'
 			identifier: class.nameCase
 			count: 2
