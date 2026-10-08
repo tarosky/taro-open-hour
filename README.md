@@ -2,61 +2,61 @@ Business Places
 ==================================
 
 Contributors: tarosky,Takahashi_Fumiki, tswallie  
-Tags: business,place,open-hour,widget  
+Tags: business-hours, opening-hours, local-business, structured-data, google-maps  
 Requires at least: 6.6  
 Requires PHP: 7.4  
-Tested up to: 6.8  
+Tested up to: 7.1  
 Stable tag: nightly  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-A WordPress plugin for business place and open hour.
+Manage business places and opening hours, show time tables and Google Maps via widgets or shortcodes, and output LocalBusiness JSON-LD.
 
 ## Description
 
-This plugin add places and open hours to your WordPress site.
+This plugin adds business places and opening hours to your WordPress site.
 Formerly known as "**Taro Open Hour**".
 
-* Google Map supprted.
-* JSON-LD supported.
+* Google Maps embed supported.
+* JSON-LD (Schema.org LocalBusiness) structured data supported.
 
 ### Case Study
 
 #### Case 1
 
-If your site is for your book store, add site location as your business place.
+If your site is for your bookstore, add your store's location as a business place.
 
-These location and open hour are available via widget.
+The location and opening hours are available via widgets.
 
 #### Case 2
 
-If your site is bouldering shop database, choose post type to be treated as location.
+If your site is a database of bouldering gyms, choose a post type to be treated as a location.
 
-Each single page have place and open hour information.
+Each single page will have its own place and opening hour information.
 
 ### How to display
 
 #### Widgets
 
-You can use widget for open our and business location.
+You can use widgets for opening hours and business locations.
 
 #### Shortcodes
 
-You can use shortcode `[open-hour]` for time table. If you are a theme developer,
-just use `tsoh_the_timetable()` function.
+You can use the shortcode `[open-hour]` for the time table. If you are a theme developer,
+just use the `tsoh_the_timetable()` function.
 
 For business places, you can use `[business-place post_id='10']`.
-The attribute `post_id` can be omitted and it's default value is current post.
+The attribute `post_id` can be omitted and its default value is the current post.
 
 ### Acknowledgements
 
-* Banner images is a deliverative of the work of the Geospatial Information Authority of Japan.
+* Banner images are a derivative of the work of the Geospatial Information Authority of Japan.
 
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/taro-open-hour` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress.
-1. Go to `Setting > Business Places` and set it up.
+1. Go to `Settings > Business Places` and set it up.
 
 ## Customization
 
@@ -81,14 +81,14 @@ add_filter('tsoh_stylesheet', function($style){
 });
 ```
 
-If you returns `false` on filter hook, no style will be loaded.
+If you return `false` from the filter hook, no style will be loaded.
 
 ### Change table markup
 
-Table's template is located at `taro-open-hour/templates/time-table.php`.
-Copy it to `your-theme/template-part/tsoh/time-table.php ` and change markups.
+The table's template is located at `taro-open-hour/templates/time-table.php`.
+Copy it to `your-theme/template-part/tsoh/time-table.php` and change the markup.
 
-Of course, you can change template path with filter hook.
+Of course, you can change the template path with a filter hook.
 
 ```
 // e.g. If post type is event, change template from default.
@@ -102,16 +102,20 @@ add_filter( 'tsoh_timetable_template_path', function( $path, $post ) {
 
 ## Frequently Asked Questions
 
-### How can I contribute to?
+### How can I display opening hours or places with a block theme?
 
-Please make issue at [Github](https://github.com/tarosky/taro-open-hour/issues).
+Block themes have no widget areas. Add a Shortcode block and enter `[open-hour]` for the time table or `[business-place]` for the place information. Both accept the `post_id` attribute (default: the current post), e.g. `[business-place post_id='10']`.
+
+### How can I contribute?
+
+Please create an issue on [GitHub](https://github.com/tarosky/taro-open-hour/issues).
 
 ## Screenshots
 
-1. Time table displayed on single page with short code.
-2. You can enter time shift with metabox.
-3. You can choose post types, default time shift and default open day. Good for business with several branches.
-4. Widgets available. Open hour widget and location widget.
+1. Time table displayed on a single page with a shortcode.
+2. You can enter time shifts with a meta box.
+3. You can choose post types, default time shifts and default open days. Good for businesses with several branches.
+4. Widgets available: an opening hours widget and a location widget.
 
 ## Changelog
 
