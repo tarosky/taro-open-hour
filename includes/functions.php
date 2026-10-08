@@ -269,6 +269,46 @@ function tsoh_get_default_local_business( $post_type ) {
 }
 
 /**
+ * Sanitize a schema.org type name (e.g. "MedicalClinic").
+ *
+ * Only alphanumeric characters are kept.
+ *
+ * @param string $type Type name.
+ * @return string
+ */
+function tsoh_sanitize_local_business_type( $type ) {
+	return (string) preg_replace( '/[^A-Za-z0-9]/', '', (string) $type );
+}
+
+/**
+ * Common LocalBusiness subtypes suggested in the editor.
+ *
+ * @return string[]
+ */
+function tsoh_local_business_type_suggestions() {
+	$types = array(
+		'MedicalClinic',
+		'Dentist',
+		'Physician',
+		'Optician',
+		'Pharmacy',
+		'BeautySalon',
+		'HairSalon',
+		'DaySpa',
+		'Restaurant',
+		'CafeOrCoffeeShop',
+		'Store',
+		'LocalBusiness',
+	);
+	/**
+	 * tsoh_local_business_type_suggestions
+	 *
+	 * @param string[] $types Type names of schema.org.
+	 */
+	return (array) apply_filters( 'tsoh_local_business_type_suggestions', $types );
+}
+
+/**
  * Get stylesheet information.
  *
  * @param string $context
