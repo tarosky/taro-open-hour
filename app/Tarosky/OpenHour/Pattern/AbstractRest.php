@@ -96,23 +96,33 @@ abstract class AbstractRest extends Singleton {
 	/**
 	 * Permission callback.
 	 *
+	 * These endpoints are used by the admin UI (place selector),
+	 * so only users who can edit posts are allowed.
+	 *
 	 * @param \WP_REST_Request $request
 	 * @return bool
 	 */
 	public function permission_callback( $request ) {
-		return true;
+		return current_user_can( 'edit_posts' );
 	}
 
 	/**
 	 * Convert a place to array.
 	 *
+	 * Only safe fields are exposed. Never return the whole WP_Post
+	 * because it contains post_password and post_content.
+	 *
 	 * @param \WP_Post $post
 	 * @return array
 	 */
 	protected function place_to_array( $post ) {
-		$result          = (array) $post;
-		$result['label'] = $this->get_location_label( $post );
-		return $result;
+		return array(
+			'ID'          => $post->ID,
+			'post_title'  => $post->post_title,
+			'post_type'   => $post->post_type,
+			'post_status' => $post->post_status,
+			'label'       => $this->get_location_label( $post ),
+		);
 	}
 
 	/**
