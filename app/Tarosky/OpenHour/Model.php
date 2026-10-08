@@ -18,6 +18,13 @@ class Model extends Singleton {
 	public $db_version = '1.0.0';
 
 	/**
+	 * Constructor.
+	 */
+	protected function init() {
+		add_filter( 'wpmu_drop_tables', array( $this, 'drop_site_table' ), 10, 2 );
+	}
+
+	/**
 	 * Check if posts have time table
 	 *
 	 * @param int $post_id
@@ -290,26 +297,47 @@ EOS;
 
 	/**
 	 * Register db
+	 *
+	 * The CREATE TABLE statement follows dbDelta() syntax rules
+	 * (one definition per line, named KEY definitions) so that
+	 * re-running it against an existing table produces no ALTER queries.
+	 * Index names match what MySQL created from the previous schema.
+	 *
+	 * @return array Result of dbDelta().
 	 */
 	public function activate() {
 		$char = defined( 'DB_CHARSET' ) ? DB_CHARSET : 'utf8';
 		$sql  = <<<EOS
-			CREATE TABLE {$this->table} (
-				`time_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-				`object_id` BIGINT(11) NOT NULL,
-				`day` INT(1) NOT NULL,
-				`crowdedness` INT(11) NOT NULL,
-				`open` TIME NOT NULL,
-				`close` TIME NOT NULL,
-				UNIQUE(`time_id`),
-				INDEX by_object( `object_id` ),
-				INDEX by_day( `day`, `open`, `close` ),
-				INDEX by_time( `open`, `close` )
-			) ENGINE = InnoDB DEFAULT CHARSET = {$char} ;
+CREATE TABLE {$this->table} (
+time_id bigint(11) NOT NULL AUTO_INCREMENT,
+object_id bigint(11) NOT NULL,
+day int(1) NOT NULL,
+crowdedness int(11) NOT NULL,
+open time NOT NULL,
+close time NOT NULL,
+UNIQUE KEY time_id (time_id),
+KEY by_object (object_id),
+KEY by_day (day,open,close),
+KEY by_time (open,close)
+) ENGINE=InnoDB DEFAULT CHARSET={$char};
 EOS;
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		dbDelta( $sql );
+		$result = dbDelta( $sql );
 		update_option( 'tsoh_db_version', $this->db_version );
+		return $result;
+	}
+
+	/**
+	 * Add this plugin's table to the list of tables dropped with a site.
+	 *
+	 * @param string[] $tables  Table names to drop.
+	 * @param int      $blog_id Site ID being deleted.
+	 *
+	 * @return string[]
+	 */
+	public function drop_site_table( $tables, $blog_id ) {
+		$tables[] = $this->db->get_blog_prefix( $blog_id ) . 'ts_open_hour';
+		return $tables;
 	}
 
 	/**
