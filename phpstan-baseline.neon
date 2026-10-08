@@ -73,12 +73,6 @@ parameters:
 			path: includes/functions.php
 
 		-
-			message: '#^Call to method is_open\(\) on an unknown class Bootstrap\.$#'
-			identifier: class.notFound
-			count: 1
-			path: includes/functions.php
-
-		-
 			message: '#^Class WP_Post referenced with incorrect case\: WP_post\.$#'
 			identifier: class.nameCase
 			count: 2
@@ -93,11 +87,5 @@ parameters:
 		-
 			message: '#^Function tsoh_get_timetable\(\) should return string but return statement is missing\.$#'
 			identifier: return.missing
-			count: 1
-			path: includes/functions.php
-
-		-
-			message: '#^Variable \$wpdb in PHPDoc tag @var does not match any global variable\: \$haoh$#'
-			identifier: varTag.differentVariable
 			count: 1
 			path: includes/functions.php

@@ -77,4 +77,35 @@ class Tsoh_Basic_Test extends WP_UnitTestCase {
 		$this->assertTrue( $admin->needs_setup() );
 	}
 
+	/**
+	 * Public API should not cause fatal error.
+	 *
+	 * @see https://github.com/tarosky/taro-open-hour/issues/101
+	 */
+	function test_is_open() {
+		$post_id = self::factory()->post->create();
+		// Open on Monday(0) 10:00 - 18:00.
+		\Tarosky\OpenHour\Model::instance()->add( $post_id, 0, '10:00', '18:00' );
+		// 2026-10-05 is Monday.
+		$this->assertTrue( tsoh_is_open( $post_id, null, strtotime( '2026-10-05 12:00:00' ) ) );
+		$this->assertFalse( tsoh_is_open( $post_id, null, strtotime( '2026-10-05 19:00:00' ) ) );
+		$this->assertFalse( tsoh_is_open( $post_id, null, strtotime( '2026-10-06 12:00:00' ) ) );
+		$this->assertFalse( tsoh_is_open( self::factory()->post->create(), null, strtotime( '2026-10-05 12:00:00' ) ) );
+	}
+
+	/**
+	 * Deprecated function returns empty condition.
+	 *
+	 * @expectedDeprecated tsoh_current_time_condition
+	 */
+	function test_current_time_condition() {
+		$this->assertEquals(
+			[
+				'time' => '',
+				'days' => [],
+			],
+			tsoh_current_time_condition( false, false )
+		);
+	}
+
 }

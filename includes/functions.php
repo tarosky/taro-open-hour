@@ -78,44 +78,25 @@ function tsoh_has_timetable( $post = null ) {
 /**
  * Get current time condition
  *
- * @param bool $undefined_as_now Treat undefined as now.
- * @param bool $echo Default true. If false, output nothing.
- * @param WP_Query $query
+ * Searching by time condition is not supported since 2.0.0.
+ * This function always returns empty condition.
  *
- * @return array
+ * @deprecated 2.0.0
+ * @param bool     $undefined_as_now Treat undefined as now.
+ * @param bool     $echo Default true. If false, output nothing.
+ * @param WP_Query $query Not used.
+ *
+ * @return array{time:string, days:int[]}
  */
-function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, WP_Query $query = null ) {
-	global $haoh;
-	if ( is_null( $query ) ) {
-		global $wp_query;
-		$query = $wp_query;
-	}
-	$day_string   = array( __( 'Mon', 'taro-open-hour' ), __( 'Tue', 'taro-open-hour' ), __( 'Wed', 'taro-open-hour' ), __( 'Thu', 'taro-open-hour' ), __( 'Fri', 'taro-open-hour' ), __( 'Sat', 'taro-open-hour' ), __( 'Sun', 'taro-open-hour' ) );
-	$time_setting = $haoh->retrieve_specified_time( $query );
+function tsoh_current_time_condition( $undefined_as_now = false, $echo = true, $query = null ) {
+	_deprecated_function( __FUNCTION__, '2.0.0' );
 	if ( $echo ) {
-		if ( ! $time_setting['time'] && ! $time_setting['days'] ) {
-			echo $undefined_as_now ? esc_html__( 'Now', 'taro-open-hour' ) : esc_html__( 'Undefined', 'taro-open-hour' );
-		} else {
-			$str = array();
-			if ( $time_setting['time'] ) {
-				$str[] = \Tarosky\OpenHour\Formatter::instance()->my2time( $time_setting['time'] );
-			}
-			if ( $time_setting['days'] ) {
-				$str[] = implode(
-					', ',
-					array_map(
-						function ( $d ) use ( $day_string ) {
-							return isset( $day_string[ $d ] ) ? $day_string[ $d ] : '';
-						},
-						$time_setting['days']
-					)
-				);
-			}
-			echo esc_html( implode( ' ', $str ) );
-		}
+		echo $undefined_as_now ? esc_html__( 'Now', 'taro-open-hour' ) : esc_html__( 'Undefined', 'taro-open-hour' );
 	}
-
-	return $time_setting;
+	return array(
+		'time' => '',
+		'days' => array(),
+	);
 }
 
 /**
@@ -131,24 +112,25 @@ function tsoh_get_open_days_for_ogp( $post = null ) {
 }
 
 /**
- * 現在のポストがオープンしているかどうか
+ * Detect if the post is open at the time.
  *
- * @param null $post
- * @param WP_Query $query
+ * @param null|int|WP_Post $post      Post object.
+ * @param null             $query     Deprecated. Not used.
+ * @param bool|int         $timestamp Timestamp in local time. Default now.
  *
  * @return bool
  */
-function tsoh_is_open( $post = null, WP_Query $query = null ) {
-	/** @var Bootstrap $haoh */
-	/** @var wpdb $wpdb */
-	global $haoh;
+function tsoh_is_open( $post = null, $query = null, $timestamp = false ) {
 	$post = get_post( $post );
-	if ( is_null( $query ) ) {
-		global $wp_query;
-		$query = $wp_query;
+	if ( ! $post ) {
+		return false;
 	}
-
-	return $haoh->is_open( $post, $query );
+	if ( ! $timestamp ) {
+		$timestamp = current_time( 'timestamp' );
+	}
+	// Day index starts from Monday(0).
+	$day = (int) date_i18n( 'N', $timestamp ) - 1;
+	return \Tarosky\OpenHour\Model::instance()->is_open( $post, array( $day ), date_i18n( 'H:i', $timestamp ) );
 }
 
 /**
