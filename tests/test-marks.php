@@ -112,4 +112,13 @@ class Tsoh_Marks_Test extends WP_UnitTestCase {
 		$this->assertStringContainsString( '&lt;i&gt;x&lt;/i&gt;', $html );
 		$this->assertStringNotContainsString( '<i>x</i>', $html );
 	}
+
+	/**
+	 * Slash is available for Japanese clinic hours tables.
+	 */
+	function test_slash_preset() {
+		$this->assertContains( '／', tsoh_mark_presets( 'close' ) );
+		$this->assertSame( '／', tsoh_sanitize_mark( 'close', '／' ) );
+	}
+
 }

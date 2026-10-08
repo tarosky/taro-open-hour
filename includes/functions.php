@@ -390,7 +390,7 @@ function tsoh_default_mark( $type ) {
  */
 function tsoh_mark_presets( $type ) {
 	if ( 'close' === $type ) {
-		return array( '-', '×', '✕', '' );
+		return array( '-', '／', '×', '✕', '' );
 	}
 	return array( '✓', '○', '●', '◎', '✔' );
 }
