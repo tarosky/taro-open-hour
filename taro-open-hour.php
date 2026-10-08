@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Business Places
+Plugin Name: Business Places – Opening Hours Table & Local Business Schema
 Plugin URI: https://wordpress.org/plugin/taro-open-hour
 Description: Add place and open hour to any post type.
 Author: Tarosky INC

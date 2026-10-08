@@ -1,5 +1,4 @@
-Business Places
-==================================
+# Business Places – Opening Hours Table & Local Business Schema
 
 Contributors: tarosky,Takahashi_Fumiki, tswallie  
 Tags: business-hours, opening-hours, local-business, structured-data, google-maps  
@@ -10,15 +9,34 @@ Stable tag: nightly
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Manage business places and opening hours, show time tables and Google Maps via widgets or shortcodes, and output LocalBusiness JSON-LD.
+Weekly opening hours table block for clinics, dentists, salons and shops, with custom marks (✓ ○ ×), Google Maps and LocalBusiness schema.
 
 ## Description
 
-This plugin adds business places and opening hours to your WordPress site.
+Show your business hours as a **weekly opening hours table**: time slots as rows, Monday to Sunday as columns, and a mark in every cell where you are open.
+Add the table with a block, a widget or a shortcode, and output **LocalBusiness structured data (JSON-LD)** with `openingHoursSpecification` for search engines.
+
 Formerly known as "**Taro Open Hour**".
 
-* Google Maps embed supported.
-* JSON-LD (Schema.org LocalBusiness) structured data supported.
+### Who is it for?
+
+* **Clinics, dental offices, osteopaths and pharmacies** that publish consultation hours.
+* **Beauty salons, hair salons and spas.**
+* **Shops, cafés and restaurants** with one or several branches.
+* **Directory sites** (e.g. a database of gyms) where every post is a place with its own hours.
+
+It fits the Japanese-style consultation hours table (診療時間表), e.g. "9:00–12:00 / 14:00–18:00" rows with ○ for open and × or ／ for closed.
+
+### Features
+
+* **Opening hours table** – Add any number of time slots (e.g. 9:00–12:00 and 14:00–18:00) and tick the weekdays each slot is open.
+* **Selectable marks** – Choose the open mark (✓ ○ ● ◎ ✔) and the closed mark (- × ✕ or blank), or enter custom text, at `Settings > Business Places`.
+* **Holiday notes** – Add a note such as "Closed on Sundays and public holidays" below the table.
+* **Blocks** – "Open Hour" and "Business Place" blocks for the block editor.
+* **Widgets and shortcodes** – `[open-hour]` and `[business-place]`, also usable in block themes.
+* **Business places** – Address, access information, phone, email and URL, with a Google Maps embed.
+* **Local Business schema** – JSON-LD with a selectable schema.org type (MedicalClinic, Dentist, BeautySalon, Restaurant, Store, etc.), address and opening hours.
+* **Multiple places** – Use the built-in place post type or any post type you choose; mark one place as the site's main location.
 
 ### Case Study
 
@@ -110,6 +128,20 @@ add_filter( 'tsoh_timetable_template_path', function( $path, $post ) {
 ### How can I display opening hours or places with a block theme?
 
 Block themes have no widget areas. Add a Shortcode block and enter `[open-hour]` for the time table or `[business-place]` for the place information. Both accept the `post_id` attribute (default: the current post), e.g. `[business-place post_id='10']`.
+
+### How do I make a clinic hours table with ○ marks?
+
+1. Go to `Settings > Business Places` and choose "○" as the open mark and "×" (or a custom text such as "／") as the closed mark.
+2. Edit the place (or the post) and add time slots such as `9:00–12:00` and `14:00–18:00`.
+3. Tick the weekdays each slot is open, e.g. leave Saturday afternoon and Sunday unticked.
+4. Enter "Closed on Sundays and public holidays" in the holiday notes.
+5. Add the "Open Hour" block (or the `[open-hour]` shortcode) where you want the table.
+
+### Which schema type is output?
+
+The JSON-LD uses the "Business Type" field of each place's location settings as `@type`.
+Choose a [schema.org LocalBusiness subtype](https://schema.org/LocalBusiness#subtypes) such as `MedicalClinic`, `Dentist`, `HairSalon`, `Restaurant` or `Store`; common types are suggested as you type.
+If the field is empty, `LocalBusiness` is used. Developers can change the default with the `tsoh_default_local_business_type` filter (and the final value with `tsoh_local_business_type`).
 
 ### How can I contribute?
 

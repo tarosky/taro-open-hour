@@ -33,8 +33,12 @@ class LocationMetaBox extends AbstractMetaBox {
 		}
 		$keys = array_merge( array_keys( $this->places->get_address_parts() ), array( 'access', 'tel', 'url', 'email', 'local_business_type' ) );
 		foreach ( $keys as $key ) {
-			$id = '_tsoh_' . $key;
-			update_post_meta( $post_id, $id, filter_input( INPUT_POST, $id ) );
+			$id    = '_tsoh_' . $key;
+			$value = filter_input( INPUT_POST, $id );
+			if ( 'local_business_type' === $key ) {
+				$value = tsoh_sanitize_local_business_type( $value );
+			}
+			update_post_meta( $post_id, $id, $value );
 		}
 		$is_location = filter_input( INPUT_POST, '_tsoh_site_location' );
 		if ( $is_location ) {

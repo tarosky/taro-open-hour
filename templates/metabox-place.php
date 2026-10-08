@@ -41,7 +41,13 @@ wp_nonce_field( 'tsoh_place_meta_box', '_tsohplacenonce' );
 		<td>
 			<input type="text" class="regular-text" name="_tsoh_local_business_type" id="_tsoh_local_business_type"
 					value="<?php echo esc_attr( get_post_meta( $post->ID, '_tsoh_local_business_type', true ) ); ?>"
+					list="tsoh-local-business-types"
 					placeholder="<?php esc_attr_e( 'Default: LocalBusiness', 'taro-open-hour' ); ?>" />
+			<datalist id="tsoh-local-business-types">
+				<?php foreach ( tsoh_local_business_type_suggestions() as $business_type ) : ?>
+					<option value="<?php echo esc_attr( $business_type ); ?>"></option>
+				<?php endforeach; ?>
+			</datalist>
 			<p class="description">
 				<?php
 				printf(
