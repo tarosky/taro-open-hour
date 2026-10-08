@@ -168,6 +168,51 @@ HTML;
 				</td>
 			</tr>
 
+			<?php
+			$mark_rows = array(
+				'open'  => array(
+					'label'   => __( 'Open Mark', 'taro-open-hour' ),
+					'current' => tsoh_open_mark(),
+					'desc'    => __( 'Mark displayed in the time table cells when open.', 'taro-open-hour' ),
+				),
+				'close' => array(
+					'label'   => __( 'Closed Mark', 'taro-open-hour' ),
+					'current' => tsoh_close_mark(),
+					'desc'    => __( 'Mark displayed in the time table cells when closed.', 'taro-open-hour' ),
+				),
+			);
+			foreach ( $mark_rows as $mark_type => $mark_row ) :
+				$mark_presets = tsoh_mark_presets( $mark_type );
+				$is_custom    = ! in_array( $mark_row['current'], $mark_presets, true );
+				$select_id    = "tsoh_{$mark_type}_mark";
+				$custom_id    = "tsoh_{$mark_type}_mark_custom";
+				?>
+				<tr>
+					<th>
+						<label for="<?php echo esc_attr( $select_id ); ?>"><?php echo esc_html( $mark_row['label'] ); ?></label>
+					</th>
+					<td>
+						<select name="<?php echo esc_attr( $select_id ); ?>" id="<?php echo esc_attr( $select_id ); ?>">
+							<?php foreach ( $mark_presets as $preset ) : ?>
+								<option value="<?php echo esc_attr( $preset ); ?>" <?php selected( ! $is_custom && $preset === $mark_row['current'] ); ?>>
+									<?php echo esc_html( '' === $preset ? __( '(Empty)', 'taro-open-hour' ) : $preset ); ?>
+								</option>
+							<?php endforeach; ?>
+							<option value="custom" <?php selected( $is_custom ); ?>><?php esc_html_e( 'Custom', 'taro-open-hour' ); ?></option>
+						</select>
+						<label for="<?php echo esc_attr( $custom_id ); ?>">
+							<?php esc_html_e( 'Custom:', 'taro-open-hour' ); ?>
+							<input type="text" class="small-text" maxlength="10"
+								name="<?php echo esc_attr( $custom_id ); ?>" id="<?php echo esc_attr( $custom_id ); ?>"
+								value="<?php echo esc_attr( $is_custom ? $mark_row['current'] : '' ); ?>" />
+						</label>
+						<p class="description">
+							<?php echo esc_html( $mark_row['desc'] ); ?>
+							<?php esc_html_e( 'The custom text (up to 10 characters) is used when "Custom" is selected.', 'taro-open-hour' ); ?>
+						</p>
+					</td>
+				</tr>
+			<?php endforeach; ?>
 
 		</table>
 

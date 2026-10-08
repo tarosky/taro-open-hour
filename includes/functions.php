@@ -329,3 +329,90 @@ function tsoh_load_style() {
 	}
 	wp_enqueue_style( 'tsoh-style' );
 }
+
+/**
+ * Default mark for the time table.
+ *
+ * @param string $type 'open' or 'close'.
+ *
+ * @return string
+ */
+function tsoh_default_mark( $type ) {
+	return 'close' === $type ? '-' : '✓';
+}
+
+/**
+ * Preset marks selectable on the setting screen.
+ *
+ * @param string $type 'open' or 'close'.
+ *
+ * @return string[]
+ */
+function tsoh_mark_presets( $type ) {
+	if ( 'close' === $type ) {
+		return array( '-', '×', '✕', '' );
+	}
+	return array( '✓', '○', '●', '◎', '✔' );
+}
+
+/**
+ * Sanitize a mark submitted from the setting screen.
+ *
+ * @param string $type   'open' or 'close'.
+ * @param string $preset Selected preset value or 'custom'.
+ * @param string $custom Custom text, used when $preset is 'custom'.
+ *
+ * @return string
+ */
+function tsoh_sanitize_mark( $type, $preset, $custom = '' ) {
+	$preset = (string) $preset;
+	if ( 'custom' === $preset ) {
+		$custom = trim( sanitize_text_field( (string) $custom ) );
+		return mb_substr( $custom, 0, 10, 'UTF-8' );
+	}
+	if ( in_array( $preset, tsoh_mark_presets( $type ), true ) ) {
+		return $preset;
+	}
+	return tsoh_default_mark( $type );
+}
+
+/**
+ * Mark for open cells in the time table.
+ *
+ * Falls back to the default when the option is empty.
+ *
+ * @return string
+ */
+function tsoh_open_mark() {
+	$mark = (string) get_option( 'tsoh_open_mark', '' );
+	if ( '' === $mark ) {
+		$mark = tsoh_default_mark( 'open' );
+	}
+	/**
+	 * tsoh_open_mark
+	 *
+	 * @param string $mark Mark for open cells.
+	 */
+	return (string) apply_filters( 'tsoh_open_mark', $mark );
+}
+
+/**
+ * Mark for closed cells in the time table.
+ *
+ * Falls back to the default when the option is not saved.
+ * An empty string is a valid value (blank cell).
+ *
+ * @return string
+ */
+function tsoh_close_mark() {
+	$mark = get_option( 'tsoh_close_mark', false );
+	if ( false === $mark ) {
+		$mark = tsoh_default_mark( 'close' );
+	}
+	/**
+	 * tsoh_close_mark
+	 *
+	 * @param string $mark Mark for closed cells.
+	 */
+	return (string) apply_filters( 'tsoh_close_mark', (string) $mark );
+}

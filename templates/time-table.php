@@ -61,7 +61,13 @@
 					?>
 					<td data-open="<?php echo isset( $time[ $i ] ) ? 'true' : 'false'; ?>"
 						class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
-						<?php echo isset( $time[ $i ] ) ? '&#x2713;' : '-'; ?>
+						<?php if ( isset( $time[ $i ] ) ) : ?>
+							<span aria-hidden="true"><?php echo esc_html( tsoh_open_mark() ); ?></span>
+							<span class="screen-reader-text"><?php esc_html_e( 'Open', 'taro-open-hour' ); ?></span>
+						<?php else : ?>
+							<span aria-hidden="true"><?php echo esc_html( tsoh_close_mark() ); ?></span>
+							<span class="screen-reader-text"><?php esc_html_e( 'Closed', 'taro-open-hour' ); ?></span>
+						<?php endif; ?>
 					</td>
 				<?php endfor; ?>
 			</tr>
