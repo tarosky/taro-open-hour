@@ -36,6 +36,11 @@ Each single page have place and open hour information.
 
 ### How to display
 
+#### Blocks
+
+In the block editor, you can use "Open Hour" and "Business Place" blocks.
+Choose a place in the block settings. If empty, the current post or the site location is used.
+
 #### Widgets
 
 You can use widget for open our and business location.

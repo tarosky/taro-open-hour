@@ -38,7 +38,6 @@ trait ControllerAccessor {
 				return $wpdb;
 			default:
 				return null;
-				break;
 		}
 	}
 }

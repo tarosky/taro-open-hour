@@ -1,6 +1,7 @@
 {
 	"globals": {
-		"jQuery": false
+		"jQuery": false,
+		"wp": false
 	},
 	"extends": [ "plugin:@wordpress/eslint-plugin/recommended-with-formatting" ]
 }
