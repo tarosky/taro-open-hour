@@ -44,7 +44,7 @@ class PlacesApi extends AbstractRest {
 			),
 			'posts_per_page' => array(
 				'type'              => 'integer',
-				'description'       => 'Posts number.',
+				'description'       => 'Posts number. Between 1 and 100.',
 				'default'           => 10,
 				'validate_callback' => function ( $var ) {
 					return is_numeric( $var );
@@ -73,8 +73,8 @@ class PlacesApi extends AbstractRest {
 		}
 		$args = array(
 			'post_type'        => $post_types,
-			'posts_per_page'   => max( 10, $request->get_param( 'posts_per_page' ) ),
-			'paged'            => max( 1, $request->get_param( 'paged' ) ),
+			'posts_per_page'   => min( 100, max( 1, (int) $request->get_param( 'posts_per_page' ) ) ),
+			'paged'            => max( 1, (int) $request->get_param( 'page' ) ),
 			'post_status'      => current_user_can( 'edit_others_posts' ) ? 'any' : 'publish',
 			'suppress_filters' => false,
 		);
