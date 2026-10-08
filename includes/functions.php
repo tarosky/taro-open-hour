@@ -116,7 +116,7 @@ function tsoh_get_open_days_for_ogp( $post = null ) {
  *
  * @param null|int|WP_Post $post      Post object.
  * @param null             $query     Deprecated. Not used.
- * @param bool|int         $timestamp Timestamp in local time. Default now.
+ * @param bool|int         $timestamp Unix timestamp. Default now.
  *
  * @return bool
  */
@@ -125,12 +125,20 @@ function tsoh_is_open( $post = null, $query = null, $timestamp = false ) {
 	if ( ! $post ) {
 		return false;
 	}
-	if ( ! $timestamp ) {
-		$timestamp = current_time( 'timestamp' );
-	}
-	// Day index starts from Monday(0).
-	$day = (int) date_i18n( 'N', $timestamp ) - 1;
-	return \Tarosky\OpenHour\Model::instance()->is_open( $post, array( $day ), date_i18n( 'H:i', $timestamp ) );
+	list( $day, $hour ) = tsoh_day_and_hour( $timestamp );
+	return \Tarosky\OpenHour\Model::instance()->is_open( $post, array( $day ), $hour );
+}
+
+/**
+ * Get day index and hour in site timezone.
+ *
+ * @param bool|int|string $timestamp Unix timestamp. Default now.
+ *
+ * @return array{0:int, 1:string} Day index starts from Monday(0) and time in H:i format.
+ */
+function tsoh_day_and_hour( $timestamp = false ) {
+	$timestamp = $timestamp ? (int) $timestamp : time();
+	return array( (int) wp_date( 'N', $timestamp ) - 1, wp_date( 'H:i', $timestamp ) );
 }
 
 /**
@@ -157,20 +165,16 @@ function tsoh_locate_timetable_template() {
 /**
  * Get time table
  *
- * @param bool|int $timestamp
+ * @param bool|int $timestamp Unix timestamp. Default now.
  * @param array $additional_class
  * @param int|null|WP_Post $post
  *
  * @return string
  */
 function tsoh_get_timetable( $timestamp = false, array $additional_class = array(), $post = null ) {
-	$post = get_post( $post );
-	if ( ! $timestamp ) {
-		$timestamp = current_time( 'timestamp' );
-	}
-	$day        = date_i18n( 'N', $timestamp ) - 1;
-	$hour       = date_i18n( 'H:i', $timestamp );
-	$time_table = array_filter(
+	$post               = get_post( $post );
+	list( $day, $hour ) = tsoh_day_and_hour( $timestamp );
+	$time_table         = array_filter(
 		\Tarosky\OpenHour\Model::instance()->get_timetable( $post->ID ),
 		function ( $row ) {
 			return count( $row ) > 2;
