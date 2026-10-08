@@ -96,6 +96,12 @@ class Admin extends Singleton {
 			// days
 			$days = isset( $_POST['default_days'] ) ? array_map( 'intval', (array) $_POST['default_days'] ) : array();
 			update_option( 'tsoh_default_days', $days );
+			// Marks for time table.
+			foreach ( array( 'open', 'close' ) as $type ) {
+				$preset = isset( $_POST[ "tsoh_{$type}_mark" ] ) ? wp_unslash( (string) $_POST[ "tsoh_{$type}_mark" ] ) : '';
+				$custom = isset( $_POST[ "tsoh_{$type}_mark_custom" ] ) ? wp_unslash( (string) $_POST[ "tsoh_{$type}_mark_custom" ] ) : '';
+				update_option( "tsoh_{$type}_mark", tsoh_sanitize_mark( $type, $preset, $custom ) );
+			}
 			wp_safe_redirect( admin_url( 'options-general.php?page=taro-open-hour' ) );
 			exit;
 		}
