@@ -1,0 +1,38 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "meta": {
+        "title": "Business Places demo",
+        "description": "A dental clinic with weekly opening hours, displayed with the Open Hour and Business Place blocks.",
+        "author": "tarosky",
+        "categories": [
+            "Business"
+        ]
+    },
+    "landingPage": "/",
+    "preferredVersions": {
+        "php": "8.2",
+        "wp": "latest"
+    },
+    "features": {
+        "networking": true
+    },
+    "steps": [
+        {
+            "step": "login"
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "wordpress.org/plugins",
+                "slug": "taro-open-hour"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "runPHP",
+            "code": "<?php\nrequire '/wordpress/wp-load.php';\n\nupdate_option( 'tsoh_open_mark', '○' );\nupdate_option( 'tsoh_close_mark', '／' );\n\n$post_id = wp_insert_post( array(\n\t'post_type'    => 'location',\n\t'post_status'  => 'publish',\n\t'post_title'   => 'Sakura Dental Clinic',\n\t'post_content' => 'A friendly neighborhood dental clinic.',\n) );\n$meta    = array(\n\t'address'             => '1-2-3 Sakura-cho',\n\t'address2'            => 'Sakura Building 2F',\n\t'city'                => 'Shibuya-ku',\n\t'state'               => 'Tokyo',\n\t'country'             => 'Japan',\n\t'zip'                 => '150-0000',\n\t'tel'                 => '03-1234-5678',\n\t'url'                 => 'https://example.com',\n\t'access'              => '5 min walk from Shibuya Station.',\n\t'local_business_type' => 'Dentist',\n\t'holiday_note'        => 'Closed on Sundays, national holidays, and Wednesday & Saturday afternoons.',\n\t'site_location'       => 1,\n);\nforeach ( $meta as $key => $value ) {\n\tupdate_post_meta( $post_id, '_tsoh_' . $key, $value );\n}\n\n$model = \\Tarosky\\OpenHour\\Model::instance();\n$model->clear( $post_id );\nfor ( $day = 0; $day < 6; $day++ ) {\n\t$model->add( $post_id, $day, '09:00', '12:00' );\n}\nforeach ( array( 0, 1, 3, 4 ) as $day ) {\n\t$model->add( $post_id, $day, '14:00', '18:00' );\n}\n\n$page_id = wp_insert_post( array(\n\t'post_type'    => 'page',\n\t'post_status'  => 'publish',\n\t'post_title'   => 'Clinic Hours & Access',\n\t'post_content' => implode( \"\\n\\n\", array(\n\t\t'<!-- wp:heading --><h2 class=\"wp-block-heading\">Clinic Hours</h2><!-- /wp:heading -->',\n\t\tsprintf( '<!-- wp:tsoh/open-hour {\"postId\":%d} /-->', $post_id ),\n\t\t'<!-- wp:heading --><h2 class=\"wp-block-heading\">Access</h2><!-- /wp:heading -->',\n\t\tsprintf( '<!-- wp:tsoh/business-place {\"postId\":%d,\"noMap\":true} /-->', $post_id ),\n\t) ),\n) );\nupdate_option( 'show_on_front', 'page' );\nupdate_option( 'page_on_front', $page_id );\n"
+        }
+    ]
+}
