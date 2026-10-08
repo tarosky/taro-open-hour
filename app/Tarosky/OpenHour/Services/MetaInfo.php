@@ -95,23 +95,31 @@ HTML;
 	public function get_postal_address( $post ) {
 		$address = array();
 		$keys    = array(
-			'address'  => 'streetAddress',
-			'address2' => '',
-			'city'     => 'addressLocality',
-			'state'    => 'addressRegion',
-			'country'  => 'addressCountry',
-			'zip'      => 'postalCode',
+			'city'    => 'addressLocality',
+			'state'   => 'addressRegion',
+			'country' => 'addressCountry',
+			'zip'     => 'postalCode',
 		);
+		// Street address consists of line 1 and line 2.
+		$street = array();
+		foreach ( array( 'address', 'address2' ) as $key ) {
+			$value = trim( (string) get_post_meta( $post->ID, '_tsoh_' . $key, true ) );
+			if ( '' !== $value ) {
+				$street[] = $value;
+			}
+		}
+		if ( $street ) {
+			$address['streetAddress'] = implode( ' ', $street );
+		}
 		foreach ( $this->places->get_address_parts() as $key => $label ) {
-			$value = get_post_meta( $post->ID, '_tsoh_' . $key, true );
-			if ( ! $value || ! isset( $keys[ $key ] ) ) {
+			if ( ! isset( $keys[ $key ] ) ) {
 				continue;
 			}
-			if ( 'address2' === $key ) {
-				$address['streetAddress'] .= ' ' . $value;
-			} else {
-				$address[ $keys[ $key ] ] = $value;
+			$value = trim( (string) get_post_meta( $post->ID, '_tsoh_' . $key, true ) );
+			if ( '' === $value ) {
+				continue;
 			}
+			$address[ $keys[ $key ] ] = $value;
 		}
 		if ( ! $address ) {
 			return array();
