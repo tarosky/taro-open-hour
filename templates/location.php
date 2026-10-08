@@ -9,7 +9,7 @@
  * @var array                   $settings
  */
 
-$src      = $this->get_map_src( $post );
+$src      = empty( $settings['no_map'] ) ? $this->get_map_src( $post ) : '';
 $access   = get_post_meta( $post->ID, '_tsoh_access', true );
 $contacts = $this->location_contacts( $post );
 ?>
