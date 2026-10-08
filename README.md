@@ -3,6 +3,8 @@ Business Places
 
 Contributors: tarosky,Takahashi_Fumiki, tswallie  
 Tags: business,place,open-hour,widget  
+Requires at least: 6.6  
+Requires PHP: 7.4  
 Tested up to: 6.8  
 Stable tag: nightly  
 License: GPLv3 or later  

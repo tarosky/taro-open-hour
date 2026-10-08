@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugin/taro-open-hour
 Description: Add place and open hour to any post type.
 Author: Tarosky INC
 Version: nightly
-Requires at least: 5.9
+Requires at least: 6.6
 Requires PHP: 7.4
 Author URI: https://tarosky.co.jp
 Text Domain: taro-open-hour
@@ -28,45 +28,23 @@ add_action( 'plugins_loaded', 'tsoh_plugins_loaded' );
  * @package tsoh
  */
 function tsoh_plugins_loaded() {
-	// Check PHP version
-	if ( version_compare( phpversion(), '5.6.0', '<' ) ) {
-		add_action( 'admin_notices', 'tsoh_php_low' );
-	} else {
-		// Version check O.K.
-		// Load function file
-		$dir = __DIR__ . '/includes';
-		if ( is_dir( $dir ) ) {
-			foreach ( scandir( $dir ) as $file ) {
-				if ( preg_match( '#^[^._].*\.php$#u', $file ) ) {
-					require $dir . '/' . $file;
-				}
+	// Load function file
+	$dir = __DIR__ . '/includes';
+	if ( is_dir( $dir ) ) {
+		foreach ( scandir( $dir ) as $file ) {
+			if ( preg_match( '#^[^._].*\.php$#u', $file ) ) {
+				require $dir . '/' . $file;
 			}
 		}
-		// Load bootstrap
-		$auto_loader = __DIR__ . '/vendor/autoload.php';
-		if ( file_exists( $auto_loader ) ) {
-			require $auto_loader;
-			call_user_func( array( 'Tarosky\\OpenHour\\Bootstrap', 'instance' ) );
-		} else {
-			trigger_error( esc_html__( 'Auto loader file is missing. You should run composer install.', 'taro-open-hour' ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-		}
 	}
-}
-
-/**
- * PHP version warning
- *
- * @internal
- * @package tsoh
- */
-function tsoh_php_low() {
-	$message = sprintf(
-		// translators: %1$s is current PHP version, %2$s is required version.
-		__( '[ERROR] Business Places doesn\'t work because your PHP version %1$s is too low. PHP %2$s and over is required.', 'taro-open-hour' ),
-		phpversion(),
-		'5.6.0'
-	);
-	printf( '<div class="error"><p>%s</p></div>', esc_html( $message ) );
+	// Load bootstrap
+	$auto_loader = __DIR__ . '/vendor/autoload.php';
+	if ( file_exists( $auto_loader ) ) {
+		require $auto_loader;
+		call_user_func( array( 'Tarosky\\OpenHour\\Bootstrap', 'instance' ) );
+	} else {
+		trigger_error( esc_html__( 'Auto loader file is missing. You should run composer install.', 'taro-open-hour' ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+	}
 }
 
 /**
