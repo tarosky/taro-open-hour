@@ -129,4 +129,20 @@ class Tsoh_Basic_Test extends WP_UnitTestCase {
 		$this->assertMatchesRegularExpression( '/^\d{2}:\d{2}$/', $hour );
 	}
 
+	/**
+	 * JSON-LD uses https schema.org.
+	 *
+	 * @see https://github.com/tarosky/taro-open-hour/issues/94
+	 */
+	function test_json_ld_context() {
+		$post_id = self::factory()->post->create();
+		\Tarosky\OpenHour\Model::instance()->add( $post_id, 0, '10:00', '18:00' );
+		$meta  = \Tarosky\OpenHour\Services\MetaInfo::instance();
+		$post  = get_post( $post_id );
+		$json  = $meta->get_json( $post );
+		$hours = $meta->get_opening_hours( $post );
+		$this->assertEquals( 'https://schema.org', $json['@context'] );
+		$this->assertEquals( 'https://schema.org/Monday', $hours[0]['dayOfWeek'] );
+	}
+
 }
