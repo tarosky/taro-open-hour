@@ -156,6 +156,23 @@ Please create an issue on [GitHub](https://github.com/tarosky/taro-open-hour/iss
 
 ## Changelog
 
+### 2.3.0
+
+* Add blocks: "Open Hour" (time table) and "Business Place" (location card). They also work in block themes without widget areas.
+* Open/closed marks of the time table are now selectable in Settings > Business Places (✓ ○ ● ◎ ✔ / - ／ × ✕ or custom text), with screen reader text.
+* Business type can be picked from common LocalBusiness subtypes (MedicalClinic, Dentist, BeautySalon...).
+* Location widget can hide the map and access information. Widgets are renamed to "Business Places: ..." for clarity.
+* Security: REST API endpoints now require the `edit_posts` capability and return only necessary fields.
+* Bugfix: fatal error of `tsoh_is_open()`. `tsoh_current_time_condition()` is deprecated.
+* Bugfix: theme override path `template-part/tsoh/time-table.php` was not detected.
+* Bugfix: "No post type is specified" notice was shown even when business places were available.
+* Bugfix: database table schema caused SQL errors on update. Tables are dropped when a site is deleted on multisite.
+* Bugfix: PHP warning in JSON-LD when only the second address line was set.
+* Bugfix: time table overflowed narrow content areas.
+* `$timestamp` arguments of `tsoh_get_timetable()`, `tsoh_is_open()` and `[open-hour]` are now real Unix timestamps (`wp_date()` is used).
+* JSON-LD uses `https://schema.org`.
+* Requires WordPress 6.6 and PHP 7.4 or later. Tested with PHP 8.5.
+
 ### 2.2.1
 
 * Map iframe is now `loading="lazy"`
