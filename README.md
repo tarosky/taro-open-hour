@@ -149,10 +149,12 @@ Please create an issue on [GitHub](https://github.com/tarosky/taro-open-hour/iss
 
 ## Screenshots
 
-1. Time table displayed on a single page with a shortcode.
-2. You can enter time shifts with a meta box.
-3. You can choose post types, default time shifts and default open days. Good for businesses with several branches.
-4. Widgets available: an opening hours widget and a location widget.
+1. Opening hours table on the front end, rendered by the Open Hour block. Marks for open and closed cells are customizable.
+2. Open Hour block in the block editor. Choose which business place to display from the block sidebar.
+3. Enter weekly time shifts and holiday notes in the Open Hour meta box.
+4. Location settings: address, access information, and the business type (Schema.org) used for structured data.
+5. Settings > Business Places: post types, default time shifts, default open days, and open/closed marks.
+6. Business Place block showing the name, address, access information, and contacts.
 
 ## Changelog
 
